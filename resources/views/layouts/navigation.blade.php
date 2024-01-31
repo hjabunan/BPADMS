@@ -12,35 +12,74 @@
 
                 <!-- Navigation Links -->
                 @if (Auth::user()->first_time == 0)
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-8 sm:flex">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Activity Calendar') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('batch')">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex">
+                        <x-nav-link :href="route('bpa-improvement.index')" :active="request()->routeIs('bpa-improvement.index')">
                             {{ __('Improvement Evaluation Audit') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('batch')">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex">
+                        <x-nav-link :href="route('bpa-internalaudit.index')" :active="request()->routeIs('bpa-internalaudit.index')">
                             {{ __('Internal Audit') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('batch')">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex">
+                        <x-nav-link :href="route('bpa-branchaudit.index')" :active="request()->routeIs('bpa-branchaudit.index')">
                             {{ __('Branch Audit') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('batch')">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex">
+                        <x-nav-link :href="route('bpa-warehouse.index')" :active="request()->routeIs('bpa-warehouse.index')">
                             {{ __('Warehouse') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('batch')">
                             {{ __('System Configuration') }}
                         </x-nav-link>
+                    </div> --}}
+                    @php
+                        // $isActiveSystemConfig = Str::contains(request()->route()->uri, 'bpa-systemconfig');
+                        $currentRoute = request()->route()->uri;
+
+                        $systemConfigSegment = collect(explode('/', $currentRoute))->first(function ($segment) {
+                            return Str::startsWith($segment, 'bpa-systemconfig');
+                        });
+
+                        $isActiveSystemConfig = $systemConfigSegment !== null;
+                    @endphp
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex sm:items-center">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <x-nav-link :active="$isActiveSystemConfig ? 'active' : null">
+                                <button class="inline-flex items-center px-3 py-[19px] border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                        {{ __('System Configuration') }}
+
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                </x-nav-link>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('bpa-systemconfig.sc-users.index')">
+                                    {{ __('User Management') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('bpa-systemconfig.sc-activitylogs.index')">
+                                    {{ __('Activity Logs') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('bpa-systemconfig.sc-loginlogs.index')">
+                                    {{ __('Login Logs') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
                     </div>
                 @endif
             </div>
@@ -61,10 +100,6 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        {{-- <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link> --}}
-
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -100,29 +135,41 @@
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('bpa-improvement.index')" :active="request()->routeIs('bpa-improvement.index')">
                     {{ __('Improvement Evaluation Audit') }}
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('bpa-internalaudit.index')" :active="request()->routeIs('bpa-internalaudit.index')">
                     {{ __('Internal Audit') }}
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('bpa-branchaudit.index')" :active="request()->routeIs('bpa-branchaudit.index')">
                     {{ __('Branch Audit') }}
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('bpa-warehouse.index')" :active="request()->routeIs('bpa-warehouse.index')">
                     {{ __('Warehouse') }}
                 </x-responsive-nav-link>
             </div>
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :active="$isActiveSystemConfig ? 'active' : null">
                     {{ __('System Configuration') }}
                 </x-responsive-nav-link>
+    
+                <div class="px-3 mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('bpa-systemconfig.sc-users.index')">
+                        {{ __('User Management') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('bpa-systemconfig.sc-activitylogs.index')">
+                        {{ __('Activity Logs') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('bpa-systemconfig.sc-loginlogs.index')">
+                        {{ __('Login Logs') }}
+                    </x-responsive-nav-link>
+                </div>
             </div>
         @endif
 
@@ -134,6 +181,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('profile.edit')">
+                    {{ __('Profile') }}
+                </x-responsive-nav-link>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

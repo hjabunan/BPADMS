@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('idnum')->unique();
             $table->string('password');
             $table->string('role');
-            $table->string('first_time')->nullable();
-            $table->string('user_validity')->nullable();
+            $table->string('first_time')->default('1');
+            $table->string('validity_date')->nullable();
             $table->tinyInteger('status')->default('1');
             $table->string('key');
             $table->timestamps();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('bpa_users');
     }
 };

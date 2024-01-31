@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,7 +23,7 @@ class FirstTimeLogin
             if ($user->first_time == 1) {
                 return redirect()->route('change.password', ['key' => $user->key]);
             } else {
-                return redirect()->route('dashboard');
+                return $next($request);
             }
         }
 

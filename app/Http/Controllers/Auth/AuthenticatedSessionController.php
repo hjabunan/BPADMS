@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,6 +18,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        User::where('status',1)->whereDate('validity_date', '<', now()->toDateString())->update([
+            'status' => 0,
+        ]);
+
         return view('auth.login');
     }
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Events\Failed;
 
 class LoginRequest extends FormRequest
 {
@@ -47,31 +48,65 @@ class LoginRequest extends FormRequest
             ->orWhere('idnum',$this->idnum)
             ->first();
 
+        if (!$user) {
+            session(['failed_login' => [
+                'login' => $this->idnum,
+                'reason' => __('auth.failed'),
+            ]]);
+
+            event(new Failed($this, ['login' => $this->idnum], __('auth.failed')));
+
+            RateLimiter::hit($this->throttleKey());
+    
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
+        }
+
+        // Proceed to password check
+        if (!Hash::check($this->password, $user->password)) {
+            session(['failed_login' => [
+                'login' => $this->idnum,
+                'reason' => __('auth.password'),
+            ]]);
+    
+            event(new Failed($this, ['login' => $this->idnum], __('auth.password')));
+    
+            RateLimiter::hit($this->throttleKey());
+    
+            throw ValidationException::withMessages([
+                'password' => __('auth.password'),
+            ]);
+        }else{
+            // Check if the user is inactive
+            if ($user->status == 0) {
+                session(['failed_login' => [
+                    'login' => $this->idnum,
+                    'reason' => __('auth.inactive'),
+                ]]);
+        
+                event(new Failed($this, ['login' => $this->idnum], __('auth.inactive')));
+        
+                throw ValidationException::withMessages([
+                    'email' => __('auth.inactive'),
+                ]);
+            }
+        }
+
         if (! Auth::attempt($this->only('idnum', 'password'))) {
+            session(['failed_login' => [
+                'login' => $this->idnum,
+                'reason' => __('auth.failed'),
+            ]]);
+
+            event(new Failed($this, ['login' => $this->idnum], __('auth.failed')));
+
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
-
-        
-        // if (!Hash::check($this->only('password'))) {
-    
-        //     RateLimiter::hit($this->throttleKey());
-    
-        //     throw ValidationException::withMessages([
-        //         'idnum' => __('auth.password'),
-        //     ]);
-        // }else{
-        //     // Check if the user is inactive
-        //     if ($user->status == 0) {
-        
-        //         throw ValidationException::withMessages([
-        //             'idnum' => __('auth.inactive'),
-        //         ]);
-        //     }
-        // }
 
         RateLimiter::clear($this->throttleKey());
     }
