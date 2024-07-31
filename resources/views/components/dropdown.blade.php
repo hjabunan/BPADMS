@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
+@props(['align' => 'right', 'width' => '64', 'contentClasses' => 'py-1 bg-white'])
 
 @php
 switch ($align) {
@@ -15,14 +15,14 @@ switch ($align) {
 }
 
 switch ($width) {
-    case '48':
-        $width = 'w-48';
+    case '64':
+        $width = 'w-64';
         break;
 }
 @endphp
 
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
-    <div @click="open = ! open">
+<div class="relative h-full" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+    <div class="h-full" @click="open = ! open">
         {{ $trigger }}
     </div>
 

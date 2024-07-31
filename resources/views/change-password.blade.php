@@ -3,7 +3,7 @@
     <div style="height: calc(100vh - 70px);" class="py-5 overflow-x-auto">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-3 text-gray-900">
+                <div class="p-2 text-gray-900">
                     {{-- Title --}}
                     <div class="px-4 grid gap-x-3 mb-5 border-b">
                         <div class="self-center font-black text-2xl text-red-500 leading-tight">
@@ -95,39 +95,40 @@
                 }
             });
 
-        $(document).ready(function () {
-            // UPDATE PASSWORD
-            $('#updatePassword').click(function(){
-                // Get the value of the new password input
-                var userKey = $('#UserUUID').val();
-                var newPassword = $('#password').val();
-                var newCPassword = $('#confirm_password').val();
-                var _token = $('input[name="_token"]').val();
+        // Change Password
+            $(document).ready(function () {
+                // UPDATE PASSWORD
+                $('#updatePassword').click(function(){
+                    // Get the value of the new password input
+                    var userKey = $('#UserUUID').val();
+                    var newPassword = $('#password').val();
+                    var newCPassword = $('#confirm_password').val();
+                    var _token = $('input[name="_token"]').val();
 
-                // Perform a simple password validation
-                if (newPassword.length >= 8 && newCPassword.length >= 8) {
-                    if (newPassword === newCPassword) {
-                        
-                        // alert(userKey);
-                            $.ajax({
-                                url: "{{ route('change-password.updatePassword') }}",
-                                type: "POST",
-                                data: {userKey: userKey, newPassword: newPassword ,_token: _token},
-                                success: function (response) {
-                                    $('#btnSuccessH').click();
-                                    setTimeout(function () {
-                                        window.location.href = "{{ route('dashboard') }}";
-                                    }, 5000);
-                                }
-                            });
+                    // Perform a simple password validation
+                    if (newPassword.length >= 8 && newCPassword.length >= 8) {
+                        if (newPassword === newCPassword) {
+                            
+                            // alert(userKey);
+                                $.ajax({
+                                    url: "{{ route('change-password.updatePassword') }}",
+                                    type: "POST",
+                                    data: {userKey: userKey, newPassword: newPassword ,_token: _token},
+                                    success: function (response) {
+                                        $('#btnSuccessH').click();
+                                        setTimeout(function () {
+                                            window.location.href = "{{ route('dashboard') }}";
+                                        }, 2000);
+                                    }
+                                });
+                        } else {
+                            alert('Passwords do not match. Please make sure they match.');
+                        }
                     } else {
-                        alert('Passwords do not match. Please make sure they match.');
+                        alert('Password must be at least 8 characters long.');
                     }
-                } else {
-                    alert('Password must be at least 8 characters long.');
-                }
+                });
+                
             });
-            
-        });
     </script>
 </x-app-layout>

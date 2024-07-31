@@ -23,7 +23,7 @@
                                 required autocomplete="current-password" />
 
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                    <button type="button" id="togglePassword" class="text-gray-400 hover:text-gray-700 focus:outline-none">
+                    <button type="button" id="togglePassword" class="text-gray-400 hover:text-gray-700 focus:outline-none" tabindex="-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-2 0a1 1 0 11-2 0 1 1 0 012 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.992 12.361a16.892 16.892 0 01-2.767 3.713C16.814 17.984 14.486 20 12 20c-2.486 0-4.814-2.016-6.225-3.926a16.893 16.893 0 01-2.767-3.713C7.185 6.016 9.514 4 12 4c2.486 0 4.814 2.016 6.225 3.926z" />

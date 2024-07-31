@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique()->nullable();
-            $table->string('idnum')->unique();
+            $table->string('idnum');
             $table->string('password');
             $table->string('role');
+            $table->string('access')->nullable();
             $table->string('first_time')->default('1');
             $table->string('validity_date')->nullable();
-            $table->tinyInteger('status')->default('1');
+            $table->tinyInteger('status');
+            $table->string('color_code');
             $table->string('key');
+            $table->bigInteger('is_deleted')->default('0');
             $table->timestamps();
         });
     }
