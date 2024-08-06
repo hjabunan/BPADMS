@@ -229,9 +229,11 @@
                                 success:function(result){
                                     $("#btnSuccessH").click();
                                     $("#closeEvent1").click();
+                                    location.reload();
                                 },
                                 error: function(error){
                                     $("#btnIncH").click();
+
                                 }
 
                             });
