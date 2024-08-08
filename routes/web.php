@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Route;
             // ACTIVITY CALENDAR
             Route::get('/dashboard', [BPAActivityCalendarController::class, 'index'])->name('dashboard');
             Route::post('/saveEventData', [BPAActivityCalendarController::class, 'saveEventData'])->name('dashboard.saveEventData');
+            Route::post('/delete-event/{key}', [BPAActivityCalendarController::class, 'deleteEvent'])->name('event.delete');
 
         // Routes for BPAUsersController
             // USER

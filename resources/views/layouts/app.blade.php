@@ -44,6 +44,15 @@
                 ::-webkit-scrollbar-thumb:hover {
                     background: rgb(95, 95, 110);
                 }
+
+                .fc-event{
+                    padding: 0 5px;
+                }
+
+                .fc-event:hover{
+                    cursor: pointer;
+                    scale: 102%;
+                }
             </style>
     </head>
     <body class="font-sans antialiased">

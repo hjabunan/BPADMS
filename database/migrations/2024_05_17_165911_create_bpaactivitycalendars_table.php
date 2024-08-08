@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('act_supervisor');
             $table->string('act_startdate');
             $table->string('act_enddate');
-            $table->string('act_status');
-            $table->string('act_user');
+            $table->string('act_status'); // 0 - PENDING , 1 - ONGOING , 2 - DONE
+            $table->bigInteger('act_assignedto');
+            $table->bigInteger('act_createdby');
             $table->string('key');
             $table->timestamps();
         });

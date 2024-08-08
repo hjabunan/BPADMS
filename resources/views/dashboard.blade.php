@@ -28,24 +28,83 @@
 
     
     {{-- HIDDEN BUTTONS --}}
+        {{-- View Event Modal --}}
+            <button type="button" id="btnMViewEventH" class="btnMViewEventH hidden" data-modal-target="modalViewEvent" data-modal-toggle="modalViewEvent"></button>
         {{-- Event Modal --}}
-            <button type="button" id="btnMEventH" class="btnMEventH hidden" data-modal-target="modalEvent" data-modal-toggle="modalEvent"></button>
+            {{-- <button type="button" id="btnMEventH" class="btnMEventH hidden" data-modal-target="modalEvent" data-modal-toggle="modalEvent"></button> --}}
         {{-- Success Modal --}}
             <button type="button" id="btnSuccessH" class="btnSuccessH hidden" data-modal-target="modalSuccess" data-modal-toggle="modalSuccess"></button>
         {{-- Inc Modal --}}
             <button type="button" id="btnIncH" class="btnIncUserH hidden" data-modal-target="modalInc" data-modal-toggle="modalInc"></button>
 
     {{-- MODAL --}}
-        {{-- EVENT MODAL --}}
-            <div id="modalEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            {{-- class="fixed items-center top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full"> --}}
+
+        {{-- VIEW EVENT MODAL --}}
+            <div id="modalViewEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
-                            <label id="titleEvent" class="text-3xl font-extrabold text-gray-900">
-                                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">ADD EVENT</span>
+                            <label class="text-3xl font-extrabold text-gray-900">
+                                <span id="titleViewEvent" class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span>
+                            </label>
+                            <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalViewEvent">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-4 space-y-4 w-full">
+                            <div class="leading-3">
+                                <label for="" class="text-sm leading-3">Assigned To</label>
+                                <h1 id="viewAssignedTo" class=" font-medium text-lg leading-3"></h1>
+                            </div>
+                            <div class="leading-3">
+                                <label for="" class="text-sm leading-3">Date</label>
+                                <h1 id="viewDate" class=" font-medium text-lg leading-3"></h1>
+                            </div>
+                            <div class="leading-3">
+                                <label for="" class="text-sm leading-3">Site/Branch Location</label>
+                                <h1 id="viewLocation" class=" font-medium text-lg leading-3"></h1>
+                            </div>
+                            <div class="leading-3">
+                                <label for="" class="text-sm leading-3">Site/Branch Supervisor/TL</label>
+                                <h1 id="viewSupervisor" class=" font-medium text-lg leading-3"></h1>
+                            </div>
+                            <div class="leading-3">
+                                <label for="" class="text-sm leading-3">Questionnaire</label>
+                                <h1 id="viewQuestionnaire" class=" font-medium text-lg leading-3"></h1>
+                            </div>
+                            <div class="leading-3">
+                                <label for="" class="text-sm leading-3">Created By</label>
+                                <h1 id="viewCreatedBy" class=" font-medium text-lg leading-3"></h1>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                            @if (Auth::user()->role == 0 || Auth::user()->role == 1)
+                                <a href="" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
+                                <button type="button" id="btnEditEvent" data-modal-target="modalEvent" data-modal-show="modalEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">EDIT</button>
+                                <button type="button" id="btnDeleteEvent" data-modal-target="modalDeleteEvent" data-modal-show="modalDeleteEvent" data-modal-hide="modalViewEvent" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">DELETE</button>
+                            @endif
+                            <button data-modal-hide="modalViewEvent" type="button" id="closeEvent2" class="text-white bg-gray-500 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{-- VIEW EVENT MODAL --}}
+
+
+        {{-- ADD/EDIT EVENT MODAL --}}
+            <div id="modalEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full h-full max-w-2xl md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
+                        <!-- Modal header -->
+                        <div class="flex items-start justify-between p-4 border-b rounded-t">
+                            <label class="text-3xl font-extrabold text-gray-900">
+                                <span id="titleEvent" class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">ADD EVENT</span>
                             </label>
                             <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalEvent">
                                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -64,13 +123,13 @@
                                         <input type="text" id="ename" name="ename" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1 w-full">
-                                        <label for="estatus" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
+                                        <label for="eassignedto" class="block mb-2 text-sm font-medium text-gray-900">Assigned To</label>
                                         <div class="grid justify-items-start">
-                                            <select id="estatus" name="estatus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
-                                                <option class="text-center" selected disabled value="">--Select Status--</option>
-                                                <option value="0">PENDING</option>
-                                                <option value="1">ONGOING</option>
-                                                <option value="2">DONE</option>
+                                            <select id="eassignedto" name="eassignedto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
+                                                <option class="text-center" selected hidden value="">Please choose one option</option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -108,9 +167,9 @@
                                         <label for="equestionnaire" class="block mb-2 text-sm font-medium text-gray-900">Questionnaire</label>
                                         <div class="grid justify-items-start">
                                             <select id="equestionnaire" name="equestionnaire" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
-                                                <option class="text-center" selected disabled value="">--Select Questionnaire--</option>
-                                                @foreach($qnr as $qnrx)
-                                                <option value="{{ $qnrx->id }}">{{ $qnrx->formDetails->form_name }}</option>
+                                                <option class="text-center" selected hidden value="">Please choose one option</option>
+                                                @foreach($qnrs as $qnr)
+                                                <option value="{{ $qnr->id }}">{{ $qnr->questionnaire_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -120,12 +179,47 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                            <button type="button" id="btnSaveEvent" name="btnSaveEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ADD</button>
+                            <button type="button" id="btnSaveEvent" name="btnSaveEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">SUBMIT</button>
                             <button data-modal-hide="modalEvent" type="button" id="closeEvent2" class="text-white bg-gray-500 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">CANCEL</button>
                         </div>
                     </div>
                 </div>
             </div>
+        {{-- ADD/EDIT EVENT MODAL --}}
+
+        {{-- VIEW EVENT MODAL --}}
+            <div id="modalDeleteEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full h-full max-w-2xl md:h-auto">
+                    <!-- Modal content -->
+                    <form id="deleteForm" method="POST" class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
+                        @csrf
+                        <!-- Modal header -->
+                        <div class="flex items-start justify-between p-4 border-b rounded-t">
+                            <label class="text-3xl font-extrabold text-gray-900">
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">DELETE</span>
+                            </label>
+                            <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalDeleteEvent">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-4 space-y-4 w-full">
+                            <p>Are you sure you want to delete this event?</p>
+                            <input type="hidden" id="deleteKey" name="key">
+                            <p>Event name: <span id="titleDeleteEvent" class="text-lg font-medium"></span></p>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                            <button type="submit" data-modal-hide="modalDeleteEvent" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">DELETE</button>
+                            <button data-modal-hide="modalDeleteEvent" type="button" id="closeEvent2" class="text-white bg-gray-500 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">CANCEL</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {{-- VIEW EVENT MODAL --}}
+
+
         {{-- SUCCESS MODAL --}}
             <div id="modalSuccess" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-green-200 rounded-lg shadow-xl border border-gray-200 w-80 mx-auto p-4">
@@ -144,6 +238,9 @@
                     </div>
                 </div>
             </div>
+        {{-- SUCCESS MODAL --}}
+
+
         {{-- ERROR - INC MODAL --}}
             <div id="modalInc" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-red-200 rounded-lg shadow-lg w-80 mx-auto p-4">
@@ -162,7 +259,11 @@
                 </div>
                 </div>
             </div>
+        {{-- ERROR - INC MODAL --}}
     <script>
+        var eventId;
+        var eventKey;
+
         document.addEventListener('DOMContentLoaded', function() {
             var _token = $('input[name="_token"]').val();
             var calendarEl = document.getElementById('calendar');
@@ -172,73 +273,112 @@
             
             var formattedEvents = @json($events);
 
+            console.log(formattedEvents);
+            
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 height: calendarHeight,
                 initialView: initialView,
                 events: formattedEvents,
                 eventClick:function(info) {
-                    var eventId = info.event.id;
-                    var eventKey = info.event.extendedProps.key;
+                    eventId = info.event.id;
+                    eventKey = info.event.extendedProps.key;
                     var act_location = info.event.extendedProps.location;
                     var act_supervisor = info.event.extendedProps.supervisor;
-                    var act_status = info.event.extendedProps.status;
+                    var act_assignedto = info.event.extendedProps.assigned_to;
+                    var act_assignedtoid = info.event.extendedProps.assigned_to_id;
+                    var act_createdby = info.event.extendedProps.created_by;
                     var act_name = info.event.title;
                     var act_start = info.event.extendedProps.sDate;
                     var act_end = info.event.extendedProps.eDate;
-
+                    var act_questionnaire = info.event.extendedProps.questionnaire;
+                    var act_questionnaireid = info.event.extendedProps.questionnaire_id;
                     
-                    $('#btnMEventH').click();
-                    $('#eventKey').val(eventKey);
-                    $('#eventID').val(eventId);
-                    $('#elocation').val(act_location);
-                    $('#esvstl').val(act_supervisor);
-                    $('#estatus').val(act_status);
-                    $('#ename').val(act_name);
-                    $('#adStart').val(act_start);
-                    $('#adEnd').val(act_end);
+                    // EDIT MODAL
+                        $('#eventKey').val(eventKey);
+                        $('#eventID').val(eventId);
+                        $('#elocation').val(act_location);
+                        $('#esvstl').val(act_supervisor);
+                        $('#eassignedto').val(act_assignedtoid);
+                        $('#ename').val(act_name);
+                        $('#adStart').val(act_start);
+                        $('#adEnd').val(act_end);
+                        $('#equestionnaire').val(act_questionnaireid);
+                    // EDIT MODAL
+
+                    // VIEW MODAL
+                        $('#titleViewEvent').html(act_name);
+                        $('#viewAssignedTo').html(act_assignedto);
+                        $('#viewLocation').html(act_location);
+                        $('#viewSupervisor').html(act_supervisor);
+                        if(act_start == act_end){
+                            $('#viewDate').html(act_start);
+                        }else{
+                            $('#viewDate').html(act_start + ' - ' + act_end);
+                        }
+                        $('#viewQuestionnaire').html(act_questionnaire);
+                        $('#viewCreatedBy').html(act_createdby);
+                    // VIEW MODAL
+
+                    // DELETE MODAL 
+                        $('#titleDeleteEvent').html(act_name);
+                        $('#deleteKey').val(eventKey);
+                    // DELETE MODAL
+
+                    $('#btnMViewEventH').click();
                 }
           });
           calendar.render();
         });
         
         $(document).ready(function () {
-            // EVENT
-                // Add Event
-                    jQuery(document).on( "click", "#btnAddEvent", function(){
-                        $('#formEvent').trigger('reset');
 
-                        var newHeading = "ADD EVENT";
-                        document.getElementById("titleEvent").querySelector("span").textContent = newHeading;
+            // Add Event
+                jQuery(document).on( "click", "#btnAddEvent", function(){
+                    $('#formEvent').trigger('reset');
+                    $('#titleEvent').html('ADD EVENT');
+                    $('#eventKey').val('');
+                    $('#eventID').val('');
+                });
+            // Add Event
 
-                        $('#btnSaveEvent').text('ADD');
+            // Edit Event
+                jQuery(document).on( "click", "#btnEditEvent", function(){
+                    $('#titleEvent').html('EDIT EVENT');
+                });
+            // Edit Event
 
-                        $('#eventKey').val('');
-                        $('#eventID').val('');
-                    });
+            // Delete Event
+                jQuery(document).on( "click", "#btnDeleteEvent", function(){
+                    $('#deleteForm').attr('action', '/delete-event/' + eventKey);
+                });
+            // Delete Event
 
-                // Save Add/Edit Event
-                    jQuery(document).on( "click", "#btnSaveEvent", function(){
-                        if($('#ename').val() == ""){
-                            $("#btnIncH").click();
-                        }else{
-                            $.ajax({
-                                url:"{{ route('dashboard.saveEventData') }}",
-                                method:"POST",
-                                dataType: 'json',
-                                data: $("#formEvent").serialize(),
-                                success:function(result){
-                                    $("#btnSuccessH").click();
-                                    $("#closeEvent1").click();
-                                    location.reload();
-                                },
-                                error: function(error){
-                                    $("#btnIncH").click();
 
-                                }
 
-                            });
-                        }
-                    });
+            // Save Add/Edit Event
+                jQuery(document).on( "click", "#btnSaveEvent", function(){
+                    if($('#ename').val() == ""){
+                        $("#btnIncH").click();
+                    }else{
+                        $.ajax({
+                            url:"{{ route('dashboard.saveEventData') }}",
+                            method:"POST",
+                            dataType: 'json',
+                            data: $("#formEvent").serialize(),
+                            success:function(result){
+                                $("#btnSuccessH").click();
+                                $("#closeEvent1").click();
+                                location.reload();
+                            },
+                            error: function(error){
+                                $("#btnIncH").click();
+
+                            }
+                        });
+                    }
+                });
+            // Save Add/Edit Event
         });
     </script>
 </x-app-layout>
