@@ -65,6 +65,7 @@ class BPAActivityCalendarController extends Controller
             $existingEvent->act_startdate = $request->adStart;
             $existingEvent->act_enddate = $request->adEnd;
             $existingEvent->act_questionnaire = $request->equestionnaire;
+            $existingEvent->act_assignedto = $request->eassignedto;
             $existingEvent->save();
         }else{
             $event = new BPAActivityCalendar();
@@ -73,8 +74,10 @@ class BPAActivityCalendarController extends Controller
             $event->act_supervisor = $request->esvstl;
             $event->act_startdate = $request->adStart;
             $event->act_enddate = $request->adEnd;
+            $event->act_status = 0;
             $event->act_questionnaire = $request->equestionnaire;
-            $event->act_user = Auth::user()->id;
+            $event->act_assignedto = $request->eassignedto;
+            $event->act_createdby = Auth::user()->id;
             $event->key = Str::uuid();
             $event->save();
         }

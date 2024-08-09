@@ -57,6 +57,10 @@
                         <!-- Modal body -->
                         <div class="p-4 space-y-4 w-full">
                             <div class="leading-3">
+                                <label for="" class="text-sm leading-3">Status</label>
+                                <h1 id="viewStatus" class=" font-semibold text-lg leading-3"></h1>
+                            </div>
+                            <div class="leading-3">
                                 <label for="" class="text-sm leading-3">Assigned To</label>
                                 <h1 id="viewAssignedTo" class=" font-medium text-lg leading-3"></h1>
                             </div>
@@ -82,9 +86,9 @@
                             </div>
                         </div>
                         <!-- Modal footer -->
-                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                        <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
                             @if (Auth::user()->role == 0 || Auth::user()->role == 1)
-                                <a href="" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
+                                <a href="" id="btnAnswerEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
                                 <button type="button" id="btnEditEvent" data-modal-target="modalEvent" data-modal-show="modalEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">EDIT</button>
                                 <button type="button" id="btnDeleteEvent" data-modal-target="modalDeleteEvent" data-modal-show="modalDeleteEvent" data-modal-hide="modalViewEvent" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">DELETE</button>
                             @endif
@@ -263,6 +267,8 @@
     <script>
         var eventId;
         var eventKey;
+        var statusArray = ['PENDING', 'ONGOING', 'COMPLETED'];
+        var statusColor = ['text-red-500', 'text-amber-500', 'text-emerald-500'];
 
         document.addEventListener('DOMContentLoaded', function() {
             var _token = $('input[name="_token"]').val();
@@ -283,6 +289,7 @@
                 eventClick:function(info) {
                     eventId = info.event.id;
                     eventKey = info.event.extendedProps.key;
+                    var act_status = info.event.extendedProps.status;
                     var act_location = info.event.extendedProps.location;
                     var act_supervisor = info.event.extendedProps.supervisor;
                     var act_assignedto = info.event.extendedProps.assigned_to;
@@ -293,7 +300,8 @@
                     var act_end = info.event.extendedProps.eDate;
                     var act_questionnaire = info.event.extendedProps.questionnaire;
                     var act_questionnaireid = info.event.extendedProps.questionnaire_id;
-                    
+                    var today = new Date();
+
                     // EDIT MODAL
                         $('#eventKey').val(eventKey);
                         $('#eventID').val(eventId);
@@ -308,6 +316,9 @@
 
                     // VIEW MODAL
                         $('#titleViewEvent').html(act_name);
+                        $('#viewStatus').html(statusArray[act_status]);
+                        $('#viewStatus').removeClass('text-red-500 text-amber-500 text-emerald-500');
+                        $('#viewStatus').addClass(statusColor[act_status]);
                         $('#viewAssignedTo').html(act_assignedto);
                         $('#viewLocation').html(act_location);
                         $('#viewSupervisor').html(act_supervisor);
@@ -318,6 +329,16 @@
                         }
                         $('#viewQuestionnaire').html(act_questionnaire);
                         $('#viewCreatedBy').html(act_createdby);
+
+                        var formattedStartDate = new Date(act_start)
+                        formattedStartDate.setHours(0, 0, 0, 0);
+                        today.setHours(0, 0, 0, 0);
+
+                        if (formattedStartDate <= today) {
+                            $('#btnAnswerEvent').removeClass('hidden');
+                        } else {
+                            $('#btnAnswerEvent').addClass('hidden');
+                        }
                     // VIEW MODAL
 
                     // DELETE MODAL 
