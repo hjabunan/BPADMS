@@ -18,8 +18,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        User::where('status',1)->whereDate('validity_date', '<', now()->toDateString())->update([
+        User::where('status',1)
+        ->whereNotNull('validity_date')
+        ->where('validity_date', '!=', '')
+        ->whereDate('validity_date', '<', now()->toDateString())
+        ->update([
             'status' => 0,
+            'updated_at' => now(),
         ]);
 
         return view('auth.login');
