@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bpa_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique()->nullable();
+            $table->string('email', 150)->unique()->nullable();
             $table->string('idnum');
             $table->string('password');
             $table->string('role'); // 0 = Super Admin , 1 = Admin , 2 = User

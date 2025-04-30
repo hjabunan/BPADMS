@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bpa_questionnaires', function (Blueprint $table) {
             $table->id();
             $table->string('questionnaire_name');
-            $table->string('form_id')->unique();
+            $table->string('form_id',150)->unique();
             $table->string('question_list');
             $table->tinyInteger('status')->default(1);
             $table->string('key');
