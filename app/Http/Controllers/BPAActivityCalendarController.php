@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 class BPAActivityCalendarController extends Controller
 {
     public function index(){
-        $events = BPAActivityCalendar::with('assigned_to', 'created_by', 'questionnaire')->get();
+        $events = BPAActivityCalendar::with('assigned_to', 'created_by', 'questionnaire')->where('is_deleted',0)->get();
         $users = User::where('is_deleted', 0)->get();
 
         $formattedEvents = [];
@@ -34,6 +34,7 @@ class BPAActivityCalendarController extends Controller
                 'assigned_to' => $event->assigned_to->name,
                 'assigned_to_id' => $event->act_assignedto,
                 'created_by' => $event->created_by->name,
+                'efilename' => $event->act_filename,
 
                 'title' => $event->act_name,
                 'start' => date('Y-m-d', strtotime($event->act_startdate)),
@@ -58,18 +59,23 @@ class BPAActivityCalendarController extends Controller
 
         $existingEvent = BPAActivityCalendar::where('id', $eventID)->first();
 
+        $eStart = date('m/d/Y', strtotime($request->adStart));
+        $eEnd = date('m/d/Y', strtotime($request->adEnd));
+        
         if($existingEvent){
             $existingEvent->act_name = $request->ename;
+            $existingEvent->act_filename = $request->efilename;
             $existingEvent->act_location = $request->elocation;
             $existingEvent->act_supervisor = $request->esvstl;
-            $existingEvent->act_startdate = $request->adStart;
-            $existingEvent->act_enddate = $request->adEnd;
+            $existingEvent->act_startdate = $eStart;
+            $existingEvent->act_enddate = $eEnd;
             $existingEvent->act_questionnaire = $request->equestionnaire;
             $existingEvent->act_assignedto = $request->eassignedto;
             $existingEvent->save();
         }else{
             $event = new BPAActivityCalendar();
             $event->act_name = $request->ename;
+            $event->act_filename = $request->efilename;
             $event->act_location = $request->elocation;
             $event->act_supervisor = $request->esvstl;
             $event->act_startdate = $request->adStart;
@@ -88,7 +94,8 @@ class BPAActivityCalendarController extends Controller
     }
 
     public function deleteEvent(Request $request){
-        BPAActivityCalendar::where('key', $request->key)->delete();
+        BPAActivityCalendar::where('key', $request->key)
+            ->update(['is_deleted' => 1]);
 
         return redirect()->route('dashboard');
     }

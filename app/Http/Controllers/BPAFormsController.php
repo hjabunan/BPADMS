@@ -121,6 +121,7 @@ class BPAFormsController extends Controller
             'pKey' => $process->key,
             'pID' => $process->id,
             'pname' => $process->process_name,
+            'pweight' => $process->process_weight,
             'pstatus' => $process->status,
         );
 
@@ -132,6 +133,7 @@ class BPAFormsController extends Controller
         if($request->processKey == null or $request->processKey == ""){
             $process = new BPAProcess();
             $process->process_name = $request->pname;
+            $process->process_weight = $request->pweight;
             $process->status = $request->pstatus;
             $process->key = Str::uuid();
                 $dirtyAttributes = $process->getDirty();
@@ -139,6 +141,7 @@ class BPAFormsController extends Controller
         }else{
             $process = BPAProcess::find($request->processID);
             $process->process_name = $request->pname;
+            $process->process_weight = $request->pweight;
             $process->status = $request->pstatus;
                 $dirtyAttributes = $process->getDirty();
             $process->update();
@@ -293,7 +296,10 @@ class BPAFormsController extends Controller
     public function saveQuestionnaireData(Request $request){
         $formId = $request->qtrform;
 
-        // dd($formId);
+        $questionnairename = BPAForms::where('id', $formId)->pluck('form_name')->first();
+
+
+        //dd($questionnairename);
         $selectedQuestions = implode(',', $request->input('question'));
 
         $existingQuestionnaire = BPAQuestionnaire::where('form_id', $formId)->first();
@@ -303,7 +309,7 @@ class BPAFormsController extends Controller
             $existingQuestionnaire->update();
         }else{
             $qnr = new BPAQuestionnaire();
-            $qnr->questionnaire_name = $request->qtrform;
+            $qnr->questionnaire_name = $questionnairename;
             $qnr->form_id = $request->qtrform;
             $qnr->question_list = $selectedQuestions;
             $qnr->key = Str::uuid();

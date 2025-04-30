@@ -6,13 +6,23 @@
                     {{-- Title --}}
                     <div class="px-4 grid gap-x-3 mb-5 border-b">
                         <div class="self-center font-black text-2xl text-red-500 leading-tight">
-                            User Management
+                            Branch Audit
+                        </div>
+                    </div>
+
+                    <div class="py-12">
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-6 text-red-500 text-lg">
+                                    {{ __("Under Construction!") }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     {{-- Body --}}
                         {{-- Start Table --}}
-                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: calc(100vh - 178px);">
+                        {{-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: calc(100vh - 178px);">
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50" style="position: sticky; top: 0;">
                                     <tr>
@@ -37,7 +47,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($logs as $log) --}}
                                         <tr class="bg-white border-b hover:bg-gray-50">
                                             <td class="px-6 py-2 text-center whitespace-nowrap">
                                                 
@@ -58,10 +67,9 @@
                                                 
                                             </td>
                                         </tr>
-                                    {{-- @endforeach --}}
                                 </tbody>
                             </table>
-                        </div>
+                        </div> --}}
                         {{-- End Table --}}
                 </div>
             </div>

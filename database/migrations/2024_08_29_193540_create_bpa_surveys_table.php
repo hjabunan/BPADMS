@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bpa_process', function (Blueprint $table) {
+        Schema::create('bpa_surveys', function (Blueprint $table) {
             $table->id();
-            $table->string('process_name');
-            $table->string('process_weight');
-            $table->tinyInteger('status')->default(1);
+            $table->bigInteger('act_id');
+            $table->bigInteger('qnr_id');
+            $table->bigInteger('qtn_id');
+            $table->float('survey_score');
+            $table->string('survey_remarks')->nullable();
             $table->string('key');
             $table->timestamps();
         });
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bpa_process');
+        Schema::dropIfExists('bpa_surveys');
     }
 };

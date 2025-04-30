@@ -114,8 +114,11 @@
                                                     <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
                                                         Action
                                                     </th>
-                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 50%;">
                                                         Process Name
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 30%;">
+                                                        Process Weight
                                                     </th>
                                                     <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
                                                         Status
@@ -147,6 +150,9 @@
                                                         </td>
                                                         <td class="px-6 py-2 text-center whitespace-nowrap">
                                                             {{$process->process_name}}
+                                                        </td>
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            {{$process->process_weight}}
                                                         </td>
                                                         <td class="px-6 py-2 text-center whitespace-nowrap">
                                                             @if ($process->status == 0)
@@ -745,6 +751,10 @@
                                         <label for="pname" class="block mb-2 text-sm font-medium text-gray-900">Process Name</label>
                                         <input type="text" id="pname" name="pname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="pweight" class="block mb-2 text-sm font-medium text-gray-900">Process Weight</label>
+                                        <input type="text" id="pweight" name="pweight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
+                                    </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1 w-full">
                                         <label for="pstatus" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
                                         <div class="grid justify-items-start">
@@ -1125,6 +1135,15 @@
     </div>
     <script>
         $(document).ready(function () {
+            // Close Success
+            jQuery(document).on( "click", "#SCloseButton", function(){
+                    $("#success-modal").removeClass("flex");
+                    $("#success-modal").addClass("hidden");
+                    location.reload();
+                });
+            // Close Success
+
+
         // FORM
             // Add Form
                 jQuery(document).on( "click", "#btnAddForm", function(){
@@ -1261,6 +1280,7 @@
                             $('#processKey').val(result.pKey);
                             $('#processID').val(result.pID);
                             $('#pname').val(result.pname);
+                            $('#pweight').val(result.pweight);
                             $('#pstatus').val(result.pstatus);
                         }
                     });
@@ -1268,7 +1288,7 @@
 
             // Save Add/Edit Process
                 jQuery(document).on( "click", "#btnSaveProcess", function(){
-                    if($('#pname').val() == "" || $('#pstatus').val() == null){
+                    if($('#pname').val() == "" || $('#pweight').val() == "" || $('#pstatus').val() == null){
                         $("#btnIncH").click();
                     }else{
                         $.ajax({

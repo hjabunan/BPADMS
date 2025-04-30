@@ -351,6 +351,15 @@
 
             $('#expiration-days, #expirationdate').prop('disabled', true);
 
+            
+            // Close Success
+            jQuery(document).on( "click", "#SCloseButton", function(){
+                    $("#success-modal").removeClass("flex");
+                    $("#success-modal").addClass("hidden");
+                    location.reload();
+                });
+            // Close Success
+
             // Radio Function - Edit User
                 $('#radioNoExp').change(function () {
                     $('#expiration-days, #expirationdate').prop('disabled', true);

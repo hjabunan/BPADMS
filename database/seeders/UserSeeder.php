@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
                 'access' => "",
                 'first_time' => 1,
                 'validity_date' => "",
-                'status' => 0,
+                'status' => 1,
                 'is_deleted' => 0,
                 'color_code' => '#E30D0D',
                 'key' => "9d2b0714-bf68-4c5a-b890-6e9bd4f72b8d",

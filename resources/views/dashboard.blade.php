@@ -88,7 +88,7 @@
                         <!-- Modal footer -->
                         <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
                             @if (Auth::user()->role == 0 || Auth::user()->role == 1)
-                                <a href="" id="btnAnswerEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
+                                <a href="#" id="btnAnswerEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
                                 <button type="button" id="btnEditEvent" data-modal-target="modalEvent" data-modal-show="modalEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">EDIT</button>
                                 <button type="button" id="btnDeleteEvent" data-modal-target="modalDeleteEvent" data-modal-show="modalDeleteEvent" data-modal-hide="modalViewEvent" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">DELETE</button>
                             @endif
@@ -126,12 +126,27 @@
                                         <label for="ename" class="block mb-2 text-sm font-medium text-gray-900">Event Name</label>
                                         <input type="text" id="ename" name="ename" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="efilename" class="block mb-2 text-sm font-medium text-gray-900">Event File Name</label>
+                                        <input type="text" id="efilename" name="efilename" maxlength="8" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
+                                    </div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="equestionnaire" class="block mb-2 text-sm font-medium text-gray-900">Questionnaire</label>
+                                        <div class="grid justify-items-start">
+                                            <select id="equestionnaire" name="equestionnaire" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
+                                                <option class="text-center" selected hidden value="">Please choose one option</option>
+                                                @foreach($qnrs as $qnr)
+                                                <option value="{{ $qnr->id }}">{{ $qnr->questionnaire_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1 w-full">
                                         <label for="eassignedto" class="block mb-2 text-sm font-medium text-gray-900">Assigned To</label>
                                         <div class="grid justify-items-start">
                                             <select id="eassignedto" name="eassignedto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
                                                 <option class="text-center" selected hidden value="">Please choose one option</option>
-                                                @foreach ($users as $user)
+                                                @foreach ($users->whereIn('status', [-1, 1]) as $user)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
@@ -167,17 +182,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3 col-span-2 sm:col-span-1">
-                                        <label for="equestionnaire" class="block mb-2 text-sm font-medium text-gray-900">Questionnaire</label>
-                                        <div class="grid justify-items-start">
-                                            <select id="equestionnaire" name="equestionnaire" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
-                                                <option class="text-center" selected hidden value="">Please choose one option</option>
-                                                @foreach($qnrs as $qnr)
-                                                <option value="{{ $qnr->id }}">{{ $qnr->questionnaire_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -191,7 +195,8 @@
             </div>
         {{-- ADD/EDIT EVENT MODAL --}}
 
-        {{-- VIEW EVENT MODAL --}}
+
+        {{-- DELETE EVENT MODAL --}}
             <div id="modalDeleteEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
@@ -221,7 +226,7 @@
                     </form>
                 </div>
             </div>
-        {{-- VIEW EVENT MODAL --}}
+        {{-- DELETE EVENT MODAL --}}
 
 
         {{-- SUCCESS MODAL --}}
@@ -270,89 +275,102 @@
         var statusArray = ['PENDING', 'ONGOING', 'COMPLETED'];
         var statusColor = ['text-red-500', 'text-amber-500', 'text-emerald-500'];
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var _token = $('input[name="_token"]').val();
-            var calendarEl = document.getElementById('calendar');
-            var initialView = window.innerWidth < 600 ? 'dayGridWeek' : 'dayGridMonth';
-            var windowHeight = window.innerHeight; // Get the height of the browser window
-            var calendarHeight = windowHeight - 178;
-            
-            var formattedEvents = @json($events);
+        // Event Load
+            document.addEventListener('DOMContentLoaded', function() {
+                var _token = $('input[name="_token"]').val();
+                var calendarEl = document.getElementById('calendar');
+                var initialView = window.innerWidth < 600 ? 'dayGridWeek' : 'dayGridMonth';
+                var windowHeight = window.innerHeight; // Get the height of the browser window
+                var calendarHeight = windowHeight - 178;
+                
+                var formattedEvents = @json($events);
 
-            console.log(formattedEvents);
-            
+                console.log(formattedEvents);
+                
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                height: calendarHeight,
-                initialView: initialView,
-                events: formattedEvents,
-                eventClick:function(info) {
-                    eventId = info.event.id;
-                    eventKey = info.event.extendedProps.key;
-                    var act_status = info.event.extendedProps.status;
-                    var act_location = info.event.extendedProps.location;
-                    var act_supervisor = info.event.extendedProps.supervisor;
-                    var act_assignedto = info.event.extendedProps.assigned_to;
-                    var act_assignedtoid = info.event.extendedProps.assigned_to_id;
-                    var act_createdby = info.event.extendedProps.created_by;
-                    var act_name = info.event.title;
-                    var act_start = info.event.extendedProps.sDate;
-                    var act_end = info.event.extendedProps.eDate;
-                    var act_questionnaire = info.event.extendedProps.questionnaire;
-                    var act_questionnaireid = info.event.extendedProps.questionnaire_id;
-                    var today = new Date();
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    height: calendarHeight,
+                    initialView: initialView,
+                    events: formattedEvents,
+                    eventClick:function(info) {
+                        eventId = info.event.id;
+                        eventKey = info.event.extendedProps.key;
+                        var act_status = info.event.extendedProps.status;
+                        var act_location = info.event.extendedProps.location;
+                        var act_supervisor = info.event.extendedProps.supervisor;
+                        var act_assignedto = info.event.extendedProps.assigned_to;
+                        var act_assignedtoid = info.event.extendedProps.assigned_to_id;
+                        var act_createdby = info.event.extendedProps.created_by;
+                        var act_name = info.event.title;
+                        var act_filename = info.event.efilename;
+                        var act_start = info.event.extendedProps.sDate;
+                        var act_end = info.event.extendedProps.eDate;
+                        var act_questionnaire = info.event.extendedProps.questionnaire;
+                        var act_questionnaireid = info.event.extendedProps.questionnaire_id;
+                        var today = new Date();
 
-                    // EDIT MODAL
-                        $('#eventKey').val(eventKey);
-                        $('#eventID').val(eventId);
-                        $('#elocation').val(act_location);
-                        $('#esvstl').val(act_supervisor);
-                        $('#eassignedto').val(act_assignedtoid);
-                        $('#ename').val(act_name);
-                        $('#adStart').val(act_start);
-                        $('#adEnd').val(act_end);
-                        $('#equestionnaire').val(act_questionnaireid);
-                    // EDIT MODAL
+                        // EDIT MODAL
+                            $('#eventKey').val(eventKey);
+                            $('#eventID').val(eventId);
+                            $('#elocation').val(act_location);
+                            $('#esvstl').val(act_supervisor);
+                            $('#eassignedto').val(act_assignedtoid);
+                            $('#ename').val(act_name);
+                            $('#efilename').val(act_filename);
+                            $('#adStart').val(act_start);
+                            $('#adEnd').val(act_end);
+                            $('#equestionnaire').val(act_questionnaireid);
+                        // EDIT MODAL
 
-                    // VIEW MODAL
-                        $('#titleViewEvent').html(act_name);
-                        $('#viewStatus').html(statusArray[act_status]);
-                        $('#viewStatus').removeClass('text-red-500 text-amber-500 text-emerald-500');
-                        $('#viewStatus').addClass(statusColor[act_status]);
-                        $('#viewAssignedTo').html(act_assignedto);
-                        $('#viewLocation').html(act_location);
-                        $('#viewSupervisor').html(act_supervisor);
-                        if(act_start == act_end){
-                            $('#viewDate').html(act_start);
-                        }else{
-                            $('#viewDate').html(act_start + ' - ' + act_end);
-                        }
-                        $('#viewQuestionnaire').html(act_questionnaire);
-                        $('#viewCreatedBy').html(act_createdby);
+                        // VIEW MODAL
+                            $('#titleViewEvent').html(act_name);
+                            $('#viewStatus').html(statusArray[act_status]);
+                            $('#viewStatus').removeClass('text-red-500 text-amber-500 text-emerald-500');
+                            $('#viewStatus').addClass(statusColor[act_status]);
+                            $('#viewAssignedTo').html(act_assignedto);
+                            $('#viewLocation').html(act_location);
+                            $('#viewSupervisor').html(act_supervisor);
+                            if(act_start == act_end){
+                                $('#viewDate').html(act_start);
+                            }else{
+                                $('#viewDate').html(act_start + ' - ' + act_end);
+                            }
+                            $('#viewQuestionnaire').html(act_questionnaire);
+                            $('#viewCreatedBy').html(act_createdby);
 
-                        var formattedStartDate = new Date(act_start)
-                        formattedStartDate.setHours(0, 0, 0, 0);
-                        today.setHours(0, 0, 0, 0);
+                            var formattedStartDate = new Date(act_start)
+                            formattedStartDate.setHours(0, 0, 0, 0);
+                            today.setHours(0, 0, 0, 0);
 
-                        if (formattedStartDate <= today) {
-                            $('#btnAnswerEvent').removeClass('hidden');
-                        } else {
-                            $('#btnAnswerEvent').addClass('hidden');
-                        }
-                    // VIEW MODAL
+                            if (formattedStartDate <= today) {
+                                $('#btnAnswerEvent').removeClass('hidden');
+                            } else {
+                                $('#btnAnswerEvent').addClass('hidden');
+                            }
 
-                    // DELETE MODAL 
-                        $('#titleDeleteEvent').html(act_name);
-                        $('#deleteKey').val(eventKey);
-                    // DELETE MODAL
+                            $('#btnAnswerEvent').prop('href', '/bpa-improvement/event/response/'+ eventKey);
+                        // VIEW MODAL
 
-                    $('#btnMViewEventH').click();
-                }
-          });
-          calendar.render();
-        });
+                        // DELETE MODAL 
+                            $('#titleDeleteEvent').html(act_name);
+                            $('#deleteKey').val(eventKey);
+                        // DELETE MODAL
+
+                        $('#btnMViewEventH').click();
+                    }
+                });
+                calendar.render();
+            });
+        // Event Load
         
         $(document).ready(function () {
+            // Close Success
+                jQuery(document).on( "click", "#SCloseButton", function(){
+                    $("#success-modal").removeClass("flex");
+                    $("#success-modal").addClass("hidden");
+                    location.reload();
+                });
+            // Close Success
 
             // Add Event
                 jQuery(document).on( "click", "#btnAddEvent", function(){
@@ -375,8 +393,6 @@
                 });
             // Delete Event
 
-
-
             // Save Add/Edit Event
                 jQuery(document).on( "click", "#btnSaveEvent", function(){
                     if($('#ename').val() == ""){
@@ -390,7 +406,6 @@
                             success:function(result){
                                 $("#btnSuccessH").click();
                                 $("#closeEvent1").click();
-                                location.reload();
                             },
                             error: function(error){
                                 $("#btnIncH").click();
@@ -400,6 +415,8 @@
                     }
                 });
             // Save Add/Edit Event
+
+
         });
     </script>
 </x-app-layout>

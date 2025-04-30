@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BPAActivityCalendarController;
 use App\Http\Controllers\BPAActivityLogsController;
+use App\Http\Controllers\BPAAttachmentController;
 use App\Http\Controllers\BPABranchAuditController;
 use App\Http\Controllers\BPAFormsController;
 use App\Http\Controllers\BPAImprovementController;
@@ -12,6 +13,8 @@ use App\Http\Controllers\BPAWarehouseController;
 use App\Http\Controllers\ProfileController;
 use App\Models\BPAActivityLogs;
 use App\Models\BPAForms;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,11 +34,11 @@ use Illuminate\Support\Facades\Route;
 
     Route::redirect(uri:'/', destination:'login');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'firstlogin'])->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->middleware(['auth', 'firstlogin'])->name('dashboard');
 // SYSTEM CONFIGURATIONS
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth','firstlogin'])->group(function () {
         // Routes for Dashboard
             // ACTIVITY CALENDAR
             Route::get('/dashboard', [BPAActivityCalendarController::class, 'index'])->name('dashboard');
@@ -43,10 +46,6 @@ use Illuminate\Support\Facades\Route;
             Route::post('/delete-event/{key}', [BPAActivityCalendarController::class, 'deleteEvent'])->name('event.delete');
 
         // Routes for BPAUsersController
-            // USER
-            Route::get('/change-password/{key}', [BPAUsersController::class, 'changePassword'])->name('change.password');
-            Route::post('/change-password/updatePassword}', [BPAUsersController::class, 'updatePassword'])->name('change-password.updatePassword');
-
             Route::get('/bpa-systemconfig/sc-users', [BPAUsersController::class, 'index'])->name('bpa-systemconfig.sc-users.index');
             Route::get('/bpa-systemconfig/sc-users/getUserData', [BPAUsersController::class, 'getUserData'])->name('bpa-systemconfig.sc-users.getUserData');
             Route::post('/bpa-systemconfig/sc-users/saveUserData', [BPAUsersController::class, 'saveUserData'])->name('bpa-systemconfig.sc-users.saveUserData');
@@ -87,27 +86,30 @@ use Illuminate\Support\Facades\Route;
     });
 
     // Routes for BPALoginLogs
-        Route::middleware(['auth'])->group(function () {
+        Route::middleware(['auth','firstlogin'])->group(function () {
             Route::get('/bpa-systemconfig/sc-loginlogs', [BPALoginLogs::class, 'index'])->name('bpa-systemconfig.sc-loginlogs.index');
         });
 
 // Routes for BPAImprovementController
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/bpa-improvement', [BPAImprovementController::class, 'index'])->name('bpa-improvement.index');
+    Route::middleware(['auth','firstlogin'])->group(function () {
+        Route::get('/bpa-improvement/event/response/{key}', [BPAImprovementController::class, 'index']);
+        Route::post('/bpa-improvement/saveSurvey', [BPAImprovementController::class, 'saveSurvey'])->name('bpa-improvement.saveSurvey');
+        Route::post('/bpa-improvement/saveAttach', [BPAImprovementController::class, 'saveAttach'])->name('bpa-improvement.saveAttach');
+        Route::post('/bpa-improvement/removeAttach', [BPAImprovementController::class, 'removeAttach'])->name('bpa-improvement.removeAttach');
     });
 
 // Routes for BPAInternalAuditController
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth','firstlogin'])->group(function () {
         Route::get('/bpa-internalaudit', [BPAInternalAuditController::class, 'index'])->name('bpa-internalaudit.index');
     });
 
 // Routes for BPABranchAuditController
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth','firstlogin'])->group(function () {
         Route::get('/bpa-branchaudit', [BPABranchAuditController::class, 'index'])->name('bpa-branchaudit.index');
     });
 
 // Routes for BPAWarehouseController
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth','firstlogin'])->group(function () {
         Route::get('/bpa-warehouse', [BPAWarehouseController::class, 'index'])->name('bpa-warehouse.index');
     });
 
@@ -116,5 +118,12 @@ use Illuminate\Support\Facades\Route;
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
+
+// Routes for BPAUser FirstTimeLogin
+Route::middleware(['auth'])->group(function () {
+    // USER
+    Route::get('/change-password/{key}', [BPAUsersController::class, 'changePassword'])->name('change.password');
+    Route::post('/change-password/updatePassword}', [BPAUsersController::class, 'updatePassword'])->name('change-password.updatePassword');
+});
 
 require __DIR__.'/auth.php';
