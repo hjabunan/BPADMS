@@ -42,9 +42,7 @@ class BPAImprovementController extends Controller
             $surveyRemark = BPAActivityCalendar::where('key', $key)->first()->surv_Remarks;
 
             $totalSum = $surveyScoresMap->sum();
-
-            // $attachment = BPAAttachment::where('act_id', $questionnairex->id)->first();
-            // $uploadedFiles = $attachment ? explode(';', $attachment->path) : [];
+            
             $attachments = BPAAttachment::where('act_id', $questionnairex->id)
             ->whereIn('qtn_id', $questionList)
             ->get()
@@ -59,7 +57,7 @@ class BPAImprovementController extends Controller
                 'surv_TotPercent'
             ]);
 
-            $PWGenOp = $surveyPercentages->percent_GenOp * $questions->process_weight;
+            // $PWGenOp = $surveyPercentages->percent_GenOp * $questions->process_weight;
 
             return view('bpa-improvement.index', [  
                 'questionnairex' => $questionnairex,
