@@ -6,6 +6,7 @@ use App\Models\BPAActivityCalendar;
 use App\Models\BPAQuestion;
 use App\Models\BPASurvey;
 use App\Models\BPAAttachment;
+use App\Models\BPAProcess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -57,6 +58,15 @@ class BPAImprovementController extends Controller
                 'surv_TotPercent'
             ]);
 
+            $questionCounts = BPAQuestion::whereIn('id', $questionList)
+            ->selectRaw('process_id, COUNT(*) as total_questions')
+            ->groupBy('process_id')
+            ->pluck('total_questions', 'process_id');
+
+            $processWeights = BPAProcess::whereIn('id', $questions->pluck('process_id'))
+            ->select('id as process_id', 'process_weight')
+            ->get();
+
             // $PWGenOp = $surveyPercentages->percent_GenOp * $questions->process_weight;
 
             return view('bpa-improvement.index', [  
@@ -64,6 +74,8 @@ class BPAImprovementController extends Controller
                 'questionnaire' => $questionnaire,
                 'form_id' => $questionnaire->form_id,
                 'questions' => $questions,
+                'processWeights' => $processWeights,
+                'questionCounts' => $questionCounts,
                 'survey' => $survey,
                 'surveyMap' => $surveyMap,
                 'surveyScores' => $surveyScoresMap,
@@ -98,6 +110,7 @@ class BPAImprovementController extends Controller
                 $activity->surv_Prsnl = $request->Per;
                 $activity->surv_5SPrac = $request->x5S;
                 $activity->surv_TotRate = $request->Total;
+                $activity->surv_TotPercent = $request->PTotal;
                 $activity->percent_GenOp = $request->PGenOp;
                 $activity->percent_Doc = $request->PDoc;
                 $activity->percent_PartMgnt = $request->PPartM;
@@ -121,6 +134,7 @@ class BPAImprovementController extends Controller
                 $activity->surv_Prsnl = $request->Per;
                 $activity->surv_5SPrac = $request->x5S;
                 $activity->surv_TotRate = $request->Total;
+                $activity->surv_TotPercent = $request->PTotal;
                 $activity->percent_GenOp = $request->PGenOp;
                 $activity->percent_Doc = $request->PDoc;
                 $activity->percent_PartMgnt = $request->PPartM;
