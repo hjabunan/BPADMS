@@ -650,12 +650,14 @@
                                 const fileExtension = file.name.split('.').pop().toLowerCase();
                                 const iconClass = getFileIconClass(fileExtension);
                                 const filePath = file.path;
+                                
+                                            // <span class="text-xs">${file.pathx}</span>
 
                                 const fileElement = $(`
                                     <div class="flex items-center space-x-2 bg-gray-100 p-2 rounded">
                                         <a href="{{ asset('storage') }}/${filePath}" target="_blank" class="text-blue-600 hover:underline flex items-center space-x-1">
                                             <i class="file-icon ${iconClass} text-xl"></i>
-                                            <span class="text-xs">${file.pathx}</span>
+                                            <span class="text-xs">${filePath.split('/').pop()}</span>
                                         </a>
                                         <button id="xButton" data-path="${filePath}" data-qid="${qid}" data-qidx="${questionId}" class="text-red-600 hover:text-red-800 font-bold">X</button>
                                     </div>
