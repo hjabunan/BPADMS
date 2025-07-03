@@ -104,6 +104,7 @@ class BPAImprovementController extends Controller
                 $existingS1->survey_remarks = $request->remarks;
                 $existingS1->update();
     
+                $activity->act_status = 1;
                 $activity->surv_GenOp = $request->GenOp;
                 $activity->surv_Doc = $request->Doc;
                 $activity->surv_PartMgnt = $request->PartM;
@@ -128,6 +129,7 @@ class BPAImprovementController extends Controller
                 $survey->key = Str::uuid();
                 $survey->save();
     
+                $activity->act_status = 1;
                 $activity->surv_GenOp = $request->GenOp;
                 $activity->surv_Doc = $request->Doc;
                 $activity->surv_PartMgnt = $request->PartM;
@@ -249,5 +251,18 @@ class BPAImprovementController extends Controller
         }
 
         return response()->json(['status' => 'success', 'message' => 'Attachment removed successfully.']);
+    }
+
+    public function saveEvaluation(Request $request){
+        $actID = $request->actID;
+        $qnrID = $request->qnrID;
+
+        // dd($actID, $qnrID);
+
+        $activity = BPAActivityCalendar::where('id', $actID)->where('act_questionnaire', $qnrID)->first();
+        $activity->act_status = 2;
+        $activity->update();
+
+        return response()->json(['status' => 'success', 'message' => 'Evaluation saved successfully.']);
     }
 }

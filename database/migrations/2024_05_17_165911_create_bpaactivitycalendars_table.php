@@ -17,9 +17,14 @@ return new class extends Migration
             $table->string('act_filename'); //will be use as the filename of the uploaded file
             $table->string('act_location');
             $table->string('act_supervisor');
+            $table->bigInteger('act_servicevehicle');
+            $table->bigInteger('act_toolbox');
+            $table->bigInteger('act_techonsite');
+            $table->bigInteger('act_revolvingfund');
             $table->string('act_startdate');
             $table->string('act_enddate');
             $table->string('act_status'); // 0 - PENDING , 1 - ONGOING , 2 - DONE
+
             $table->bigInteger('act_questionnaire');
             $table->bigInteger('act_assignedto');
             $table->bigInteger('act_createdby');
@@ -39,7 +44,6 @@ return new class extends Migration
             $table->string('percent_5SPrac')->default(0);
             // TOTAL PERCENTAGE
             $table->string('surv_TotPercent')->default(0);
-            
             $table->string('surv_Remarks')->nullable(); 
             $table->bigInteger('is_closed')->default(0); 
             $table->bigInteger('is_deleted')->default(0); 

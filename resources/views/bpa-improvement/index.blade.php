@@ -9,8 +9,9 @@
                             Improvement Evaluation Audit
                         </div>
                         <div class="justify-self-end">
-                            <button type="button" id="btnSummary" name="btnSummary" data-drawer-target="drawer-form" data-drawer-show="drawer-form" aria-controls="drawer-form" class="text-white bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-16 py-2.5 text-center mr-2 mb-2 ">SUMMARY</button>
-                            <button type="button" id="btnHome" name="btnHome" class="text-white bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-16 py-2.5 text-center mr-2 mb-2 ">BACK</button>
+                            <button type="button" id="btnHome" name="btnHome" class="text-white bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">BACK</button>
+                            <button type="button" id="btnSummary" name="btnSummary" data-drawer-target="drawer-form" data-drawer-show="drawer-form" aria-controls="drawer-form" class="text-white bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">SUMMARY</button>
+                            <button type="button" id="btnSubmit" name="btnSubmit" class="text-white bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">SUBMIT</button>
                         </div>
                     </div>
                                 
@@ -208,7 +209,7 @@
                 <button type="button" id="btnSuccessH" class="btnSuccessH hidden" data-modal-target="modalSuccess" data-modal-toggle="modalSuccess"></button>
             {{-- Confirm Removal of Attachment  --}}
                 <button type="button" id="btnConfirmRH" class="btnConfirmRH hidden" data-modal-target="modalConfirmR" data-modal-toggle="modalConfirmR"></button>
-        
+        {{-- HIDDEN BUTTONS --}}
 
         {{-- FORM MODAL --}}
             {{-- SUCCESS MODAL --}}
@@ -251,6 +252,7 @@
                     </div>
                 </div>
             {{-- CONFIRM ACTIVATE/DEACTIVATE MODAL --}}
+        {{-- FORM MODAL --}}
 
         {{-- FORM DRAWER --}}
             {{-- COMMENT DRAWER --}}
@@ -336,12 +338,14 @@
                                     <textarea id="surveyRmarks" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write comments, remarks, recommendation...">{{ !empty($survRemarks) ? $survRemarks : '' }}</textarea>
                                 </div>
                                 <div class="mb-6">
-                                    <button type="button" id="btnRSubmit" name="btnRSubmit" class="text-white bg-gradient-to-r from-gray-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-24 py-2.5 text-center mr-2 mb-2 w-full">SUBMIT</button>
+                                    <button type="button" id="btnRSave" name="btnRSave" class="text-white bg-gradient-to-r from-gray-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-24 py-2.5 text-center mr-2 mb-2 w-full">SAVE</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+            {{-- COMMENT DRAWER --}}
+        {{-- FORM DRAWER --}}
         
     <script>
         $(document).ready(function () {
@@ -363,6 +367,7 @@
                 jQuery(document).on( "click", "#SCloseButton", function(){
                     $("#success-modal").removeClass("flex");
                     $("#success-modal").addClass("hidden");
+                    $("#success-modal").attr("aria-hidden", "true");
                     // location.reload();
                 });
             // Close Success
@@ -574,7 +579,7 @@
                 }
 
                 // Submit Remarks
-                jQuery(document).on( "click", "#btnRSubmit", function(){
+                jQuery(document).on( "click", "#btnRSave", function(){
                     var sRemarks = $("#surveyRmarks").val();
                     var actID = document.getElementById('act_id').value;
                     var qnrID = document.getElementById('qnr_id').value;
@@ -759,6 +764,34 @@
                 });
             });
             // UPLOAD
+
+            // SUBMIT FORM
+                jQuery(document).on( "click", "#btnSubmit", function(){
+                    var actID = document.getElementById('act_id').value;
+                    var qnrID = document.getElementById('qnr_id').value;
+                    var _token = $('input[name="_token"]').val();
+
+                    // console.log("Submitting form with actID:", actID, "and qnrID:", qnrID);
+                    $.ajax({
+                        url: "{{ route('bpa-improvement.saveEvaluation') }}",
+                        method: "POST",
+                        dataType: 'json',
+                        data: {
+                            actID: actID,
+                            qnrID: qnrID,
+                            _token: _token,
+                        },
+                        success: function(result) {
+                            console.log(result);
+                            $("#btnSuccessH").click();
+                            setTimeout(function () {
+                                $('#btnHome').click();
+                            }, 500);
+                             
+                        }
+                    });
+                });
+            // SUBMIT FORM
         });
     </script>
 </x-app-layout>

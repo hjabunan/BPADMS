@@ -33,7 +33,7 @@
                     <div class="flex flex-col gap-4" style="height: calc(100vh - 178px);">
                         <div id="default-tab-content">
                             <div class="hidden p-4 rounded-lg bg-gray-50" id="formprocess" role="tabpanel" aria-labelledby="formprocess-tab">
-                                <div class="flex flex-wrap gap-2 justify-center sm:flex-nowrap">
+                                <div class="flex flex-col md:flex-row gap-2 justify-center sm:flex-nowrap">
                                     {{-- Start FORM Table --}}
                                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="flex: 1; height: calc(100vh - 210px);">
                                         <div class="px-4 grid content-center grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">

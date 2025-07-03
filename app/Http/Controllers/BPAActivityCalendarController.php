@@ -25,6 +25,10 @@ class BPAActivityCalendarController extends Controller
                 'key' => $event->key,
                 'location' => $event->act_location,
                 'supervisor' => $event->act_supervisor,
+                'service_vehicle' => $event->act_servicevehicle,
+                'toolbox' => $event->act_toolbox,
+                'tech_on_site' => $event->act_techonsite,
+                'revolving_fund' => $event->act_revolvingfund,
                 'status' => $event->act_status,
                 'questionnaire' => $event->questionnaire->questionnaire_name,
                 'questionnaire_id' => $event->act_questionnaire,
@@ -42,7 +46,7 @@ class BPAActivityCalendarController extends Controller
             ];
         }
 
-        // dd($formattedEvents);
+        // dd($formattedEvents[0]['efilename']);
 
         $qnrs = BPAQuestionnaire::with('formDetails','qtnDetails')
             ->where('status',1)
@@ -67,6 +71,10 @@ class BPAActivityCalendarController extends Controller
             $existingEvent->act_filename = $request->efilename;
             $existingEvent->act_location = $request->elocation;
             $existingEvent->act_supervisor = $request->esvstl;
+            $existingEvent->act_servicevehicle = $request->enosv;
+            $existingEvent->act_toolbox = $request->enotb;
+            $existingEvent->act_techonsite = $request->enotos;
+            $existingEvent->act_revolvingfund = $request->erf;
             $existingEvent->act_startdate = $eStart;
             $existingEvent->act_enddate = $eEnd;
             $existingEvent->act_questionnaire = $request->equestionnaire;
@@ -78,6 +86,10 @@ class BPAActivityCalendarController extends Controller
             $event->act_filename = $request->efilename;
             $event->act_location = $request->elocation;
             $event->act_supervisor = $request->esvstl;
+            $event->act_servicevehicle = $request->enosv;
+            $event->act_toolbox = $request->enotb;
+            $event->act_techonsite = $request->enotos;
+            $event->act_revolvingfund = $request->erf;
             $event->act_startdate = $request->adStart;
             $event->act_enddate = $request->adEnd;
             $event->act_status = 0;

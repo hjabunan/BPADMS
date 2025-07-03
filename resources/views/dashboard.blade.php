@@ -46,9 +46,9 @@
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
-                            <label class="text-3xl font-extrabold text-gray-900">
+                            <h2 class="text-3xl font-extrabold text-gray-900">
                                 <span id="titleViewEvent" class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span>
-                            </label>
+                            </h2>
                             <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalViewEvent">
                                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                 <span class="sr-only">Close modal</span>
@@ -57,31 +57,31 @@
                         <!-- Modal body -->
                         <div class="p-4 space-y-4 w-full">
                             <div class="leading-3">
-                                <label for="" class="text-sm leading-3">Status</label>
+                                <p class="text-sm leading-3 font-medium text-gray-600">Status</p>
                                 <h1 id="viewStatus" class=" font-semibold text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
-                                <label for="" class="text-sm leading-3">Assigned To</label>
+                                <p class="text-sm leading-3 font-medium text-gray-600">Assigned To</p>
                                 <h1 id="viewAssignedTo" class=" font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
-                                <label for="" class="text-sm leading-3">Date</label>
+                                <p class="text-sm leading-3 font-medium text-gray-600">Date</p>
                                 <h1 id="viewDate" class=" font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
-                                <label for="" class="text-sm leading-3">Site/Branch Location</label>
+                                <p class="text-sm leading-3 font-medium text-gray-600">Site/Branch Location</p>
                                 <h1 id="viewLocation" class=" font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
-                                <label for="" class="text-sm leading-3">Site/Branch Supervisor/TL</label>
+                                <p class="text-sm leading-3 font-medium text-gray-600">Site/Branch Supervisor/TL</p>
                                 <h1 id="viewSupervisor" class=" font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
-                                <label for="" class="text-sm leading-3">Questionnaire</label>
+                                <p class="text-sm leading-3 font-medium text-gray-600">Questionnaire</p>
                                 <h1 id="viewQuestionnaire" class=" font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
-                                <label for="" class="text-sm leading-3">Created By</label>
+                                <p class="text-sm leading-3 font-medium text-gray-600">Created By</p>
                                 <h1 id="viewCreatedBy" class=" font-medium text-lg leading-3"></h1>
                             </div>
                         </div>
@@ -91,6 +91,7 @@
                                 <a href="#" id="btnAnswerEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
                                 <button type="button" id="btnEditEvent" data-modal-target="modalEvent" data-modal-show="modalEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">EDIT</button>
                                 <button type="button" id="btnDeleteEvent" data-modal-target="modalDeleteEvent" data-modal-show="modalDeleteEvent" data-modal-hide="modalViewEvent" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">DELETE</button>
+                                <button type="button" id="btnPrintEvent" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">PRINT</button>
                             @endif
                             <button data-modal-hide="modalViewEvent" type="button" id="closeEvent2" class="text-white bg-gray-500 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">CLOSE</button>
                         </div>
@@ -107,9 +108,9 @@
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
-                            <label class="text-3xl font-extrabold text-gray-900">
+                            <h1 class="text-3xl font-extrabold text-gray-900">
                                 <span id="titleEvent" class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">ADD EVENT</span>
-                            </label>
+                            </h1>
                             <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalEvent">
                                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                 <span class="sr-only">Close modal</span>
@@ -161,6 +162,22 @@
                                         <input type="text" id="esvstl" name="esvstl" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="enosv" class="block mb-2 text-sm font-medium text-gray-900">No. of Service Vehicle</label>
+                                        <input type="number" id="enosv" name="enosv" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" min="0" step="1" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    </div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="enotb" class="block mb-2 text-sm font-medium text-gray-900">No. of Tool Box</label>
+                                        <input type="number" id="enotb" name="enotb" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" min="0" step="1" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    </div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="enotos" class="block mb-2 text-sm font-medium text-gray-900">No. of Technician On-Site</label>
+                                        <input type="number" id="enotos" name="enotos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" min="0" step="1" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    </div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="erf" class="block mb-2 text-sm font-medium text-gray-900">Revolving Fund</label>
+                                        <input type="number" id="erf" name="erf" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" min="0" step="0.01" required>
+                                    </div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
                                         <label for="adStart" class="block mb-2 text-sm font-medium text-gray-900">Audit Date Start</label>
                                         <div class="">
                                             <div class="relative max-w-sm">
@@ -204,9 +221,10 @@
                         @csrf
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
-                            <label class="text-3xl font-extrabold text-gray-900">
+                            <h2 class="text-3xl font-extrabold text-gray-900">
                                 <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">DELETE</span>
-                            </label>
+                            </h2>
+
                             <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalDeleteEvent">
                                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                 <span class="sr-only">Close modal</span>
@@ -272,7 +290,7 @@
     <script>
         var eventId;
         var eventKey;
-        var statusArray = ['PENDING', 'ONGOING', 'COMPLETED'];
+        var statusArray = ['PENDING', 'ON GOING', 'COMPLETED'];
         var statusColor = ['text-red-500', 'text-amber-500', 'text-emerald-500'];
 
         // Event Load
@@ -298,22 +316,32 @@
                         var act_status = info.event.extendedProps.status;
                         var act_location = info.event.extendedProps.location;
                         var act_supervisor = info.event.extendedProps.supervisor;
+                        var act_servicevehicle = info.event.extendedProps.service_vehicle;
+                        var act_toolbox = info.event.extendedProps.toolbox;
+                        var act_techonsite = info.event.extendedProps.tech_on_site;
+                        var act_revolvingfund = info.event.extendedProps.revolving_fund;
                         var act_assignedto = info.event.extendedProps.assigned_to;
                         var act_assignedtoid = info.event.extendedProps.assigned_to_id;
                         var act_createdby = info.event.extendedProps.created_by;
                         var act_name = info.event.title;
-                        var act_filename = info.event.efilename;
+                        var act_filename = info.event.extendedProps.efilename;
                         var act_start = info.event.extendedProps.sDate;
                         var act_end = info.event.extendedProps.eDate;
                         var act_questionnaire = info.event.extendedProps.questionnaire;
                         var act_questionnaireid = info.event.extendedProps.questionnaire_id;
                         var today = new Date();
 
+                        console.log(act_filename);
+
                         // EDIT MODAL
                             $('#eventKey').val(eventKey);
                             $('#eventID').val(eventId);
                             $('#elocation').val(act_location);
                             $('#esvstl').val(act_supervisor);
+                            $('#enosv').val(act_servicevehicle);
+                            $('#enotb').val(act_toolbox);
+                            $('#enotos').val(act_techonsite);
+                            $('#erf').val(act_revolvingfund);
                             $('#eassignedto').val(act_assignedtoid);
                             $('#ename').val(act_name);
                             $('#efilename').val(act_filename);
@@ -349,6 +377,29 @@
                             }
 
                             $('#btnAnswerEvent').prop('href', '/bpa-improvement/event/response/'+ eventKey);
+
+                            const status = $('#viewStatus').text().trim().toUpperCase();
+                            $('#btnAnswerEvent').hide();
+                            $('#btnEditEvent').hide();
+                            $('#btnDeleteEvent').hide();
+                            $('#btnPrintEvent').hide();
+
+                            if (status === 'PENDING') {
+                                $('#btnAnswerEvent').show();
+                                $('#btnEditEvent').show();
+                                $('#btnDeleteEvent').show();
+                                // PRINT remains hidden
+                            } else if (status === 'ON GOING') {
+                                $('#btnAnswerEvent').show();
+                                $('#btnDeleteEvent').show();
+                                $('#btnEditEvent').show();
+                                // EDIT and PRINT hidden
+                            } else if (status === 'COMPLETED') {
+                                $('#btnPrintEvent').show();
+                                $('#btnEditEvent').show();
+                                // ANSWER, EDIT, DELETE hidden
+                            }
+
                         // VIEW MODAL
 
                         // DELETE MODAL 
@@ -368,6 +419,7 @@
                 jQuery(document).on( "click", "#SCloseButton", function(){
                     $("#success-modal").removeClass("flex");
                     $("#success-modal").addClass("hidden");
+                    $("#success-modal").attr("aria-hidden", "true");
                     location.reload();
                 });
             // Close Success
@@ -415,6 +467,18 @@
                     }
                 });
             // Save Add/Edit Event
+
+            // Print Event
+                jQuery(document).on( "click", "#btnPrintEvent", function(){
+                    window.open('/bpa-improvement/event/print/' + eventKey, '_blank');
+
+
+                    // const printWindow = window.open('/bpa-improvement/event/print/' + eventKey, '_blank');
+                    // printWindow.onload = function () {
+                    //     printWindow.print();
+                    // };
+                });
+            // Print Event
 
 
         });

@@ -96,6 +96,7 @@ use Illuminate\Support\Facades\Route;
         Route::post('/bpa-improvement/saveSurvey', [BPAImprovementController::class, 'saveSurvey'])->name('bpa-improvement.saveSurvey');
         Route::post('/bpa-improvement/saveAttach', [BPAImprovementController::class, 'saveAttach'])->name('bpa-improvement.saveAttach');
         Route::post('/bpa-improvement/removeAttach', [BPAImprovementController::class, 'removeAttach'])->name('bpa-improvement.removeAttach');
+        Route::post('/bpa-improvement/saveEvaluation', [BPAImprovementController::class, 'saveEvaluation'])->name('bpa-improvement.saveEvaluation');
     });
 
 // Routes for BPAInternalAuditController
