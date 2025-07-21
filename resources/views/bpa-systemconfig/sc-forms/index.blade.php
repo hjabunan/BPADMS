@@ -1136,10 +1136,10 @@
     <script>
         $(document).ready(function () {
             // Close Success
-            jQuery(document).on( "click", "#SCloseButton", function(){
+                jQuery(document).on( "click", "#SCloseButton", function(){
                     $("#success-modal").removeClass("flex");
                     $("#success-modal").addClass("hidden");
-                    location.reload();
+                    // location.reload();
                 });
             // Close Success
 
@@ -1192,9 +1192,18 @@
                             dataType: 'json',
                             data: $("#formForm").serialize(),
                             success:function(result){
-                                $('#tableForm').load(location.href + ' #tableForm>*','')
-                                $("#btnSuccessH").click();
-                                $("#closeForm1").click();
+                                // $('#tableForm').load(location.href + ' #tableForm>*','')
+                                // $("#btnSuccessH").click();
+                                // $("#closeForm1").click();
+
+                                 $('#formprocess').load(location.href + ' #formprocess>*', '', function () {
+                                    $("#btnSuccessH").click();
+                                    $("#closeForm1").click();
+                                });
+                                $('#questionnaire').load(location.href + ' #questionnaire>*');
+                                $('#question').load(location.href + ' #question>*');
+                                $('#cpoint').load(location.href + ' #cpoint>*');
+                                $('#form').load(location.href + ' #form>*');
                             },
                             error: function(error){
                                 $("#btnIncH").click();
@@ -1297,9 +1306,18 @@
                             dataType: 'json',
                             data: $("#formProcess").serialize(),
                             success:function(result){
-                                $('#tableProcess').load(location.href + ' #tableProcess>*','')
-                                $("#btnSuccessH").click();
-                                $("#closeProcess1").click();
+                                // $('#tableProcess').load(location.href + ' #tableProcess>*','')
+                                // $("#btnSuccessH").click();
+                                // $("#closeProcess1").click();
+
+                                 $('#formprocess').load(location.href + ' #formprocess>*', '', function () {
+                                    $("#btnSuccessH").click();
+                                    $("#closeProcess1").click();
+                                });
+                                $('#questionnaire').load(location.href + ' #questionnaire>*');
+                                $('#question').load(location.href + ' #question>*');
+                                $('#cpoint').load(location.href + ' #cpoint>*');
+                                $('#form').load(location.href + ' #form>*');
                             },
                             error: function(error){
                                 $("#btnIncH").click();
@@ -1403,9 +1421,17 @@
                             dataType: 'json',
                             data: $("#formCPoint").serialize(),
                             success:function(result){
-                                $('#tableCPoint').load(location.href + ' #tableCPoint>*','')
-                                $("#btnSuccessH").click();
-                                $("#closeCPoint1").click();
+                                // $('#tableCPoint').load(location.href + ' #tableCPoint>*','')
+                                // $("#btnSuccessH").click();
+                                // $("#closeCPoint1").click();
+                                 $('#cpoint').load(location.href + ' #cpoint>*', '', function () {
+                                    $("#btnSuccessH").click();
+                                    $("#closeCPoint1").click();
+                                });
+                                $('#questionnaire').load(location.href + ' #questionnaire>*');
+                                $('#question').load(location.href + ' #question>*');
+                                $('#formprocess').load(location.href + ' #formprocess>*');
+                                $('#form').load(location.href + ' #form>*');
                             },
                             error: function(error){
                                 $("#btnIncH").click();
@@ -1529,9 +1555,16 @@
                             dataType: 'json',
                             data: $("#formQuestion").serialize(),
                             success:function(result){
-                                $('#tableQuestion').load(location.href + ' #tableQuestion>*','')
-                                $("#btnSuccessH").click();
-                                $("#closeQuestion1").click();
+                                // $('#tableQuestion').load(location.href + ' #tableQuestion>*','')
+                                // $("#btnSuccessH").click();
+                                // $("#closeQuestion1").click();
+                                $('#question').load(location.href + ' #question>*', '', function() {
+                                    $("#btnSuccessH").click();
+                                    $("#closeQuestion1").click();
+                                });
+                                $('#questionnaire').load(location.href + ' #questionnaire>*');
+                                $('#cpoint').load(location.href + ' #cpoint>*');
+                                $('#formprocess').load(location.href + ' #formprocess>*');
                             },
                             error: function(error){
                                 $("#btnIncH").click();

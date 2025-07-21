@@ -6,7 +6,9 @@ use App\Models\BPAActivityCalendar;
 use App\Models\BPAQuestion;
 use App\Models\BPASurvey;
 use App\Models\BPAAttachment;
+use App\Models\BPACpoint;
 use App\Models\BPAProcess;
+use App\Models\BPAUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -264,5 +266,56 @@ class BPAImprovementController extends Controller
         $activity->update();
 
         return response()->json(['status' => 'success', 'message' => 'Evaluation saved successfully.']);
+    }
+
+    public function printEvaluationSummary($key){
+        $questionnaire = BPAActivityCalendar::where('key', $key)->first();
+        $questions = BPAQuestion::whereIn('id', explode(',', $questionnaire->question_list))->get();
+        $survey = BPASurvey::where('act_id', $questionnaire->id)->get();
+        // $GOCount = BPASurvey::where('act_id', $questionnaire->id)->where('process_id', 1)->count();
+
+        $questionIds = $survey->pluck('qtn_id')->unique();
+        $questions = BPAQuestion::whereIn('id', $questionIds)->get()->keyBy('id');
+        $attachments = BPAAttachment::where('act_id', $questionnaire->id)->get();
+        $bpahead = BPAUsers::where('id',2)->first(); // Assuming you want to get a specific user, adjust as needed
+        $personnel = BPAUsers::where('id', $questionnaire->act_assignedto)->first();
+
+        
+        $processIds = $questions->pluck('process_id')->unique();
+        $processes = BPAProcess::whereIn('id', $processIds)->get()->keyBy('id');
+
+        $checkpointIds = $questions->pluck('cpoint_id')->unique(); // ✅ correct field
+        $checkpoints = BPACpoint::whereIn('id', $checkpointIds)->get()->keyBy('id'); // ✅ correct
+
+        $survey = $survey->sort(function ($a, $b) use ($questions) {
+            $qA = $questions[$a->qtn_id] ?? null;
+            $qB = $questions[$b->qtn_id] ?? null;
+
+            $procA = $qA->process_id ?? 99999;
+            $procB = $qB->process_id ?? 99999;
+
+            $chkA = $qA->cpoint_id ?? 99999;
+            $chkB = $qB->cpoint_id ?? 99999;
+
+            $qidA = $a->qtn_id;
+            $qidB = $b->qtn_id;
+
+            return [$procA, $chkA, $qidA] <=> [$procB, $chkB, $qidB];
+        })->values(); // Re-index keys
+
+
+
+        // dd($processes);
+
+        return view('evaluationS', [
+            'questionnaire' => $questionnaire,
+            'questions' => $questions,
+            'survey' => $survey,
+            'attachments' => $attachments,
+            'bpahead' => $bpahead,
+            'personnel' => $personnel,
+            'processes' => $processes,
+            'checkpoints' => $checkpoints
+        ]);
     }
 }

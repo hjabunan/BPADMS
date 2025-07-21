@@ -91,7 +91,8 @@
                                 <a href="#" id="btnAnswerEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
                                 <button type="button" id="btnEditEvent" data-modal-target="modalEvent" data-modal-show="modalEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">EDIT</button>
                                 <button type="button" id="btnDeleteEvent" data-modal-target="modalDeleteEvent" data-modal-show="modalDeleteEvent" data-modal-hide="modalViewEvent" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">DELETE</button>
-                                <button type="button" id="btnPrintEvent" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">PRINT</button>
+                                <button type="button" id="btnPrintEventDetailed" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">PRINT DETAILED</button>
+                                <button type="button" id="btnPrintEventSummary" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">PRINT SUMMARY</button>
                             @endif
                             <button data-modal-hide="modalViewEvent" type="button" id="closeEvent2" class="text-white bg-gray-500 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">CLOSE</button>
                         </div>
@@ -160,6 +161,11 @@
                                     <div class="mb-3 col-span-2 sm:col-span-1">
                                         <label for="esvstl" class="block mb-2 text-sm font-medium text-gray-900">Site/Branch Supervisor/TL</label>
                                         <input type="text" id="esvstl" name="esvstl" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
+                                    </div>
+                                    <div class=""></div>
+                                    <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="esbadmin" class="block mb-2 text-sm font-medium text-gray-900">Site/Branch Admin Assistant/SPI IDC</label>
+                                        <input type="text" id="esbadmin" name="esbadmin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1">
                                         <label for="enosv" class="block mb-2 text-sm font-medium text-gray-900">No. of Service Vehicle</label>
@@ -302,8 +308,7 @@
                 var calendarHeight = windowHeight - 178;
                 
                 var formattedEvents = @json($events);
-
-                console.log(formattedEvents);
+                // console.log(formattedEvents);
                 
 
                 var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -316,6 +321,7 @@
                         var act_status = info.event.extendedProps.status;
                         var act_location = info.event.extendedProps.location;
                         var act_supervisor = info.event.extendedProps.supervisor;
+                        var act_sbadmin = info.event.extendedProps.sbadmin;
                         var act_servicevehicle = info.event.extendedProps.service_vehicle;
                         var act_toolbox = info.event.extendedProps.toolbox;
                         var act_techonsite = info.event.extendedProps.tech_on_site;
@@ -331,13 +337,14 @@
                         var act_questionnaireid = info.event.extendedProps.questionnaire_id;
                         var today = new Date();
 
-                        console.log(act_filename);
+                        // console.log(act_filename);
 
                         // EDIT MODAL
                             $('#eventKey').val(eventKey);
                             $('#eventID').val(eventId);
                             $('#elocation').val(act_location);
                             $('#esvstl').val(act_supervisor);
+                            $('#esbadmin').val(act_sbadmin);
                             $('#enosv').val(act_servicevehicle);
                             $('#enotb').val(act_toolbox);
                             $('#enotos').val(act_techonsite);
@@ -382,7 +389,8 @@
                             $('#btnAnswerEvent').hide();
                             $('#btnEditEvent').hide();
                             $('#btnDeleteEvent').hide();
-                            $('#btnPrintEvent').hide();
+                            $('#btnPrintEventDetailed').hide();
+                            $('#btnPrintEventSummary').hide();
 
                             if (status === 'PENDING') {
                                 $('#btnAnswerEvent').show();
@@ -392,11 +400,13 @@
                             } else if (status === 'ON GOING') {
                                 $('#btnAnswerEvent').show();
                                 $('#btnDeleteEvent').show();
-                                $('#btnEditEvent').show();
+                                $('#btnEditEvent').hide();
                                 // EDIT and PRINT hidden
                             } else if (status === 'COMPLETED') {
-                                $('#btnPrintEvent').show();
-                                $('#btnEditEvent').show();
+                                // $('#btnAnswerEvent').show();
+                                $('#btnPrintEventDetailed').show();
+                                $('#btnPrintEventSummary').show();
+                                // $('#btnEditEvent').show();
                                 // ANSWER, EDIT, DELETE hidden
                             }
 
@@ -469,8 +479,8 @@
             // Save Add/Edit Event
 
             // Print Event
-                jQuery(document).on( "click", "#btnPrintEvent", function(){
-                    window.open('/bpa-improvement/event/print/' + eventKey, '_blank');
+                jQuery(document).on( "click", "#btnPrintEventSummary", function(){
+                    window.open('/bpa-improvement/printEvaluationSummary/' + eventKey, '_blank');
 
 
                     // const printWindow = window.open('/bpa-improvement/event/print/' + eventKey, '_blank');

@@ -25,6 +25,7 @@ class BPAActivityCalendarController extends Controller
                 'key' => $event->key,
                 'location' => $event->act_location,
                 'supervisor' => $event->act_supervisor,
+                'sbadmin' => $event->act_sbadmin, // Site/Branch Admin Assistant/SPI IDC
                 'service_vehicle' => $event->act_servicevehicle,
                 'toolbox' => $event->act_toolbox,
                 'tech_on_site' => $event->act_techonsite,
@@ -72,6 +73,7 @@ class BPAActivityCalendarController extends Controller
             $existingEvent->act_location = $request->elocation;
             $existingEvent->act_supervisor = $request->esvstl;
             $existingEvent->act_servicevehicle = $request->enosv;
+            $existingEvent->act_sbadmin = $request->esbadmin; // Site/Branch Admin Assistant/SPI IDC
             $existingEvent->act_toolbox = $request->enotb;
             $existingEvent->act_techonsite = $request->enotos;
             $existingEvent->act_revolvingfund = $request->erf;
@@ -86,6 +88,7 @@ class BPAActivityCalendarController extends Controller
             $event->act_filename = $request->efilename;
             $event->act_location = $request->elocation;
             $event->act_supervisor = $request->esvstl;
+            $event->act_sbadmin = $request->esbadmin; // Site/Branch Admin Assistant/SPI IDC
             $event->act_servicevehicle = $request->enosv;
             $event->act_toolbox = $request->enotb;
             $event->act_techonsite = $request->enotos;

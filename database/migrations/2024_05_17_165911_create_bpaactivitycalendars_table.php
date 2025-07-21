@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('act_filename'); //will be use as the filename of the uploaded file
             $table->string('act_location');
             $table->string('act_supervisor');
+            $table->string('act_admin'); // Site/Branch Admin Assistant/SPI IDC
             $table->bigInteger('act_servicevehicle');
             $table->bigInteger('act_toolbox');
             $table->bigInteger('act_techonsite');
@@ -44,7 +45,7 @@ return new class extends Migration
             $table->string('percent_5SPrac')->default(0);
             // TOTAL PERCENTAGE
             $table->string('surv_TotPercent')->default(0);
-            $table->string('surv_Remarks')->nullable(); 
+            $table->text('surv_Remarks')->nullable(); 
             $table->bigInteger('is_closed')->default(0); 
             $table->bigInteger('is_deleted')->default(0); 
             $table->string('key');

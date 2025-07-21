@@ -80,6 +80,10 @@ use Illuminate\Support\Facades\Route;
             Route::post('/bpa-systemconfig/sc-forms/statusQuestionnaire', [BPAFormsController::class, 'statusQuestionnaire'])->name('bpa-systemconfig.sc-forms.statusQuestionnaire');
             Route::post('/bpa-systemconfig/sc-forms/selectQuestionnaire', [BPAFormsController::class, 'selectQuestionnaire'])->name('bpa-systemconfig.sc-forms.selectQuestionnaire');
 
+        // Routes for BPARatingsController
+            // ACTIVITY LOGS
+            // Route::get('/bpa-systemconfig/sc-ratings', [BPARatingsController::class, 'index'])->name('bpa-systemconfig.sc-ratings.index');
+
         // Routes for BPAActivityLogsController
             // ACTIVITY LOGS
             Route::get('/bpa-systemconfig/sc-activitylogs', [BPAActivityLogsController::class, 'index'])->name('bpa-systemconfig.sc-activitylogs.index');
@@ -97,6 +101,8 @@ use Illuminate\Support\Facades\Route;
         Route::post('/bpa-improvement/saveAttach', [BPAImprovementController::class, 'saveAttach'])->name('bpa-improvement.saveAttach');
         Route::post('/bpa-improvement/removeAttach', [BPAImprovementController::class, 'removeAttach'])->name('bpa-improvement.removeAttach');
         Route::post('/bpa-improvement/saveEvaluation', [BPAImprovementController::class, 'saveEvaluation'])->name('bpa-improvement.saveEvaluation');
+
+        Route::get('/bpa-improvement/printEvaluationSummary/{key}', [BPAImprovementController::class, 'printEvaluationSummary'])->name('bpa-improvement.printEvaluationSummary');
     });
 
 // Routes for BPAInternalAuditController
