@@ -8,6 +8,7 @@ use App\Http\Controllers\BPAFormsController;
 use App\Http\Controllers\BPAImprovementController;
 use App\Http\Controllers\BPAInternalAuditController;
 use App\Http\Controllers\BPALoginLogs;
+use App\Http\Controllers\BPARatingController;
 use App\Http\Controllers\BPAUsersController;
 use App\Http\Controllers\BPAWarehouseController;
 use App\Http\Controllers\ProfileController;
@@ -81,8 +82,12 @@ use Illuminate\Support\Facades\Route;
             Route::post('/bpa-systemconfig/sc-forms/selectQuestionnaire', [BPAFormsController::class, 'selectQuestionnaire'])->name('bpa-systemconfig.sc-forms.selectQuestionnaire');
 
         // Routes for BPARatingsController
-            // ACTIVITY LOGS
-            // Route::get('/bpa-systemconfig/sc-ratings', [BPARatingsController::class, 'index'])->name('bpa-systemconfig.sc-ratings.index');
+            // RATINGS
+            Route::get('/bpa-systemconfig/sc-ratings', [BPARatingController::class, 'index'])->name('bpa-systemconfig.sc-ratings.index');
+            Route::post('/bpa-systemconfig/sc-ratings/saveRateData', [BPARatingController::class, 'saveRateData'])->name('bpa-systemconfig.sc-ratings.saveRateData');
+            Route::get('/bpa-systemconfig/sc-ratings/getRateData', [BPARatingController::class, 'getRateData'])->name('bpa-systemconfig.sc-ratings.getRateData');
+            Route::post('/bpa-systemconfig/sc-ratings/statusRate', [BPARatingController::class, 'statusRate'])->name('bpa-systemconfig.sc-ratings.statusRate');
+            Route::post('/bpa-systemconfig/sc-ratings/deleteRate', [BPARatingController::class, 'deleteRate'])->name('bpa-systemconfig.sc-ratings.deleteRate');
 
         // Routes for BPAActivityLogsController
             // ACTIVITY LOGS

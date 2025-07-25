@@ -76,6 +76,9 @@
                                     <x-dropdown-link :href="route('bpa-systemconfig.sc-forms.index')">
                                         {{ __('Form Management') }}
                                     </x-dropdown-link>
+                                    <x-dropdown-link :href="route('bpa-systemconfig.sc-ratings.index')">
+                                        {{ __('Ratings Management') }}
+                                    </x-dropdown-link>
                                     <x-dropdown-link :href="route('bpa-systemconfig.sc-activitylogs.index')">
                                         {{ __('Activity Logs') }}
                                     </x-dropdown-link>
@@ -173,6 +176,9 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('bpa-systemconfig.sc-forms.index')">
                         {{ __('Forms Management') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('bpa-systemconfig.sc-ratings.index')">
+                        {{ __('Ratings Management') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('bpa-systemconfig.sc-activitylogs.index')">
                         {{ __('Activity Logs') }}
