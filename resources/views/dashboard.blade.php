@@ -478,17 +478,23 @@
                 });
             // Save Add/Edit Event
 
-            // Print Event
+            // Print Event Summary
                 jQuery(document).on( "click", "#btnPrintEventSummary", function(){
                     window.open('/bpa-improvement/printEvaluationSummary/' + eventKey, '_blank');
-
 
                     // const printWindow = window.open('/bpa-improvement/event/print/' + eventKey, '_blank');
                     // printWindow.onload = function () {
                     //     printWindow.print();
                     // };
                 });
-            // Print Event
+            // Print Event Summary
+
+            // Print Event Detailed
+                jQuery(document).on( "click", "#btnPrintEventDetailed", function(){
+                    window.open('/bpa-improvement/printEvaluationDetailed/' + eventKey, '_blank');
+
+                });
+            // Print Event Detailed
 
 
         });

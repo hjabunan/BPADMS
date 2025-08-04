@@ -27,6 +27,7 @@
         body {
             margin: 0 !important; /* Avoid browser default margins */
         }
+        
         .print-page-break {
             page-break-before: always;
             break-before: page;
@@ -509,8 +510,8 @@
             // $(document).ready(function(){
             //     var sh = $('#userAgreement').prop('scrollHeight');
             //     $('#userAgreement').height((sh) + 'px');
-            //     window.onafterprint = window.close;
-            //     window.print();
+                // window.onafterprint = window.close;
+                window.print();
             // });
         </script>
     </body>

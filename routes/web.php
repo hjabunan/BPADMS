@@ -108,6 +108,7 @@ use Illuminate\Support\Facades\Route;
         Route::post('/bpa-improvement/saveEvaluation', [BPAImprovementController::class, 'saveEvaluation'])->name('bpa-improvement.saveEvaluation');
 
         Route::get('/bpa-improvement/printEvaluationSummary/{key}', [BPAImprovementController::class, 'printEvaluationSummary'])->name('bpa-improvement.printEvaluationSummary');
+        Route::get('/bpa-improvement/printEvaluationDetailed/{key}', [BPAImprovementController::class, 'printEvaluationDetailed'])->name('bpa-improvement.printEvaluationDetailed');
     });
 
 // Routes for BPAInternalAuditController
