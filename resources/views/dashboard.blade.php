@@ -1,11 +1,24 @@
 <x-app-layout>
-    <div style="height: calc(100vh - 65px);" class="py-3 overflow-x-auto">
+    <style>
+        /* For large screens */
+        .fc-toolbar-title {
+            font-size: 1.5rem; /* Default is around 1.25rem */
+            font-weight: bold;
+        }
+
+        /* For smaller screens (<600px) */
+        @media (max-width: 600px) {
+            .fc-toolbar-title {
+                font-size: 1.1rem !important; /* Smaller font on mobile */
+            }
+        }
+    </style>
+    {{-- <div style="height: calc(100vh - 65px);" class="py-3 overflow-x-auto">
         <div class="max-w-8xl mx-auto sm:px-5 lg:px-7">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-2 text-gray-900 h-full">
-                    {{-- Title --}}
                     <div class="px-4 grid grid-cols-2 gap-x-3 mb-5 border-b h-[49px]">
-                        <div class="self-center font-black text-2xl text-red-500 leading-tight">
+                        <div class="self-center font-black text-xl md:text-3xl text-red-500 leading-tight">
                             Activity Calendar
                         </div>
                         <div class="justify-self-end">
@@ -13,7 +26,6 @@
                         </div>
                     </div>
                     
-                    {{-- Body --}}
                     <div class="">
                         <form action="" method="POST" class="px-5 sm:px-20">
                             <div class="" id="calendar-container">
@@ -24,7 +36,40 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="py-3 overflow-x-auto" style="height: calc(100vh - 65px);">
+        <div class="max-w-8xl mx-auto sm:px-5 lg:px-7">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg h-full">
+                <div class="p-2 text-gray-900 h-full">
+                    {{-- Title & Button --}}
+                    <div class="px-3 sm:px-4 flex items-center justify-between mb-5 border-b pb-2 sm:pb-0">
+                        <div class="font-black text-xl sm:text-2xl md:text-3xl text-red-500 leading-tight">
+                            Activity Calendar
+                        </div>
+                        <button type="button" id="btnAddEvent" name="btnAddEvent"
+                            data-modal-target="modalEvent" data-modal-toggle="modalEvent"
+                            class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 
+                                hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 
+                                shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm 
+                                px-16 sm:px-10 md:px-16 py-2 sm:py-2.5 text-center">
+                            ADD
+                        </button>
+                    </div>
+
+                    {{-- Body --}}
+                    <div>
+                        <form action="" method="POST" class="px-3 sm:px-5 lg:px-20">
+                            <div id="calendar-container">
+                                <div id="calendar"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
     
     {{-- HIDDEN BUTTONS --}}
@@ -40,61 +85,78 @@
     {{-- MODAL --}}
 
         {{-- VIEW EVENT MODAL --}}
-            <div id="modalViewEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative w-full h-full max-w-2xl md:h-auto">
+            <div id="modalViewEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed inset-0 z-50 hidden p-2 sm:p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full items-center justify-center bg-gray-900/50">
+                <div class="relative w-full max-w-lg sm:max-w-md md:max-w-2xl mx-auto">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
+                    <div class="relative bg-white rounded-lg shadow w-full">
                         <!-- Modal header -->
-                        <div class="flex items-start justify-between p-4 border-b rounded-t">
-                            <h2 class="text-3xl font-extrabold text-gray-900">
-                                <span id="titleViewEvent" class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span>
+                        <div class="flex items-start justify-between p-3 sm:p-4 border-b rounded-t">
+                            <h2 class="font-extrabold text-gray-900 flex-1">
+                                <span id="titleViewEvent"
+                                    class="block text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 text-lg sm:text-2xl">
+                                </span>
                             </h2>
-                            <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalViewEvent">
-                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
+                            <div class="flex items-center space-x-1 sm:space-x-2">
+                                @if (Auth::user()->role == 0 || Auth::user()->role == 1)
+                                    <button type="button" id="btnEditEvent" data-modal-target="modalEvent" data-modal-show="modalEvent" data-modal-hide="modalViewEvent" class="text-blue-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svxg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                                    </button>
+                                    <button type="button" id="btnDeleteEvent" data-modal-target="modalDeleteEvent" data-modal-show="modalDeleteEvent" data-modal-hide="modalViewEvent" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ff0000"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                                    </button>
+                                @endif
+                                <button type="button" id="closeEvent1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalViewEvent">
+                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
                         </div>
                         <!-- Modal body -->
-                        <div class="p-4 space-y-4 w-full">
+                        <div class="p-3 sm:p-4 space-y-3 text-sm sm:text-base">
                             <div class="leading-3">
                                 <p class="text-sm leading-3 font-medium text-gray-600">Status</p>
-                                <h1 id="viewStatus" class=" font-semibold text-lg leading-3"></h1>
+                                <h1 id="viewStatus" class="mt-1 ml-1 font-semibold text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
                                 <p class="text-sm leading-3 font-medium text-gray-600">Assigned To</p>
-                                <h1 id="viewAssignedTo" class=" font-medium text-lg leading-3"></h1>
+                                <h1 id="viewAssignedTo" class="mt-1 ml-1 font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
                                 <p class="text-sm leading-3 font-medium text-gray-600">Date</p>
-                                <h1 id="viewDate" class=" font-medium text-lg leading-3"></h1>
+                                <h1 id="viewDate" class="mt-1 ml-1 font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
                                 <p class="text-sm leading-3 font-medium text-gray-600">Site/Branch Location</p>
-                                <h1 id="viewLocation" class=" font-medium text-lg leading-3"></h1>
+                                <h1 id="viewLocation" class="mt-1 ml-1 font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
                                 <p class="text-sm leading-3 font-medium text-gray-600">Site/Branch Supervisor/TL</p>
-                                <h1 id="viewSupervisor" class=" font-medium text-lg leading-3"></h1>
+                                <h1 id="viewSupervisor" class="mt-1 ml-1 font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
                                 <p class="text-sm leading-3 font-medium text-gray-600">Questionnaire</p>
-                                <h1 id="viewQuestionnaire" class=" font-medium text-lg leading-3"></h1>
+                                <h1 id="viewQuestionnaire" class="mt-1 ml-1 font-medium text-lg leading-3"></h1>
                             </div>
                             <div class="leading-3">
                                 <p class="text-sm leading-3 font-medium text-gray-600">Created By</p>
-                                <h1 id="viewCreatedBy" class=" font-medium text-lg leading-3"></h1>
+                                <h1 id="viewCreatedBy" class="mt-1 ml-1 font-medium text-lg leading-3"></h1>
                             </div>
                         </div>
                         <!-- Modal footer -->
-                        <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center p-3 sm:p-4 space-y-2 sm:space-y-0 sm:space-x-2 border-t border-gray-200 rounded-b">
                             @if (Auth::user()->role == 0 || Auth::user()->role == 1)
-                                <a href="#" id="btnAnswerEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">ANSWER NOW</a>
-                                <button type="button" id="btnEditEvent" data-modal-target="modalEvent" data-modal-show="modalEvent" data-modal-hide="modalViewEvent" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">EDIT</button>
-                                <button type="button" id="btnDeleteEvent" data-modal-target="modalDeleteEvent" data-modal-show="modalDeleteEvent" data-modal-hide="modalViewEvent" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">DELETE</button>
-                                <button type="button" id="btnPrintEventDetailed" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">PRINT DETAILED</button>
-                                <button type="button" id="btnPrintEventSummary" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">PRINT SUMMARY</button>
+                                <a href="#" id="btnAnswerEvent"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm py-2.5 text-center w-full">ANSWER
+                                    NOW</a>
+                                <button id="btnPrintEventDetailed"
+                                    class="text-white bg-green-700 hover:bg-green-800 rounded-lg text-sm py-2.5 w-full">PRINT
+                                    DETAILED</button>
+                                <button id="btnPrintEventSummary"
+                                    class="text-white bg-green-700 hover:bg-green-800 rounded-lg text-sm py-2.5 w-full">PRINT
+                                    SUMMARY</button>
                             @endif
-                            <button data-modal-hide="modalViewEvent" type="button" id="closeEvent2" class="text-white bg-gray-500 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">CLOSE</button>
+                            <button data-modal-hide="modalViewEvent" id="closeEvent2"
+                                class="text-white bg-gray-500 hover:bg-gray-300 rounded-lg text-sm py-2.5 w-full">CLOSE</button>
                         </div>
                     </div>
                 </div>
@@ -103,10 +165,10 @@
 
 
         {{-- ADD/EDIT EVENT MODAL --}}
-            <div id="modalEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div id="modalEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
+                    <div class="relative bg-white rounded-lg shadow w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
                             <h1 class="text-3xl font-extrabold text-gray-900">
@@ -220,7 +282,7 @@
 
 
         {{-- DELETE EVENT MODAL --}}
-            <div id="modalDeleteEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div id="modalDeleteEvent" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed inset-0 z-50 hidden p-2 sm:p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full items-center justify-center bg-gray-900/50">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
                     <form id="deleteForm" method="POST" class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
@@ -297,19 +359,18 @@
         var eventId;
         var eventKey;
         var statusArray = ['PENDING', 'ON GOING', 'COMPLETED'];
-        var statusColor = ['text-red-500', 'text-amber-500', 'text-emerald-500'];
+        var statusColor = ['text-red-500', 'text-yellow-500', 'text-green-500'];
 
         // Event Load
             document.addEventListener('DOMContentLoaded', function() {
                 var _token = $('input[name="_token"]').val();
                 var calendarEl = document.getElementById('calendar');
-                var initialView = window.innerWidth < 600 ? 'dayGridWeek' : 'dayGridMonth';
+                var initialView = window.innerWidth < 600 ? 'dayGridMonth' : 'dayGridMonth';
                 var windowHeight = window.innerHeight; // Get the height of the browser window
-                var calendarHeight = windowHeight - 178;
+                var calendarHeight = windowHeight - 178; // Adjust the height of the calendar
                 
                 var formattedEvents = @json($events);
                 // console.log(formattedEvents);
-                
 
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     height: calendarHeight,
@@ -360,7 +421,7 @@
                         // VIEW MODAL
                             $('#titleViewEvent').html(act_name);
                             $('#viewStatus').html(statusArray[act_status]);
-                            $('#viewStatus').removeClass('text-red-500 text-amber-500 text-emerald-500');
+                            $('#viewStatus').removeClass('text-red-500 text-yellow-500 text-green-500');
                             $('#viewStatus').addClass(statusColor[act_status]);
                             $('#viewAssignedTo').html(act_assignedto);
                             $('#viewLocation').html(act_location);
@@ -492,6 +553,17 @@
             // Print Event Detailed
                 jQuery(document).on( "click", "#btnPrintEventDetailed", function(){
                     window.open('/bpa-improvement/printEvaluationDetailed/' + eventKey, '_blank');
+                    
+                    // Simple mobile detection
+                    // var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+                    // if (isMobile) {
+                    //     // Mobile → download PDF
+                    //     window.location.href = '/bpa-improvement/downloadEvaluationDetailed/' + eventKey;
+                    // } else {
+                    //     // Desktop → open print view
+                    //     window.open('/bpa-improvement/printEvaluationDetailed/' + eventKey, '_blank');
+                    // }
 
                 });
             // Print Event Detailed

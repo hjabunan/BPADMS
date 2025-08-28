@@ -2,90 +2,193 @@
     <div style="height: calc(100vh - 65px);" class="py-3 overflow-x-auto">
         <div class="max-w-8xl mx-auto sm:px-5 lg:px-7">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-2 text-gray-900">
+                <div class="p-2 text-gray-900 md:h-[920px] lg:h-[820px]">
                     {{-- Title --}}
-                    <div class="px-4 grid grid-cols-2 gap-x-3 mb-5 border-b h-[49px]">
-                        <div class="self-center font-black text-2xl text-red-500 leading-tight">
+                    <div class="px-4 grid grid-cols-[1fr_auto] gap-x-3 border-b h-[49px]">
+                        <div class="flex items-center font-black text-xl sm:text-2xl md:text-3xl text-red-500 leading-tight truncate">
                             User Management
                         </div>
-                        <div class="justify-self-end">
-                            <button type="button" id="btnAddUser" name="btnAddUser" data-modal-target="modalUser" data-modal-toggle="modalUser" class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-16 py-2.5 text-center mr-2 mb-2">ADD</button>
+                        <div class="justify-self-end flex items-center justify-center">
+                            <button type="button" 
+                                id="btnAddUser" 
+                                name="btnAddUser" 
+                                data-modal-target="modalUser" 
+                                data-modal-toggle="modalUser" 
+                                class="hidden md:block items-center justify-center text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-16 py-2.5 text-center mr-2 mb-2">
+                                ADD
+                            </button>
+
+                            <button type="button" 
+                                id="btnAddUserMobile" 
+                                name="btnAddUserMobile" 
+                                data-modal-target="modalUser" 
+                                data-modal-toggle="modalUser" 
+                                class="md:hidden flex items-center justify-center p-2 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br rounded-full shadow-lg shadow-blue-500/50 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+                                    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+                                </svg>
+                            </button>
                         </div>
+                    </div>
+                    <div class="sm:hidden mt-2 mb-5">
+                        <input 
+                            type="text" 
+                            placeholder="Search users..." 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+                            oninput="filterMobileUsers(this.value)"
+                        >
+                    </div>
+                    
+                    <!-- Tablet & Desktop Search -->
+                    <div class="hidden sm:block mt-2 mb-5">
+                        <input 
+                            type="text" 
+                            placeholder="Search users..." 
+                            class="w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+                            oninput="filterTableUsers(this.value)"
+                        >
                     </div>
                     
                     {{-- Body --}}
                         {{-- Start Table --}}
-                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: calc(100vh - 178px);">
-                            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                                <thead class="text-xs text-gray-700 uppercase bg-gray-400" style="position: sticky; top: 0;">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            Action
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            Full Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            Username
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            User Color
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            Email
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            Role
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-center">
-                                            Status
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableUser" name="tableUser">
-                                    @foreach ($users as $user)
-                                        <tr class="bg-white border-b hover:bg-gray-50">
-                                            <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                <button type="button" data-key="{{$user->key}}" class="btnEditUser" id="btnEditUser"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
-                                                <button type="button" data-key="{{$user->key}}" class="btnResetPUser" id="btnResetPUser"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.6807 14.5869C19.1708 14.5869 22 11.7692 22 8.29344C22 4.81767 19.1708 2 15.6807 2C12.1907 2 9.3615 4.81767 9.3615 8.29344C9.3615 9.90338 10.0963 11.0743 10.0963 11.0743L2.45441 18.6849C2.1115 19.0264 1.63143 19.9143 2.45441 20.7339L3.33616 21.6121C3.67905 21.9048 4.54119 22.3146 5.2466 21.6121L6.27531 20.5876C7.30403 21.6121 8.4797 21.0267 8.92058 20.4412C9.65538 19.4167 8.77362 18.3922 8.77362 18.3922L9.06754 18.0995C10.4783 19.5045 11.7128 18.6849 12.1537 18.0995C12.8885 17.075 12.1537 16.0505 12.1537 16.0505C11.8598 15.465 11.272 15.465 12.0067 14.7333L12.8885 13.8551C13.5939 14.4405 15.0439 14.5869 15.6807 14.5869Z" stroke="#1C274C" stroke-width="1.5" stroke-linejoin="round"></path> <path opacity="0.5" d="M17.8851 8.29353C17.8851 9.50601 16.8982 10.4889 15.6807 10.4889C14.4633 10.4889 13.4763 9.50601 13.4763 8.29353C13.4763 7.08105 14.4633 6.09814 15.6807 6.09814C16.8982 6.09814 17.8851 7.08105 17.8851 8.29353Z" stroke="#1C274C" stroke-width="1.5"></path> </g></svg></button>
-                                                <button type="button" data-key="{{$user->key}}" class="btnDeleteUser" id="btnDeleteUser"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z" fill="#ff3838"/><path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z" fill="#5F6379"/></svg></button>
-                                                        
-                                            </td>
-                                            <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                {{$user->name}}
-                                            </td>
-                                            <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                {{$user->idnum}}
-                                            </td>
-                                            <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                {{-- {{$user->color_code}}<div class="w-full h-10 rounded bg-gray-50 ring-1 ring-inset ring-black ring-opacity-0"></div> --}}
-                                                <div class="w-full h-8 rounded ring-1 ring-inset ring-black ring-opacity-0" style="background-color: {{ $user->color_code }}"></div>
-                                            </td>
-                                            <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                {{$user->email}}
-                                            </td>
-                                            <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                @if ($user->role == 0)
-                                                    <p class=" text-yellow-400">Super Admin</p>
-                                                @elseif($user->role == 1)
-                                                    <p class="text-blue-500">Admin</p>
-                                                @else
-                                                    <p class="text-green-500">User</p>
-                                                @endif 
-                                            </td>
-                                            <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                @if ($user->status == 0)
-                                                    <p class="text-red-500 bg-red-200">Inactive</p>
-                                                @else
-                                                    <p class="text-green-500 bg-green-200">Active</p>
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="sm:hidden space-y-4" id="mobileUserList">
+                            @foreach ($users as $user)
+                                <div class="bg-white shadow-md rounded-lg p-4 border">
+                                    <!-- Action buttons -->
+                                    <div class="flex justify-end space-x-2 mb-2">
+                                        <button type="button" data-key="{{$user->key}}" class="btnEditUser" id="btnEditUser">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3688FF"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                                        </button>
+                                        <button type="button" data-key="{{$user->key}}" class="btnResetPUser" id="btnResetPUser">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#F97A00"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480h80q0 66 25 124.5t68.5 102q43.5 43.5 102 69T480-159q134 0 227-93t93-227q0-134-93-227t-227-93q-89 0-161.5 43.5T204-640h116v80H80v-240h80v80q55-73 138-116.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-80-240q-17 0-28.5-11.5T360-360v-120q0-17 11.5-28.5T400-520v-40q0-33 23.5-56.5T480-640q33 0 56.5 23.5T560-560v40q17 0 28.5 11.5T600-480v120q0 17-11.5 28.5T560-320H400Zm40-200h80v-40q0-17-11.5-28.5T480-600q-17 0-28.5 11.5T440-560v40Z"/></svg>
+                                        </button>
+                                        <button type="button" data-key="{{$user->key}}" class="btnDeleteUser" id="btnDeleteUser">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                                        </button>
+                                        {{-- <button type="button" data-key="{{ $user->key }}" class="btnEditUser" id="btnEditUser">
+                                            ✏️
+                                        </button>
+                                        <button type="button" data-key="{{ $user->key }}" class="btnResetPUser" id="btnResetPUser">
+                                            🔄
+                                        </button>
+                                        <button type="button" data-key="{{ $user->key }}" class="btnDeleteUser" id="btnDeleteUser">
+                                            🗑
+                                        </button> --}}
+                                    </div>
+
+                                    <!-- User Info -->
+                                    <div>
+                                        <p class="text-xs text-gray-500">Full Name</p>
+                                        <p class="font-medium">{{ $user->name }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Username</p>
+                                        <p>{{ $user->idnum }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">User Color</p>
+                                        <div class="w-full h-6 rounded" style="background-color: {{ $user->color_code }}"></div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Email</p>
+                                        <p>{{ $user->email }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Role</p>
+                                        @if ($user->role == 0)
+                                            <p class="text-yellow-400">Super Admin</p>
+                                        @elseif($user->role == 1)
+                                            <p class="text-blue-500">Admin</p>
+                                        @else
+                                            <p class="text-green-500">User</p>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Status</p>
+                                        @if ($user->status == 0)
+                                            <p class="text-red-500 bg-red-200 px-2 inline-block rounded">Inactive</p>
+                                        @else
+                                            <p class="text-green-500 bg-green-200 px-2 inline-block rounded">Active</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        {{-- End Table --}}
+
+                        <!-- Keep desktop table -->
+                        <div class="hidden sm:block">
+                            <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: calc(100vh - 178px);">
+                                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-400" style="position: sticky; top: 0;">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-center">
+                                                Action
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-center">
+                                                Full Name
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-center">
+                                                Username
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-center hidden lg:table-cell">
+                                                User Color
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-center hidden lg:table-cell">
+                                                Email
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-center">
+                                                Role
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-center">
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableUser" name="tableUser">
+                                        @foreach ($users as $user)
+                                            <tr class="bg-white border-b hover:bg-gray-50">
+                                                <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                    <button type="button" data-key="{{$user->key}}" class="btnEditUser" id="btnEditUser"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                    <button type="button" data-key="{{$user->key}}" class="btnResetPUser" id="btnResetPUser"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.6807 14.5869C19.1708 14.5869 22 11.7692 22 8.29344C22 4.81767 19.1708 2 15.6807 2C12.1907 2 9.3615 4.81767 9.3615 8.29344C9.3615 9.90338 10.0963 11.0743 10.0963 11.0743L2.45441 18.6849C2.1115 19.0264 1.63143 19.9143 2.45441 20.7339L3.33616 21.6121C3.67905 21.9048 4.54119 22.3146 5.2466 21.6121L6.27531 20.5876C7.30403 21.6121 8.4797 21.0267 8.92058 20.4412C9.65538 19.4167 8.77362 18.3922 8.77362 18.3922L9.06754 18.0995C10.4783 19.5045 11.7128 18.6849 12.1537 18.0995C12.8885 17.075 12.1537 16.0505 12.1537 16.0505C11.8598 15.465 11.272 15.465 12.0067 14.7333L12.8885 13.8551C13.5939 14.4405 15.0439 14.5869 15.6807 14.5869Z" stroke="#1C274C" stroke-width="1.5" stroke-linejoin="round"></path> <path opacity="0.5" d="M17.8851 8.29353C17.8851 9.50601 16.8982 10.4889 15.6807 10.4889C14.4633 10.4889 13.4763 9.50601 13.4763 8.29353C13.4763 7.08105 14.4633 6.09814 15.6807 6.09814C16.8982 6.09814 17.8851 7.08105 17.8851 8.29353Z" stroke="#1C274C" stroke-width="1.5"></path> </g></svg></button>
+                                                    <button type="button" data-key="{{$user->key}}" class="btnDeleteUser" id="btnDeleteUser"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z" fill="#ff3838"/><path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z" fill="#5F6379"/></svg></button>
+                                                            
+                                                </td>
+                                                <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                    {{$user->name}}
+                                                </td>
+                                                <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                    {{$user->idnum}}
+                                                </td>
+                                                <td class="px-6 py-2 text-center whitespace-nowrap hidden lg:table-cell">
+                                                    <div class="w-full h-8 rounded ring-1 ring-inset ring-black ring-opacity-0" style="background-color: {{ $user->color_code }}"></div>
+                                                </td>
+                                                <td class="px-6 py-2 text-center whitespace-nowrap hidden lg:table-cell">
+                                                    {{$user->email}}
+                                                </td>
+                                                <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                    @if ($user->role == 0)
+                                                        <p class=" text-yellow-400">Super Admin</p>
+                                                    @elseif($user->role == 1)
+                                                        <p class="text-blue-500">Admin</p>
+                                                    @else
+                                                        <p class="text-green-500">User</p>
+                                                    @endif 
+                                                </td>
+                                                <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                    @if ($user->status == 0)
+                                                        <p class="text-red-500 bg-red-200">Inactive</p>
+                                                    @else
+                                                        <p class="text-green-500 bg-green-200">Active</p>
+                                                    @endif 
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    {{-- End Table --}}
                 </div>
             </div>
         </div>
@@ -141,7 +244,7 @@
                                             <input type="color" id="usercolor" name="usercolor" class="border border-gray-300 rounded-lg h-10 w-full sm:w-1/2" required>
                                         </div>
                                         <div class="mb-3 col-span-2 sm:col-span-1 w-full">
-                                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Role</label>
+                                            <label for="role" class="block mb-2 text-sm font-medium text-gray-900">Role</label>
                                             <div class="grid justify-items-start">
                                                 <select id="role" name="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
                                                     <option class="text-center" selected disabled value="">--Select Role--</option>
@@ -152,7 +255,7 @@
                                             </div>
                                         </div>
                                         <div class="mb-3 col-span-2 sm:col-span-1 w-full">
-                                            <label for="" class="block mb-2 text-sm font-medium text-gray-900">Role Access</label>
+                                            <label class="block mb-2 text-sm font-medium text-gray-900">Role Access</label>
                                             <div id="divAccess" class="grid grid-cols-2 disabled:opacity-50 disabled:pointer-events-none">
                                                 <div class="">
                                                     <div class="flex items-center mb-1">
@@ -185,7 +288,7 @@
                                             </div>
                                         </div>
                                         <div class="mb-3 col-span-2 sm:col-span-1 w-full">
-                                            <label for="utatus" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
+                                            <label class="block mb-2 text-sm font-medium text-gray-900">Status</label>
                                             <div class="grid justify-items-start">
                                                 <select id="ustatus" name="ustatus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
                                                     <option class="text-center" selected disabled value="">--Select Status--</option>
@@ -223,16 +326,16 @@
                                     <hr class=" w-36 h-1 mx-auto my-2 bg-gray-300 border-0 rounded md:my-7 sm:w-96">
                                     <div class="grid grid-flow-row-dense grid-cols-2 gap-x-5 w-full">
                                         <div class="mb-3 col-span-2 sm:col-span-2 w-full">
-                                            <label for="expiration" class="block mb-2 text-sm font-medium text-gray-900">Expiration</label>
+                                            <label class="block mb-2 text-sm font-medium text-gray-900">Expiration</label>
                                             <div class="flex gap-2 items-center sm:flex-row flex-col">
                                                 <div class="px-3 h-[68px] w-full border rounded-lg flex gap-x-2 items-center sm:w-1/3">
                                                     <input id="radioNoExp" type="radio" value="0" name="radioExp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" checked>
-                                                    <label class="whitespace-nowrap block text-sm font-medium text-gray-900">No Expiration</label>
+                                                    <label for="radioNoExp" class="whitespace-nowrap block text-sm font-medium text-gray-900">No Expiration</label>
                                                 </div>
                                                 <div class="px-3 h-[68px] w-full border rounded-lg flex gap-x-2 items-center sm:w-1/3">
                                                     <input id="radioExpDay" type="radio" value="1" name="radioExp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                                     <input type="text" id="expiration-days" name="expiration-days" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5 text-center disabled:opacity-50 disabled:pointer-events-none" required>
-                                                    <label class="whitespace-nowrap block text-sm font-medium text-gray-900">Day/s</label>
+                                                    <label for="expiration-days" class="whitespace-nowrap block text-sm font-medium text-gray-900">Day/s</label>
                                                 </div>
                                                 <div class="px-3 h-[68px] w-full border rounded-lg flex gap-x-2 items-center sm:w-1/3">
                                                     <input id="radioExpDate" type="radio" value="2" name="radioExp" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
@@ -765,7 +868,26 @@
                         },
                     });
                 });
-
         });
+        
+        function filterMobileUsers(query) {
+            query = query.toLowerCase();
+            const cards = document.querySelectorAll('#mobileUserList > div');
+
+            cards.forEach(card => {
+                const cardText = card.innerText.toLowerCase();
+                card.style.display = cardText.includes(query) ? '' : 'none';
+            });
+        }
+        
+        function filterTableUsers(query) {
+            query = query.toLowerCase();
+            const rows = document.querySelectorAll('#tableUser tr');
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+        }
     </script>
 </x-app-layout>

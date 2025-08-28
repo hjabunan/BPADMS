@@ -109,6 +109,9 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/bpa-improvement/printEvaluationSummary/{key}', [BPAImprovementController::class, 'printEvaluationSummary'])->name('bpa-improvement.printEvaluationSummary');
         Route::get('/bpa-improvement/printEvaluationDetailed/{key}', [BPAImprovementController::class, 'printEvaluationDetailed'])->name('bpa-improvement.printEvaluationDetailed');
+
+        // Route::get('/bpa-improvement/downloadEvaluationSummary/{key}', [BPAImprovementController::class, 'downloadEvaluationSummary'])->name('bpa-improvement.downloadEvaluationSummary');
+        // Route::get('/bpa-improvement/downloadEvaluationDetailed/{key}', [BPAImprovementController::class, 'downloadEvaluationDetailed'])->name('bpa-improvement.downloadEvaluationDetailed');
     });
 
 // Routes for BPAInternalAuditController

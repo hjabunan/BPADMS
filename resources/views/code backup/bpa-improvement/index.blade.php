@@ -3,55 +3,96 @@
         <div class="max-w-8xl mx-auto sm:px-5 lg:px-7">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-2 text-gray-900 h-full">
+                    {{-- Title --}}
                     <div class="px-4 grid grid-cols-2 gap-x-3 mb-5 border-b h-[49px]">
-                        <!-- Title -->
                         <div class="self-center font-black text-base lg:text-2xl text-red-500 leading-tight">
                             Improvement Evaluation Audit
                         </div>
+                        <div class="flex space-x-2 sm:hidden">
+                            <!-- MOBILE BUTTONS -->
+                                <!-- BACK -->
+                                <button type="button" id="btnHome" name="btnHome"
+                                    class="text-white aspect-square h-10 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm text-center mb-2 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    <span class="hidden sm:inline">BACK</span>
+                                </button>
 
-                        <!-- MOBILE BUTTONS -->
-                        <div class="flex space-x-2 sm:hidden justify-end">
-                            <!-- BACK -->
-                            <button type="button" id="btnHome" name="btnHome"
-                                class="text-white aspect-square h-10 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </button>
+                                <!-- SUMMARY -->
+                                <button type="button" id="btnSummary" name="btnSummary"
+                                    data-drawer-target="drawer-form" data-drawer-show="drawer-form" aria-controls="drawer-form"
+                                    class="text-white aspect-square h-10 bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm text-center mb-2 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                                    </svg>
+                                    <span class="hidden sm:inline">SUMMARY</span>
+                                </button>
 
-                            <!-- SUMMARY -->
-                            <button type="button" id="btnSummary" name="btnSummary" data-drawer-target="drawer-form"
-                                data-drawer-show="drawer-form" aria-controls="drawer-form"
-                                class="text-white aspect-square h-10 bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 6h16M4 12h16M4 18h7" />
-                                </svg>
-                            </button>
+                                <!-- SUBMIT -->
+                                <button type="button" id="btnSubmit" name="btnSubmit"
+                                    class="text-white aspect-square h-10 bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm text-center mb-2 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="hidden sm:inline">SUBMIT</span>
+                                </button>
 
-                            <!-- SUBMIT -->
-                            <button type="button" id="btnSubmit" name="btnSubmit"
-                                class="text-white aspect-square h-10 bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7" />
-                                </svg>
-                            </button>
+                            <!-- DESKTOP BUTTONS -->
+                                <div class="hidden sm:flex sm:space-x-2 justify-self-end">
+                                    <button type="button" id="btnHome" name="btnHome" class="text-white bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">BACK</button>
+                                    <button type="button" id="btnSummary" name="btnSummary" data-drawer-target="drawer-form" data-drawer-show="drawer-form" aria-controls="drawer-form" class="text-white bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">SUMMARY</button>
+                                    <button type="button" id="btnSubmit" name="btnSubmit" class="text-white bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">SUBMIT</button>
+                                </div>
                         </div>
 
                         <!-- DESKTOP BUTTONS -->
-                        <div class="hidden sm:flex space-x-2 justify-end">
-                            <button type="button" id="btnHome" name="btnHome"
-                                class="text-white bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5">BACK</button>
-                            <button type="button" id="btnSummary" name="btnSummary" data-drawer-target="drawer-form"
-                                data-drawer-show="drawer-form" aria-controls="drawer-form"
-                                class="text-white bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5">SUMMARY</button>
-                            <button type="button" id="btnSubmit" name="btnSubmit"
-                                class="text-white bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5">SUBMIT</button>
-                        </div>
+                            {{-- <div class="hidden sm:flex sm:space-x-2 justify-self-end">
+                                <button type="button" id="btnHome" name="btnHome"
+                                    class="text-white bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center">BACK</button>
+                                <button type="button" id="btnSummary" name="btnSummary"
+                                    data-drawer-target="drawer-form" data-drawer-show="drawer-form" aria-controls="drawer-form"
+                                    class="text-white bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center">SUMMARY</button>
+                                <button type="button" id="btnSubmit" name="btnSubmit"
+                                    class="text-white bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center">SUBMIT</button>
+                            </div> --}}
+
+                        {{-- <div class="justify-self-end flex gap-2"> --}}
+                            {{-- Mobile Button Group --}}
+                                <!-- BACK -->
+                                {{-- <button type="button" id="btnHome" name="btnHome"
+                                    class="text-white aspect-square h-10 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm text-center mb-2 flex items-center justify-center">
+                                    <!-- Icon only on mobile -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    <!-- Text hidden on mobile -->
+                                    <span class="hidden sm:inline">BACK</span>
+                                </button> --}}
+
+                                <!-- SUMMARY -->
+                                {{-- <button type="button" id="btnSummary" name="btnSummary"
+                                    data-drawer-target="drawer-form" data-drawer-show="drawer-form" aria-controls="drawer-form"
+                                    class="text-white aspect-square h-10 bg-gradient-to-r from-gray-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm text-center mb-2 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                                    </svg>
+                                    <span class="hidden sm:inline">SUMMARY</span>
+                                </button> --}}
+
+                                <!-- SUBMIT -->
+                                {{-- <button type="button" id="btnSubmit" name="btnSubmit"
+                                    class="text-white aspect-square h-10 bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm text-center mb-2 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="hidden sm:inline">SUBMIT</span>
+                                </button> --}}
+                            {{-- Mobile Button Group --}}
+                        {{-- </div> --}}
                     </div>
                                 
                     {{-- Body --}}
@@ -109,7 +150,7 @@
                                     </div>
                                 </div>
 
-                                <div id="process-tab-content" class="overflow-y-auto bg-gray-50 max-h-[679px] md:max-h-[900px] lg:max-h-[679px]">
+                                <div id="process-tab-content" class="overflow-y-auto bg-gray-50" style="max-height: 679px;">
                                     @php 
                                         $processCounter = 0; 
                                         $previousProcess = null; 
@@ -154,7 +195,7 @@
                                                        value="{{ $surveyScore }}"
                                                        placeholder="0" />
                                             </div>
-                                            <div class="hidden lg:flex w-[calc(100%-81px)] items-center text-xs text-center">
+                                            <div class="flex w-[calc(100%-81px)] items-center text-xs text-center">
                                                 @for ($i = 0; $i <= 3.1; $i += 0.25)
                                                     <span class="w-full">{{ number_format($i, 2) }}</span>
                                                 @endfor

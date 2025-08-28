@@ -5,10 +5,28 @@
                 <div class="p-2 text-gray-900 h-full">
                     {{-- Title --}}
                     <div class="px-4 grid grid-cols-[1fr_auto] gap-x-3 border-b h-[59px] mb-2">
+                        {{-- <div class="flex items-center font-black text-lg md:text-3xl lg:text-4xl !xl:text-4xl text-red-500 leading-tight truncate"> --}}
                         <div class="self-center font-black text-md md:text-xl lg:text-3xl text-red-500 leading-tight">
                             Form Management
                         </div>
+
                         <div class="justify-self-end">
+                            {{-- <div class="border-b border-gray-200">
+                                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                                    <li class="me-2" role="presentation">
+                                        <button class="inline-block p-2 border-b-2 rounded-t-lg" id="formprocess-tab" data-tabs-target="#formprocess" type="button" role="tab" aria-controls="formprocess" aria-selected="false">Form and Process</button>
+                                    </li>
+                                    <li class="me-2" role="presentation">
+                                        <button class="inline-block p-2 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="cpoint-tab" data-tabs-target="#cpoint" type="button" role="tab" aria-controls="cpoint" aria-selected="false">Checkpoint</button>
+                                    </li>
+                                    <li class="me-2" role="presentation">
+                                        <button class="inline-block p-2 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="question-tab" data-tabs-target="#question" type="button" role="tab" aria-controls="question" aria-selected="false">Question</button>
+                                    </li>
+                                    <li class="me-2" role="presentation">
+                                        <button class="inline-block p-2 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="questionnaire-tab" data-tabs-target="#questionnaire" type="button" role="tab" aria-controls="questionnaire" aria-selected="false">Questionnaire</button>
+                                    </li>
+                                </ul>
+                            </div> --}}
                             <div class="border-b border-gray-200">
                                 <!-- Desktop Tabs -->
                                 <ul class="hidden md:flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
@@ -45,52 +63,58 @@
                     <div class="flex flex-col gap-4" style="height: calc(100vh - 178px);">
                         <div id="default-tab-content">
                             <div class="hidden p-4 rounded-lg bg-gray-50" id="formprocess" role="tabpanel" aria-labelledby="formprocess-tab">
-                                <div class="flex flex-col md:flex-row gap-2 justify-center sm:flex-nowrap h-[calc(100vh-210px)]">
-                                    {{-- FORM Section --}}
-                                        <div class="flex-1 overflow-x-auto shadow-md sm:rounded-lg h-1/2 md:h-auto">
-                                            <div class="px-4 grid grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">
-                                                <!-- Title -->
+                                <div class="flex flex-col md:flex-row gap-2 justify-center sm:flex-nowrap">
+                                    {{-- Start FORM Table --}}
+                                        {{-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-[calc(100vh-210px)]">
+                                            <div class="px-4 grid content-center grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">
                                                 <div class="self-center font-black text-xl text-orange-500 leading-tight">
                                                     Form/s
                                                 </div>
-
-                                                <!-- Search + Add Button -->
-                                                <div class="flex justify-end items-center h-full gap-2">
-                                                    
-                                                    <!-- Search -->
-                                                    <div class="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
-                                                        <input type="text" id="searchForm" placeholder="Search..."
-                                                            class="w-full pl-10 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" />
-                                                        <svg xmlns="http://www.w3.org/2000/svg" 
-                                                            class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"/>
-                                                        </svg>
-                                                    </div>
-
-                                                    <!-- Add Button -->
+                                                <div class="justify-self-end">
                                                     <button type="button" id="btnAddForm" name="btnAddForm" data-modal-target="modalForm" data-modal-toggle="modalForm"
-                                                        class="flex items-center justify-center text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br 
+                                                        class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br 
                                                             focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 
-                                                            font-medium rounded-lg text-sm text-center 
-                                                            px-2 py-2 lg:px-6 md:py-2 w-10 h-10 md:w-auto md:h-auto">
-                                                        
-                                                        <!-- Desktop: Show text -->
-                                                        <span class="hidden lg:block">ADD</span>
-
-                                                        <!-- Mobile: Show SVG -->
-                                                        <span class="block lg:hidden">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" 
-                                                                width="24px" fill="#ffffff">
-                                                                <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                                                            </svg>
-                                                        </span>
+                                                            font-medium rounded-lg text-sm px-6 py-2.5 text-center">
+                                                        ADD
                                                     </button>
                                                 </div>
                                             </div>
+                                            
+                                            <!-- Mobile Cards -->
+                                            <div class="md:hidden space-y-3 p-2">
+                                                @foreach ($forms as $form)
+                                                    <div class="p-3 border rounded-lg shadow-sm bg-white">
+                                                        <div class="flex justify-between items-center mb-2">
+                                                            <span class="font-semibold text-gray-700">{{$form->form_name}}</span>
+                                                            <span class="{{$form->status == 0 ? 'text-red-500 bg-red-200' : 'text-green-500 bg-green-200'}} px-2 rounded">
+                                                                {{$form->status == 0 ? 'Inactive' : 'Active'}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex justify-end space-x-2">
+                                                                @if ($form->status == 0)
+                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                                <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
+                                                                        <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
+                                                                    </svg>
+                                                                </button>
+                                                                @else
+                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                                <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
+                                                                        <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
+                                                                    </svg>
+                                                                </button>
+                                                                @endif 
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+
                                             <!-- Desktop Table -->
-                                            <table id="formTable" class="hidden md:table w-full text-sm text-left text-gray-500">
+                                            <table class="hidden md:table w-full text-sm text-left rtl:text-right text-gray-500">
                                                 <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
                                                     <tr>
                                                         <th class="px-6 py-2 text-center w-[10%]">Action</th>
@@ -98,215 +122,238 @@
                                                         <th class="px-6 py-2 text-center w-[10%]">Status</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="tableForm">
+                                                <tbody id="tableForm" name="tableForm">
                                                     @foreach ($forms as $form)
-                                                    <tr class="bg-white border-b hover:bg-gray-50">
-                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                            @if ($form->status == 0)
-                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
+                                                        <tr class="bg-white border-b hover:bg-gray-50">
+                                                            <td class="px-6 py-2 text-center">
+                                                                @if ($form->status == 0)
+                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
                                                                 <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                                                                         <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
                                                                         <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
                                                                     </svg>
                                                                 </button>
-                                                            @else
-                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
+                                                                @else
+                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
                                                                 <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                                                                         <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
                                                                         <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
                                                                     </svg>
                                                                 </button>
+                                                                @endif 
+                                                            </td>
+                                                            <td class="px-6 py-2 text-center">{{$form->form_name}}</td>
+                                                            <td class="px-6 py-2 text-center">
+                                                                @if ($form->status == 0)
+                                                                    <p class="text-red-500 bg-red-200">Inactive</p>
+                                                                @else
+                                                                    <p class="text-green-500 bg-green-200">Active</p>
+                                                                @endif 
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div> --}}
+                                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-[calc(100vh-210px)]">
+                                        <div class="px-4 grid content-center grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">
+                                            <div class="self-center font-black text-xl text-orange-500 leading-tight">
+                                                Form/s
+                                            </div>
+                                            <div class="justify-self-end">
+                                                <button type="button" id="btnAddForm" name="btnAddForm" data-modal-target="modalForm" data-modal-toggle="modalForm" class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2">ADD</button>
+                                            </div>
+                                        </div>
+                                        <table class="relative w-full text-sm text-left rtl:text-right text-gray-500 overflow-y-auto" style="max-height: calc(100% - 49px);">
+                                            <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                        Action
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
+                                                        Form Name
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                        Status
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableForm" name="tableForm">
+                                                @foreach ($forms as $form)
+                                                    <tr class="bg-white border-b hover:bg-gray-50">
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            @if ($form->status == 0)
+                                                            <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                            <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
+                                                                    <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
+                                                                </svg>
+                                                            </button>
+                                                            @else
+                                                            <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                            <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
+                                                                    <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
+                                                                </svg>
+                                                            </button>
                                                             @endif 
+                                                                    
                                                         </td>
-                                                        <td class="px-6 py-2 text-center">{{ $form->form_name }}</td>
-                                                        <td class="px-6 py-2 text-center">
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            {{$form->form_name}}
+                                                        </td>
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
                                                             @if ($form->status == 0)
                                                                 <p class="text-red-500 bg-red-200">Inactive</p>
                                                             @else
                                                                 <p class="text-green-500 bg-green-200">Active</p>
-                                                            @endif
+                                                            @endif 
                                                         </td>
                                                     </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-
-                                            <!-- Mobile Cards -->
-                                            <div id="mobileFormList" class="block md:hidden p-2 space-y-3">
-                                                @foreach ($forms as $form)
-                                                <div class="bg-white border rounded-lg shadow p-3">
-                                                    <div class="flex justify-between items-center mb-2">
-                                                        <h3 class="font-semibold text-gray-800">{{ $form->form_name }}</h3>
-                                                        <div>
-                                                            @if ($form->status == 0)
-                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                        <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                    </svg>
-                                                                </button>
-                                                            @else
-                                                                <button type="button" data-key="{{$form->key}}" class="btnEditForm" id="btnEditForm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$form->key}}" data-name="{{$form->form_name}}" data-fstatus="{{$form->status}}" class="btnActForm" id="btnActForm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                        <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                    </svg>
-                                                                </button>
-                                                            @endif 
-                                                        </div>
-                                                    </div>
-                                                    @if ($form->status == 0)
-                                                        <span class="text-red-500 bg-red-200 px-2 py-1 rounded text-xs">Inactive</span>
-                                                    @else
-                                                        <span class="text-green-500 bg-green-200 px-2 py-1 rounded text-xs">Active</span>
-                                                    @endif
-                                                </div>
                                                 @endforeach
-                                            </div>
-                                        </div>
-                                    {{-- PROCESS Section --}}
-                                        <div class="flex-1 overflow-x-auto shadow-md sm:rounded-lg h-1/2 md:h-auto">
-                                            <div class="px-4 grid grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {{-- End FORM Table --}}
+
+                                    {{-- Start PROCESS Table --}}
+                                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-[calc(100vh-210px)]">
+                                            <div class="px-4 grid content-center grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">
                                                 <div class="self-center font-black text-xl text-orange-500 leading-tight">
                                                     Process
                                                 </div>
-                                                <div class="flex justify-end items-center h-full gap-2">
-                                                        
-                                                    <!-- Search -->
-                                                    <div class="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
-                                                        <input type="text" id="searchProcess" placeholder="Search..."
-                                                            class="w-full pl-10 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" />
-                                                        <svg xmlns="http://www.w3.org/2000/svg" 
-                                                            class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"/>
-                                                        </svg>
-                                                    </div>
-
-                                                    <!-- Add Button -->
+                                                <div class="justify-self-end">
                                                     <button type="button" id="btnAddProcess" name="btnAddProcess" data-modal-target="modalProcess" data-modal-toggle="modalProcess"
-                                                        class="flex items-center justify-center text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br 
+                                                        class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br 
                                                             focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 
-                                                            font-medium rounded-lg text-sm text-center 
-                                                            px-2 py-2 lg:px-6 md:py-2 w-10 h-10 md:w-auto md:h-auto">
-                                                        
-                                                        <!-- Desktop: Show text -->
-                                                        <span class="hidden lg:block">ADD</span>
-
-                                                        <!-- Mobile: Show SVG -->
-                                                        <span class="block lg:hidden">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" 
-                                                                width="24px" fill="#ffffff">
-                                                                <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                                                            </svg>
-                                                        </span>
+                                                            font-medium rounded-lg text-sm px-6 py-2.5 text-center">
+                                                        ADD
                                                     </button>
                                                 </div>
                                             </div>
 
+                                            <!-- Mobile Cards -->
+                                            <div class="md:hidden space-y-3 p-2">
+                                                @foreach ($processx as $process)
+                                                    <div class="p-3 border rounded-lg shadow-sm bg-white">
+                                                        <div class="flex justify-between items-center mb-2">
+                                                            <span class="font-semibold text-gray-700">{{$process->process_name}}</span>
+                                                            <span class="{{$process->status == 0 ? 'text-red-500 bg-red-200' : 'text-green-500 bg-green-200'}} px-2 rounded">
+                                                                {{$process->status == 0 ? 'Inactive' : 'Active'}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="text-sm text-gray-600 mb-2">Weight: {{$process->process_weight}}</div>
+                                                        <div class="flex justify-end space-x-2">
+                                                            {{-- Action buttons --}}
+                                                            <button type="button" data-key="{{$process->key}}" class="btnEditProcess">@* edit SVG *@</button>
+                                                            <button type="button" data-key="{{$process->key}}" class="btnActProcess">@* activate/deactivate SVG *@</button>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+
                                             <!-- Desktop Table -->
-                                            <table id="processTable" class="hidden md:table w-full text-sm text-left text-gray-500">
+                                            <table class="hidden md:table w-full text-sm text-left rtl:text-right text-gray-500">
                                                 <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
                                                     <tr>
                                                         <th class="px-6 py-2 text-center w-[10%]">Action</th>
                                                         <th class="px-6 py-2 text-center w-[50%]">Process Name</th>
-                                                        <th class="px-6 py-2 text-center w-[30%]">Weight</th>
+                                                        <th class="px-6 py-2 text-center w-[30%]">Process Weight</th>
                                                         <th class="px-6 py-2 text-center w-[10%]">Status</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="tableProcess">
+                                                <tbody id="tableProcess" name="tableProcess">
                                                     @foreach ($processx as $process)
-                                                    <tr class="bg-white border-b hover:bg-gray-50 whitespace-nowrap">
-                                                        <td class="px-6 py-2 text-center">
+                                                        <tr class="bg-white border-b hover:bg-gray-50">
+                                                            <td class="px-6 py-2 text-center">
+                                                                {{-- same buttons as original --}}
+                                                            </td>
+                                                            <td class="px-6 py-2 text-center">{{$process->process_name}}</td>
+                                                            <td class="px-6 py-2 text-center">{{$process->process_weight}}</td>
+                                                            <td class="px-6 py-2 text-center">
+                                                                @if ($process->status == 0)
+                                                                    <p class="text-red-500 bg-red-200">Inactive</p>
+                                                                @else
+                                                                    <p class="text-green-500 bg-green-200">Active</p>
+                                                                @endif 
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {{-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="flex: 1; height: calc(100vh - 210px);">
+                                        <div class="px-4 grid content-center grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">
+                                            <div class="self-center font-black text-xl text-orange-500 leading-tight">
+                                                Process
+                                            </div>
+                                            <div class="justify-self-end">
+                                                <button type="button" id="btnAddProcess" name="btnAddProcess" data-modal-target="modalProcess" data-modal-toggle="modalProcess" class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2">ADD</button>
+                                            </div>
+                                        </div>
+                                        <table class="relative w-full text-sm text-left rtl:text-right text-gray-500 overflow-y-auto" style="max-height: calc(100% - 49px);">
+                                            <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                        Action
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 50%;">
+                                                        Process Name
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 30%;">
+                                                        Process Weight
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                        Status
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableProcess" name="tableProcess">
+                                                @foreach ($processx as $process)
+                                                    <tr class="bg-white border-b hover:bg-gray-50">
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
                                                             @if ($process->status == 0)
-                                                                <button type="button" data-key="{{$process->key}}" class="btnEditProcess" id="btnEditProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$process->key}}" data-name="{{$process->process_name}}" data-pstatus="{{$process->status}}" class="btnActProcess" id="btnActProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                        <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                    </svg>
-                                                                </button>
+                                                            <button type="button" data-key="{{$process->key}}" class="btnEditProcess" id="btnEditProcess"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                            <button type="button" data-key="{{$process->key}}" data-name="{{$process->process_name}}" data-pstatus="{{$process->status}}" class="btnActProcess" id="btnActProcess">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
+                                                                    <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
+                                                                </svg>
+                                                            </button>
                                                             @else
-                                                                <button type="button" data-key="{{$process->key}}" class="btnEditProcess" id="btnEditProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$process->key}}" data-name="{{$process->process_name}}" data-pstatus="{{$process->status}}" class="btnActProcess" id="btnActProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                        <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                    </svg>
-                                                                </button>
+                                                            <button type="button" data-key="{{$process->key}}" class="btnEditProcess" id="btnEditProcess"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                            <button type="button" data-key="{{$process->key}}" data-name="{{$process->process_name}}" data-pstatus="{{$process->status}}" class="btnActProcess" id="btnActProcess">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
+                                                                    <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
+                                                                </svg>
+                                                            </button>
                                                             @endif 
+                                                                    
                                                         </td>
-                                                        <td class="px-6 py-2 text-center">{{ $process->process_name }}</td>
-                                                        <td class="px-6 py-2 text-center">{{ $process->process_weight }}</td>
-                                                        <td class="px-6 py-2 text-center">
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            {{$process->process_name}}
+                                                        </td>
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            {{$process->process_weight}}
+                                                        </td>
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
                                                             @if ($process->status == 0)
                                                                 <p class="text-red-500 bg-red-200">Inactive</p>
                                                             @else
                                                                 <p class="text-green-500 bg-green-200">Active</p>
-                                                            @endif
+                                                            @endif 
                                                         </td>
                                                     </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-
-                                            <!-- Mobile Cards -->
-                                            <div id="mobileProcessList" class="block md:hidden p-2 space-y-3">
-                                                @foreach ($processx as $process)
-                                                <div class="bg-white border rounded-lg shadow p-3">
-                                                    <div class="flex justify-between items-center mb-2">
-                                                        <h3 class="font-semibold text-gray-800">{{ $process->process_name }}</h3>
-                                                        <div>
-                                                            @if ($process->status == 0)
-                                                                <button type="button" data-key="{{$process->key}}" class="btnEditProcess" id="btnEditProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$process->key}}" data-name="{{$process->process_name}}" data-pstatus="{{$process->status}}" class="btnActProcess" id="btnActProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                        <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                    </svg>
-                                                                </button>
-                                                            @else
-                                                                <button type="button" data-key="{{$process->key}}" class="btnEditProcess" id="btnEditProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$process->key}}" data-name="{{$process->process_name}}" data-pstatus="{{$process->status}}" class="btnActProcess" id="btnActProcess">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                        <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                    </svg>
-                                                                </button>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <p class="text-sm text-gray-600">Weight: <span class="font-medium">{{ $process->process_weight }}</span></p>
-                                                    @if ($process->status == 0)
-                                                        <span class="text-red-500 bg-red-200 px-2 py-1 rounded text-xs">Inactive</span>
-                                                    @else
-                                                        <span class="text-green-500 bg-green-200 px-2 py-1 rounded text-xs">Active</span>
-                                                    @endif
-                                                </div>
                                                 @endforeach
-                                            </div>
-                                        </div>
+                                            </tbody>
+                                        </table>
+                                    </div> --}}
+                                    {{-- End PROCESS Table --}}
                                 </div>
                             </div>
                             <div class="hidden p-4 rounded-lg bg-gray-50" id="cpoint" role="tabpanel" aria-labelledby="cpoint-tab">
@@ -316,41 +363,11 @@
                                         <div class="self-center font-black text-xl text-orange-500 leading-tight">
                                             Check Point/s
                                         </div>
-                                        <!-- Search + Add Button -->
-                                        <div class="flex justify-end items-center h-full gap-2">
-                                            
-                                            <!-- Search -->
-                                            <div class="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
-                                                <input type="text" id="searchCPoint" placeholder="Search..."
-                                                    class="w-full pl-10 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" />
-                                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                                    class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"/>
-                                                </svg>
-                                            </div>
-                                            <button type="button" id="btnAddCPoint" name="btnAddCPoint" data-modal-target="modalCPoint" data-modal-toggle="modalCPoint"
-                                                class="flex items-center justify-center text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br 
-                                                    focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 
-                                                    font-medium rounded-lg text-sm text-center 
-                                                    px-2 py-2 lg:px-6 md:py-2 w-10 h-10 md:w-auto md:h-auto">
-                                                
-                                                <!-- Desktop: Show text -->
-                                                <span class="hidden lg:block">ADD</span>
-
-                                                <!-- Mobile: Show SVG -->
-                                                <span class="block lg:hidden">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" 
-                                                        width="24px" fill="#ffffff">
-                                                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                                                    </svg>
-                                                </span>
-                                            </button>
+                                        <div class="justify-self-end">
+                                            <button type="button" id="btnAddCPoint" name="btnAddCPoint" data-modal-target="modalCPoint" data-modal-toggle="modalCPoint" class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2">ADD</button>
                                         </div>
                                     </div>
-                                    <!-- Desktop Table -->
-                                    <table id="cpointTable" class="hidden sm:table w-full text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
+                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500" style="max-height: calc(100% - 49px);">
                                         <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
                                             <tr>
                                                 <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
@@ -372,26 +389,23 @@
                                                 <tr class="bg-white border-b hover:bg-gray-50">
                                                     <td class="px-6 py-2 text-center whitespace-nowrap">
                                                         @if ($cp->status == 0)
-                                                            <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                            </button>
-                                                            <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                    <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                </svg>
-                                                            </button>
+                                                        <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                        <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
+                                                                <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
+                                                            </svg>
+                                                        </button>
                                                         @else
-                                                            <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                            </button>
-                                                            <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                    <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                </svg>
-                                                            </button>
+                                                        <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                        <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
+                                                                <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
+                                                            </svg>
+                                                        </button>
                                                         @endif 
+                                                                
                                                     </td>
                                                     <td class="px-6 py-2 text-center whitespace-nowrap">
                                                         {{$cp->cpoint_name}}
@@ -410,50 +424,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <!-- Mobile Cards -->
-                                    <div id="mobileCpointList" class="sm:hidden divide-y space-y-3 p-2" id="tableCPointMobile">
-                                        @foreach ($checkpoints as $cp)
-                                            @php
-                                                $statusClass = $cp->status == 0
-                                                    ? 'text-red-600 bg-red-100'
-                                                    : 'text-green-600 bg-green-100';
-                                                $statusText = $cp->status == 0 ? 'Inactive' : 'Active';
-                                            @endphp
-
-                                            <div class="bg-white border rounded-lg shadow p-3">
-                                                <div class="flex justify-between items-center mb-2">
-                                                    <span class="font-semibold text-gray-700">{{$cp->cpoint_name}}</span>
-                                                    <div class="flex gap-2 mt-3">
-                                                        @if ($cp->status == 0)
-                                                            <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                            </button>
-                                                            <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                    <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                </svg>
-                                                            </button>
-                                                        @else
-                                                            <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                            </button>
-                                                            <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                    <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                </svg>
-                                                            </button>
-                                                        @endif 
-                                                    </div>
-                                                </div>
-                                                <p class="text-sm text-gray-500">Process: {{$cp->processDetails->process_name}}</p>
-                                                <span class="{{ $statusClass }} text-xs px-2 py-1 rounded">
-                                                    {{ $statusText }}
-                                                </span>
-                                            </div>
-                                        @endforeach
-                                    </div>
                                 </div>
                                 {{-- End CHECK POINT/S Table --}}
                             </div>
@@ -464,205 +434,103 @@
                                         <div class="self-center font-black text-xl text-orange-500 leading-tight">
                                             Question
                                         </div>
-                                        <div class="flex justify-end items-center h-full gap-2">
-                                            
-                                            <!-- Search -->
-                                            <div class="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
-                                                <input type="text" id="searchQuestion" placeholder="Search..."
-                                                    class="w-full pl-10 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none" />
-                                                <svg xmlns="http://www.w3.org/2000/svg" 
-                                                    class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"/>
-                                                </svg>
-                                            </div>
-                                            <button type="button" id="btnAddQuestion" name="btnAddQuestion" data-modal-target="modalQuestion" data-modal-toggle="modalQuestion"
-                                                class="flex items-center justify-center text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br 
-                                                    focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 
-                                                    font-medium rounded-lg text-sm text-center 
-                                                    px-2 py-2 lg:px-6 md:py-2 w-10 h-10 md:w-auto md:h-auto">
-                                                
-                                                <!-- Desktop: Show text -->
-                                                <span class="hidden lg:block">ADD</span>
-
-                                                <!-- Mobile: Show SVG -->
-                                                <span class="block lg:hidden">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" 
-                                                        width="24px" fill="#ffffff">
-                                                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                                                    </svg>
-                                                </span>
-                                            </button>
+                                        <div class="justify-self-end">
+                                            <button type="button" id="btnAddQuestion" name="btnAddQuestion" data-modal-target="modalQuestion" data-modal-toggle="modalQuestion" class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2">ADD</button>
                                         </div>
                                     </div>
-                                    {{-- DESKTOP --}}
-                                    <div id="questionTable" class="hidden sm:block">
-                                        <table class="w-full text-sm text-left rtl:text-right text-gray-500" style="max-height: calc(100% - 49px);">
-                                            <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
-                                                <tr>
-                                                    <th scope="col" class="px-4 py-2 text-center" style="width: 10%;">
-                                                        Action
-                                                    </th>
-                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
-                                                        Question/s
-                                                    </th>
-                                                    <th scope="col" class="px-4 py-2 text-center" style="width: 80%;">
-                                                        Process
-                                                    </th>
-                                                    <th scope="col" class="px-4 py-2 text-center" style="width: 80%;">
-                                                        Checkpoint
-                                                    </th>
-                                                    <th scope="col" class="px-4 py-2 text-center md:hidden" style="width: 80%;">
-                                                        Points
-                                                    </th>
-                                                    <th scope="col" class="px-4 py-2 text-center" style="width: 10%;">
-                                                        Status
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tableQuestion" name="tableQuestion">
-                                                @foreach ($questionsy as $questiony)
-                                                    <tr class="bg-white border-b hover:bg-gray-50">
-                                                        <td class="px-4 py-2 text-center whitespace-nowrap">
-                                                            @if ($questiony->status == 0)
-                                                            <button type="button" data-key="{{$questiony->key}}" class="btnEditQuestion" id="btnEditQuestion">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                            </button>
-                                                            <button type="button" data-key="{{$questiony->key}}" data-name="{{$questiony->question}}" data-qstatus="{{$questiony->status}}" class="btnActQuestion" id="btnActQuestion">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                    <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                </svg>
-                                                            </button>
-                                                            @else
-                                                            <button type="button" data-key="{{$questiony->key}}" class="btnEditQuestion" id="btnEditQuestion"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
-                                                            <button type="button" data-key="{{$questiony->key}}" data-name="{{$questiony->question}}" data-qstatus="{{$questiony->status}}" class="btnActQuestion" id="btnActQuestion">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                    <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                </svg>
-                                                            </button>
-                                                            @endif      
-                                                        </td>
-                                                        <td class="px-6 py-2 whitespace-wrap">
-                                                            {{$questiony->question}}
-                                                        </td>
-                                                        <td class="px-4 py-2 text-center whitespace-nowrap">
-                                                            {{$questiony->processDetails->process_name}}
-                                                        </td>
-                                                        <td class="px-4 py-2 text-center whitespace-nowrap">
-                                                            {{$questiony->cpointDetails->cpoint_name}}
-                                                        </td>
-                                                        <td class="px-4 py-2 text-center whitespace-nowrap md:hidden">
-                                                            {{$questiony->question_point}}
-                                                        </td>
-                                                        <td class="px-4 py-2 text-center whitespace-nowrap">
-                                                            @if ($questiony->status == 0)
-                                                                <p class="text-red-500 bg-red-200">Inactive</p>
-                                                            @else
-                                                                <p class="text-green-500 bg-green-200">Active</p>
-                                                            @endif 
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    {{-- MOBILE --}}
-                                    <div id="mobileQuestionList" class="sm:hidden space-y-4">
-                                        @foreach ($questionsy as $q)
-                                            <div class="p-4 bg-white shadow rounded-lg">
-                                                <div class="flex justify-between items-center mb-2">
-                                                    <p class="font-semibold text-gray-800 mr-2">{{ $q->question }}</p>
-                                                    <div class="flex gap-2 mt-3 p-2">
-                                                        <!-- action buttons -->
-                                                        @if ($q->status == 0)
-                                                            <button type="button" data-key="{{$q->key}}" class="btnEditQuestion" id="btnEditQuestion"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
-                                                            <button type="button" data-key="{{$q->key}}" data-name="{{$q->question}}" data-qstatus="{{$q->status}}" class="btnActQuestion" id="btnActQuestion">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                    <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                </svg>
-                                                            </button>
-                                                            @else
-                                                            <button type="button" data-key="{{$q->key}}" class="btnEditQuestion" id="btnEditQuestion"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
-                                                            <button type="button" data-key="{{$q->key}}" data-name="{{$q->question}}" data-qstatus="{{$q->status}}" class="btnActQuestion" id="btnActQuestion">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                    <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                </svg>
-                                                            </button>
+                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500" style="max-height: calc(100% - 49px);">
+                                        <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                    Action
+                                                </th>
+                                                <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
+                                                    Question/s
+                                                </th>
+                                                <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
+                                                    Process
+                                                </th>
+                                                <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
+                                                    Checkpoint
+                                                </th>
+                                                <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
+                                                    Points
+                                                </th>
+                                                <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                    Status
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableQuestion" name="tableQuestion">
+                                            @foreach ($questionsy as $questiony)
+                                                <tr class="bg-white border-b hover:bg-gray-50">
+                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                        @if ($questiony->status == 0)
+                                                        <button type="button" data-key="{{$questiony->key}}" class="btnEditQuestion" id="btnEditQuestion"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                        <button type="button" data-key="{{$questiony->key}}" data-name="{{$questiony->question}}" data-qstatus="{{$questiony->status}}" class="btnActQuestion" id="btnActQuestion">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
+                                                                <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
+                                                            </svg>
+                                                        </button>
+                                                        @else
+                                                        <button type="button" data-key="{{$questiony->key}}" class="btnEditQuestion" id="btnEditQuestion"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
+                                                        <button type="button" data-key="{{$questiony->key}}" data-name="{{$questiony->question}}" data-qstatus="{{$questiony->status}}" class="btnActQuestion" id="btnActQuestion">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
+                                                                <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
+                                                            </svg>
+                                                        </button>
+                                                        @endif      
+                                                    </td>
+                                                    <td class="px-6 py-2 whitespace-wrap">
+                                                        {{$questiony->question}}
+                                                    </td>
+                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                        {{$questiony->processDetails->process_name}}
+                                                    </td>
+                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                        {{$questiony->cpointDetails->cpoint_name}}
+                                                    </td>
+                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                        {{$questiony->question_point}}
+                                                    </td>
+                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                        @if ($questiony->status == 0)
+                                                            <p class="text-red-500 bg-red-200">Inactive</p>
+                                                        @else
+                                                            <p class="text-green-500 bg-green-200">Active</p>
                                                         @endif 
-                                                    </div>
-                                                </div>
-
-                                                <p class="text-sm text-gray-500">
-                                                    <span class="font-medium">Process:</span> {{ $q->processDetails->process_name }}
-                                                </p>
-                                                <p class="text-sm text-gray-500">
-                                                    <span class="font-medium">Checkpoint:</span> {{ $q->cpointDetails->cpoint_name }}
-                                                </p>
-                                                <p class="text-sm text-gray-500">
-                                                    <span class="font-medium">Points:</span> {{ $q->question_point }}
-                                                </p>
-                                                <p>
-                                                    @if ($q->status == 0)
-                                                        <span class="text-red-600 bg-red-100 text-xs px-2 py-1 rounded">Inactive</span>
-                                                    @else
-                                                        <span class="text-green-600 bg-green-100 text-xs px-2 py-1 rounded">Active</span>
-                                                    @endif
-                                                </p>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                                 {{-- End QUESTION Table --}}
                             </div>
                             <div class="hidden p-4 rounded-lg bg-gray-50" id="questionnaire" role="tabpanel" aria-labelledby="questionnaire-tab">
                                 {{-- Start QUESTIONNAIRE Table --}}
                                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="flex: 1; height: calc(100vh - 210px);">
-                                    <div class="px-4 grid content-center grid-cols-2 gap-x-3 border-b h-[94px] md:h-[49px] sticky top-0 bg-white z-10">
-                                        <div class="self-center font-black text-lg text-orange-500 leading-tight">
+                                    <div class="px-4 grid content-center grid-cols-2 gap-x-3 border-b h-[49px] sticky top-0 bg-white z-10">
+                                        <div class="self-center font-black text-xl text-orange-500 leading-tight">
                                             Questionnaire
                                         </div>
-                                        <div class="justify-self-end grid md:grid-cols-2 gap-2 w-full">
-                                            <!-- Dropdown -->
-                                            <div class="order-2 md:order-1">
-                                                <select id="qnrprocess" name="qnrprocess" 
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-                                                        focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
+                                        <div class="justify-self-end grid grid-cols-2 gap-2">
+                                            <div class="">
+                                                <select id="qnrprocess" name="qnrprocess" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
                                                     <option class="text-center" selected value="0">All Questionnaire</option>
                                                     @foreach($formsx as $formx)
                                                     <option value="{{ $formx->id }}">{{ $formx->form_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-
-                                            <!-- Button -->
-                                            <div class="order-1 md:order-2">
-                                                <button type="button" id="btnAddQuestionnaire" name="btnAddQuestionnaire"
-                                                    data-modal-target="modalQuestionnaire" data-modal-toggle="modalQuestionnaire" 
-                                                    class="flex items-center justify-center text-white bg-gradient-to-r 
-                                                        from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br 
-                                                        focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 
-                                                        font-medium rounded-lg text-sm text-center w-full h-10 lg:h-auto px-2 py-2">
-
-                                                    <!-- Desktop: Show text -->
-                                                    <span class="hidden lg:block">ADD QUESTIONNAIRE</span>
-
-                                                    <!-- Mobile: Show SVG -->
-                                                    <span class="block lg:hidden">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" 
-                                                            viewBox="0 -960 960 960" width="24px" fill="#ffffff">
-                                                            <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                                                        </svg>
-                                                    </span>
-                                                </button>
+                                            <div class="">
+                                                <button type="button" id="btnAddQuestionnaire" name="btnAddQuestionnaire" data-modal-target="modalQuestionnaire" data-modal-toggle="modalQuestionnaire" class="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-16 py-2.5 text-center mr-2">ADD QUESTIONNAIRE</button>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <table class="sm:table text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
+                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500" style="max-height: calc(100% - 49px);">
                                         <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
                                             <tr>
                                                 <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
@@ -671,7 +539,7 @@
                                                 <th scope="col" class="px-6 py-2 text-center" style="width: 35%;">
                                                     Questionaire Name
                                                 </th>
-                                                <th scope="col" class="px-6 py-2 text-center hidden lg:block" style="width: 80%;">
+                                                <th scope="col" class="px-6 py-2 text-center" style="width: 80%;">
                                                     Questions
                                                 </th>
                                                 <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
@@ -684,9 +552,7 @@
                                                 <tr class="bg-white border-b hover:bg-gray-50">
                                                     <td class="px-6 py-2 text-center whitespace-nowrap">
                                                         @if ($qnrx->status == 0)
-                                                        <button type="button" data-key="{{$qnrx->key}}" class="btnEditQuestionnaire" id="btnEditQuestionnaire">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                        </button>
+                                                        <button type="button" data-key="{{$qnrx->key}}" class="btnEditQuestionnaire" id="btnEditQuestionnaire"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
                                                         <button type="button" data-key="{{$qnrx->key}}" data-name="{{$qnrx->formDetails->form_name}}" data-qstatus="{{$qnrx->status}}" class="btnActQuestionnaire" id="btnActQuestionnaire">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                                                                 <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
@@ -694,9 +560,7 @@
                                                             </svg>
                                                         </button>
                                                         @else
-                                                        <button type="button" data-key="{{$qnrx->key}}" class="btnEditQuestionnaire" id="btnEditQuestionnaire">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                        </button>
+                                                        <button type="button" data-key="{{$qnrx->key}}" class="btnEditQuestionnaire" id="btnEditQuestionnaire"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg></button>
                                                         <button type="button" data-key="{{$qnrx->key}}" data-name="{{$qnrx->formDetails->form_name}}" data-qstatus="{{$qnrx->status}}" class="btnActQuestionnaire" id="btnActQuestionnaire">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                                                                 <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
@@ -708,7 +572,7 @@
                                                     <td class="px-6 py-2 text-center whitespace-nowrap">
                                                         {{$qnrx->formDetails->form_name}}
                                                     </td>
-                                                    <td class="px-6 py-2 text-left whitespace-nowrap hidden lg:block">
+                                                    <td class="px-6 py-2 text-left whitespace-nowrap">
                                                         @foreach (explode(',', $qnrx->question_list) as $questionId)
                                                             @foreach ($questionsy as $question)
                                                                 @if ($question->id == $questionId)
@@ -727,75 +591,7 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                    </table> --}}
-                                    <div class="">
-                                        <table class="min-w-full text-sm text-left text-gray-500">
-                                            <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
-                                                <tr>
-                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
-                                                        Action
-                                                    </th>
-                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 35%;">
-                                                        Questionaire Name
-                                                    </th>
-                                                    <th scope="col" class="px-6 py-2 text-center hidden lg:block" style="width: 80%;">
-                                                        Questions
-                                                    </th>
-                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
-                                                        Status
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tableQuestionnaire" name="tableQuestionnaire" class="tableQuestionnaire">
-                                                @foreach ($questionnairex as $qnrx)
-                                                    <tr class="bg-white border-b hover:bg-gray-50">
-                                                        <td class="px-2 py-2 text-center whitespace-nowrap">
-                                                            @if ($qnrx->status == 0)
-                                                                <button type="button" data-key="{{$qnrx->key}}" class="btnEditQuestionnaire" id="btnEditQuestionnaire">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$qnrx->key}}" data-name="{{$qnrx->formDetails->form_name}}" data-qstatus="{{$qnrx->status}}" class="btnActQuestionnaire" id="btnActQuestionnaire">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                        <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                    </svg>
-                                                                </button>
-                                                                @else
-                                                                <button type="button" data-key="{{$qnrx->key}}" class="btnEditQuestionnaire" id="btnEditQuestionnaire">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                                </button>
-                                                                <button type="button" data-key="{{$qnrx->key}}" data-name="{{$qnrx->formDetails->form_name}}" data-qstatus="{{$qnrx->status}}" class="btnActQuestionnaire" id="btnActQuestionnaire">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                        <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                    </svg>
-                                                                </button>
-                                                            @endif   
-                                                        </td>
-                                                        <td class="px-2 py-2 text-center whitespace-nowrap">
-                                                            {{ $qnrx->formDetails->form_name }}
-                                                        </td>
-                                                        <td class="px-2 py-2 text-left whitespace-nowrap hidden lg:table-cell">
-                                                            @foreach (explode(',', $qnrx->question_list) as $questionId)
-                                                                @foreach ($questionsy as $question)
-                                                                    @if ($question->id == $questionId)
-                                                                        <p>• {{ $question->question }}</p>
-                                                                    @endif
-                                                                @endforeach
-                                                            @endforeach
-                                                        </td>
-                                                        <td class="px-2 py-2 text-center whitespace-nowrap">
-                                                            @if ($qnrx->status == 0)
-                                                                <p class="text-red-500 bg-red-200">Inactive</p>
-                                                            @else
-                                                                <p class="text-green-500 bg-green-200">Active</p>
-                                                            @endif 
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
                                 {{-- End QUESTIONNAIRE Table --}}
                             </div>
@@ -1050,10 +846,10 @@
                 <button type="button" id="btnIncH" class="btnIncUserH hidden" data-modal-target="modalInc" data-modal-toggle="modalInc"></button>
 
         {{-- FORM MODAL --}}
-            <div id="modalForm" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-900/50">
+            <div id="modalForm" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow w-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
                             <label id="titleForm" class="text-3xl font-extrabold text-gray-900">
@@ -1073,7 +869,7 @@
                                 <div class="grid grid-flow-row-dense grid-cols-2 gap-x-5 w-full">
                                     <div class="mb-3 col-span-2 sm:col-span-1">
                                         <label for="fname" class="block mb-2 text-sm font-medium text-gray-900">Form Name</label>
-                                        <input type="text" id="fname" name="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                        <input type="text" id="fname" name="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1 w-full">
                                         <label for="fstatus" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
@@ -1098,7 +894,7 @@
             </div>
 
         {{-- CONFIRM ACTIVATE/DEACTIVATE MODAL --}}
-            <div id="modalConfirmF" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
+            <div id="modalConfirmF" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-green-200 rounded-lg shadow-xl border border-gray-200 w-80 mx-auto p-4">
                     <div class="flex justify-center">
                         <svg viewBox="0 0 24 24" class="h-12 w-12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>information_fill</title> <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="System" transform="translate(-672.000000, -48.000000)" fill-rule="nonzero"> <g id="information_fill" transform="translate(672.000000, 48.000000)"> <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path> <path d="M12,2 C17.5228,2 22,6.47715 22,12 C22,17.5228 17.5228,22 12,22 C6.47715,22 2,17.5228 2,12 C2,6.47715 6.47715,2 12,2 Z M11.99,10 L11,10 C10.4477,10 10,10.4477 10,11 C10,11.51285 10.386027,11.9355092 10.8833761,11.9932725 L11,12 L11,16.99 C11,17.5106133 11.3938293,17.9392373 11.8999333,17.9940734 L12.01,18 L12.5,18 C13.0523,18 13.5,17.5523 13.5,17 C13.5,16.6710222 13.3411062,16.3791012 13.0958694,16.1968582 L13,16.1338 L13,11.01 C13,10.4893867 12.6060836,10.0607627 12.1000493,10.0059266 L11.99,10 Z M12,7 C11.4477,7 11,7.44772 11,8 C11,8.55228 11.4477,9 12,9 C12.5523,9 13,8.55228 13,8 C13,7.44772 12.5523,7 12,7 Z" id="形状" fill="#1A56DB"> </path> </g> </g> </g> </g></svg>
@@ -1117,10 +913,10 @@
             </div>
 
         {{-- PROCESS MODAL --}}
-            <div id="modalProcess" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-900/50">
+            <div id="modalProcess" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow w-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
                             <label id="titleProcess" class="text-3xl font-extrabold text-gray-900">
@@ -1140,11 +936,11 @@
                                 <div class="grid grid-flow-row-dense grid-cols-2 gap-x-5 w-full">
                                     <div class="mb-3 col-span-2 sm:col-span-1">
                                         <label for="pname" class="block mb-2 text-sm font-medium text-gray-900">Process Name</label>
-                                        <input type="text" id="pname" name="pname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                        <input type="text" id="pname" name="pname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1">
                                         <label for="pweight" class="block mb-2 text-sm font-medium text-gray-900">Process Weight</label>
-                                        <input type="text" id="pweight" name="pweight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                        <input type="text" id="pweight" name="pweight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1 w-full">
                                         <label for="pstatus" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
@@ -1169,7 +965,7 @@
             </div>
 
         {{-- CONFIRM ACTIVATE/DEACTIVATE MODAL --}}
-            <div id="modalConfirmP" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
+            <div id="modalConfirmP" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-green-200 rounded-lg shadow-xl border border-gray-200 w-80 mx-auto p-4">
                     <div class="flex justify-center">
                         <svg viewBox="0 0 24 24" class="h-12 w-12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>information_fill</title> <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="System" transform="translate(-672.000000, -48.000000)" fill-rule="nonzero"> <g id="information_fill" transform="translate(672.000000, 48.000000)"> <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path> <path d="M12,2 C17.5228,2 22,6.47715 22,12 C22,17.5228 17.5228,22 12,22 C6.47715,22 2,17.5228 2,12 C2,6.47715 6.47715,2 12,2 Z M11.99,10 L11,10 C10.4477,10 10,10.4477 10,11 C10,11.51285 10.386027,11.9355092 10.8833761,11.9932725 L11,12 L11,16.99 C11,17.5106133 11.3938293,17.9392373 11.8999333,17.9940734 L12.01,18 L12.5,18 C13.0523,18 13.5,17.5523 13.5,17 C13.5,16.6710222 13.3411062,16.3791012 13.0958694,16.1968582 L13,16.1338 L13,11.01 C13,10.4893867 12.6060836,10.0607627 12.1000493,10.0059266 L11.99,10 Z M12,7 C11.4477,7 11,7.44772 11,8 C11,8.55228 11.4477,9 12,9 C12.5523,9 13,8.55228 13,8 C13,7.44772 12.5523,7 12,7 Z" id="形状" fill="#1A56DB"> </path> </g> </g> </g> </g></svg>
@@ -1188,10 +984,10 @@
             </div>
 
         {{-- CHECK POINT/S MODAL --}}
-            <div id="modalCPoint" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-900/50">
+            <div id="modalCPoint" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow w-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
                             <label id="titleCPoint" class="text-3xl font-extrabold text-gray-900">
@@ -1247,7 +1043,7 @@
             </div>
 
         {{-- CONFIRM ACTIVATE/DEACTIVATE MODAL --}}
-            <div id="modalConfirmCP" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
+            <div id="modalConfirmCP" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-green-200 rounded-lg shadow-xl border border-gray-200 w-80 mx-auto p-4">
                     <div class="flex justify-center">
                         <svg viewBox="0 0 24 24" class="h-12 w-12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>information_fill</title> <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="System" transform="translate(-672.000000, -48.000000)" fill-rule="nonzero"> <g id="information_fill" transform="translate(672.000000, 48.000000)"> <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path> <path d="M12,2 C17.5228,2 22,6.47715 22,12 C22,17.5228 17.5228,22 12,22 C6.47715,22 2,17.5228 2,12 C2,6.47715 6.47715,2 12,2 Z M11.99,10 L11,10 C10.4477,10 10,10.4477 10,11 C10,11.51285 10.386027,11.9355092 10.8833761,11.9932725 L11,12 L11,16.99 C11,17.5106133 11.3938293,17.9392373 11.8999333,17.9940734 L12.01,18 L12.5,18 C13.0523,18 13.5,17.5523 13.5,17 C13.5,16.6710222 13.3411062,16.3791012 13.0958694,16.1968582 L13,16.1338 L13,11.01 C13,10.4893867 12.6060836,10.0607627 12.1000493,10.0059266 L11.99,10 Z M12,7 C11.4477,7 11,7.44772 11,8 C11,8.55228 11.4477,9 12,9 C12.5523,9 13,8.55228 13,8 C13,7.44772 12.5523,7 12,7 Z" id="形状" fill="#1A56DB"> </path> </g> </g> </g> </g></svg>
@@ -1266,10 +1062,10 @@
             </div>
 
         {{-- QUESTION/S MODAL --}}
-            <div id="modalQuestion" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-900/50">
+            <div id="modalQuestion" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow w-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
                             <label id="titleQuestion" class="text-3xl font-extrabold text-gray-900">
@@ -1311,11 +1107,11 @@
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-2">
                                         <label for="qquestion" class="block mb-2 text-sm font-medium text-gray-900">Question</label>
-                                        <input type="text" id="qquestion" name="qquestion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                        <input type="text" id="qquestion" name="qquestion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1">
                                         <label for="qpoint" class="block mb-2 text-sm font-medium text-gray-900">Question Point</label>
-                                        <input type="text" id="qpoint" name="qpoint" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                        <input type="text" id="qpoint" name="qpoint" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
                                     </div>
                                     <div class="mb-3 col-span-2 sm:col-span-1 w-full">
                                         <label for="qstatus" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
@@ -1340,7 +1136,7 @@
             </div>
 
         {{-- CONFIRM ACTIVATE/DEACTIVATE MODAL --}}
-            <div id="modalConfirmQ" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
+            <div id="modalConfirmQ" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-green-200 rounded-lg shadow-xl border border-gray-200 w-80 mx-auto p-4">
                     <div class="flex justify-center">
                         <svg viewBox="0 0 24 24" class="h-12 w-12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>information_fill</title> <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="System" transform="translate(-672.000000, -48.000000)" fill-rule="nonzero"> <g id="information_fill" transform="translate(672.000000, 48.000000)"> <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path> <path d="M12,2 C17.5228,2 22,6.47715 22,12 C22,17.5228 17.5228,22 12,22 C6.47715,22 2,17.5228 2,12 C2,6.47715 6.47715,2 12,2 Z M11.99,10 L11,10 C10.4477,10 10,10.4477 10,11 C10,11.51285 10.386027,11.9355092 10.8833761,11.9932725 L11,12 L11,16.99 C11,17.5106133 11.3938293,17.9392373 11.8999333,17.9940734 L12.01,18 L12.5,18 C13.0523,18 13.5,17.5523 13.5,17 C13.5,16.6710222 13.3411062,16.3791012 13.0958694,16.1968582 L13,16.1338 L13,11.01 C13,10.4893867 12.6060836,10.0607627 12.1000493,10.0059266 L11.99,10 Z M12,7 C11.4477,7 11,7.44772 11,8 C11,8.55228 11.4477,9 12,9 C12.5523,9 13,8.55228 13,8 C13,7.44772 12.5523,7 12,7 Z" id="形状" fill="#1A56DB"> </path> </g> </g> </g> </g></svg>
@@ -1359,13 +1155,13 @@
             </div>
 
         {{-- QUESTIONNAIRE MODAL --}}
-            <div id="modalQuestionnaire" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-900/50">
+            <div id="modalQuestionnaire" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                 <div class="relative w-full h-full max-w-2xl md:h-auto">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow w-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 w-full">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t">
-                            <label id="titleQuestionnaire" class="text-2xl md:text-3xl font-extrabold text-gray-900">
+                            <label id="titleQuestionnaire" class="text-3xl font-extrabold text-gray-900">
                                 <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">EDIT QUESTIONNAIRE</span>
                             </label>
                             <button type="button" id="closeQuestionnaire1" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="modalQuestionnaire">
@@ -1378,11 +1174,21 @@
                             <form action="" id="formQuestionnaire" name="formQuestionnaire" class="w-full">
                                 @csrf
                                 <div class="grid grid-flow-row-dense grid-cols-2 gap-x-5 w-full">
+                                    {{-- <div class="mb-3 col-span-2 sm:col-span-1">
+                                        <label for="qnrname" class="block mb-2 text-sm font-medium text-gray-900">Questionnaire Name</label>
+                                        <input type="text" id="qnrname" name="qnrname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-1/2 p-2.5" required>
+                                    </div> --}}
                                     <div class="mb-3 col-span-2 sm:col-span-1 w-full">
                                         <label for="qtrform" class="block mb-2 text-sm font-medium text-gray-900">Form</label>
                                         <div class="grid justify-items-start">
                                             <select id="qtrform" name="qtrform" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-10 w-full p-2.5">
                                                 <option class="text-center pointer-events-none" selected value="0">--Select Form--</option>
+                                                {{-- @foreach($formsy as $formy)
+                                                <option value="{{ $formy->id }}">{{ $formy->form_name }}</option>
+                                                @endforeach --}}
+                                                {{-- @foreach($formsy as $formy)
+                                                    <option value="{{ $formy->id }}" @if(in_array($formy->id, $existingFormIds)) class="pointer-events-none opacity-50" style="pointer-events: none;"@endif>{{ $formy->form_name }}</option>
+                                                @endforeach --}}
                                                 @foreach($formsy as $formy)
                                                     <option value="{{ $formy->id }}" @if(in_array($formy->id, $existingFormIds)) class="hidden" @endif>{{ $formy->form_name }}</option>
                                                 @endforeach
@@ -1399,7 +1205,7 @@
                                 <div class="divquestionnaire grid grid-flow-row-dense grid-cols-2 gap-x-5 w-full">
                                     <div class="mb-3 col-span-2 sm:col-span-2 w-full">
 
-                                        {{-- <div class="grid justify-items-start">
+                                        <div class="grid justify-items-start">
                                             <div class="mb-4 border-b border-gray-200">
                                                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="process-tabs" data-tabs-toggle="#process-tab-content" role="tablist">
                                                     @php $processCounter = 0; $previousProcess = null; @endphp
@@ -1414,73 +1220,7 @@
                                                     @endforeach
                                                 </ul>
                                             </div>
-                                        </div> --}}
-                                        <div class="grid justify-items-start">
-    <div class="mb-4 border-b border-gray-200">
-        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" 
-            id="process-tabs" 
-            data-tabs-toggle="#process-tab-content" 
-            role="tablist">
-
-            @php 
-                $processCounter = 0; 
-                $previousProcess = null; 
-            @endphp
-
-            @foreach($questionsx as $questionx)
-                @if ($questionx->processDetails->process_name != $previousProcess)
-                    @php $processCounter++; @endphp
-
-                    <li class="me-2" role="presentation">
-                        <button 
-                            class="inline-block p-2 border-b-2 rounded-t-lg" 
-                            id="process{{$processCounter}}-tab" 
-                            data-tabs-target="#process{{$processCounter}}" 
-                            type="button" role="tab" 
-                            aria-controls="process{{$processCounter}}" 
-                            aria-selected="false">
-
-                            <!-- Show text on desktop -->
-                            <span class="hidden sm:inline">
-                                {{ $questionx->processDetails->process_name }}
-                            </span>
-
-                            <!-- Show icon on mobile -->
-                            <span class="inline sm:hidden">
-                                @switch($questionx->processDetails->process_name)
-                                    @case('General Operations')
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m234-480-12-60q-12-5-22.5-10.5T178-564l-58 18-40-68 46-40q-2-13-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T222-820l12-60h80l12 60q12 5 22.5 10.5T370-796l58-18 40 68-46 40q2 13 2 26t-2 26l46 40-40 68-58-18q-11 8-21.5 13.5T326-540l-12 60h-80Z"/></svg> --}}
-                                        <span class="material-symbols-outlined">settings</span>
-                                        @break
-                                    @case('Documentation')
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z"/></svg> --}}
-                                        <span class="material-symbols-outlined">assignment</span>
-                                        @break
-                                    @case('Parts Management')
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-183v-274L200-596v274l240 139Z"/></svg> --}}
-                                        <span class="material-symbols-outlined">inventory_2</span>
-                                        @break
-                                    @case('Personnel')
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Z"/></svg> --}}
-                                        <span class="material-symbols-outlined">group</span>
-                                        @break
-                                    @case('5S')
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-200v-560 454-85 191Zm494 40L552-222l57-56 85 85 170-170 56 57L694-80Z"/></svg> --}}
-                                        <span class="material-symbols-outlined">checklist</span>
-                                        @break
-                                @endswitch
-                            </span>
-
-                        </button>
-                    </li>
-                @endif
-                @php $previousProcess = $questionx->processDetails->process_name; @endphp
-            @endforeach
-
-        </ul>
-    </div>
-</div>
-
+                                        </div>
                                         <div id="process-tab-content" class="overflow-y-auto" style="max-height: 350px;">
                                             @php
                                                 $processCounter = 0;
@@ -1524,7 +1264,7 @@
             </div>
 
         {{-- CONFIRM ACTIVATE/DEACTIVATE MODAL --}}
-            <div id="modalConfirmQnr" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
+            <div id="modalConfirmQnr" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-green-200 rounded-lg shadow-xl border border-gray-200 w-80 mx-auto p-4">
                     <div class="flex justify-center">
                         <svg viewBox="0 0 24 24" class="h-12 w-12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>information_fill</title> <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="System" transform="translate(-672.000000, -48.000000)" fill-rule="nonzero"> <g id="information_fill" transform="translate(672.000000, 48.000000)"> <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path> <path d="M12,2 C17.5228,2 22,6.47715 22,12 C22,17.5228 17.5228,22 12,22 C6.47715,22 2,17.5228 2,12 C2,6.47715 6.47715,2 12,2 Z M11.99,10 L11,10 C10.4477,10 10,10.4477 10,11 C10,11.51285 10.386027,11.9355092 10.8833761,11.9932725 L11,12 L11,16.99 C11,17.5106133 11.3938293,17.9392373 11.8999333,17.9940734 L12.01,18 L12.5,18 C13.0523,18 13.5,17.5523 13.5,17 C13.5,16.6710222 13.3411062,16.3791012 13.0958694,16.1968582 L13,16.1338 L13,11.01 C13,10.4893867 12.6060836,10.0607627 12.1000493,10.0059266 L11.99,10 Z M12,7 C11.4477,7 11,7.44772 11,8 C11,8.55228 11.4477,9 12,9 C12.5523,9 13,8.55228 13,8 C13,7.44772 12.5523,7 12,7 Z" id="形状" fill="#1A56DB"> </path> </g> </g> </g> </g></svg>
@@ -1543,7 +1283,7 @@
             </div>
 
         {{-- SUCCESS MODAL --}}
-            <div id="modalSuccess" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
+            <div id="modalSuccess" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-green-200 rounded-lg shadow-xl border border-gray-200 w-80 mx-auto p-4">
                     <div class="flex justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-12 w-12">
@@ -1562,7 +1302,7 @@
             </div>
 
         {{-- ERROR - INC MODAL --}}
-            <div id="modalInc" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900/50">
+            <div id="modalInc" class="fixed items-center top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="bg-red-200 rounded-lg shadow-lg w-80 mx-auto p-4">
                 <div class="flex justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-12 w-12">
@@ -1659,46 +1399,6 @@
                         });
                     }
                 });
-            
-            // Search Forms
-                document.getElementById("searchForm").addEventListener("keyup", function() {
-                    let filter = this.value.toLowerCase();
-                    let rows = document.querySelectorAll("#formTable tbody tr");
-
-                    rows.forEach(row => {
-                        let text = row.innerText.toLowerCase();
-                        row.style.display = text.includes(filter) ? "" : "none";
-                    });
-                });
-
-                (function () {
-                    const input = document.getElementById('searchForm');
-                    if (!input) return;
-
-                    const filterDOM = () => {
-                        const q = input.value.trim().toLowerCase();
-
-                        // Desktop/Tablet: table rows (optional; if you have a table)
-                        document.querySelectorAll('#formTable tbody tr').forEach(tr => {
-                        const text = tr.textContent.toLowerCase();
-                        tr.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) tr.classList.remove('hidden');
-                        });
-
-                        // Mobile: cards inside #mobileFormList
-                        document.querySelectorAll('#mobileFormList > div.bg-white').forEach(card => {
-                        const text = card.textContent.toLowerCase();
-                        card.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) card.classList.remove('hidden');
-                        });
-                    };
-
-                    // Run on input (works great on mobile)
-                    input.addEventListener('input', filterDOM);
-
-                    // Re-run when page is shown from bfcache (back/forward)
-                    window.addEventListener('pageshow', filterDOM);
-                })();
 
             // Activate/Deactivate Form
                 jQuery(document).on( "click", "#btnActForm", function(){
@@ -1813,46 +1513,6 @@
                         });
                     }
                 });
-            
-            // Search Process
-                document.getElementById("searchProcess").addEventListener("keyup", function() {
-                    let filter = this.value.toLowerCase();
-                    let rows = document.querySelectorAll("#processTable tbody tr");
-
-                    rows.forEach(row => {
-                        let text = row.innerText.toLowerCase();
-                        row.style.display = text.includes(filter) ? "" : "none";
-                    });
-                });
-
-                (function () {
-                    const input = document.getElementById('searchProcess');
-                    if (!input) return;
-
-                    const filterDOM = () => {
-                        const q = input.value.trim().toLowerCase();
-
-                        // Desktop/Tablet: table rows (optional; if you have a table)
-                        document.querySelectorAll('#processTable tbody tr').forEach(tr => {
-                        const text = tr.textContent.toLowerCase();
-                        tr.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) tr.classList.remove('hidden');
-                        });
-
-                        // Mobile: cards inside #mobileFormList
-                        document.querySelectorAll('#mobileProcessList > div.bg-white').forEach(card => {
-                        const text = card.textContent.toLowerCase();
-                        card.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) card.classList.remove('hidden');
-                        });
-                    };
-
-                    // Run on input (works great on mobile)
-                    input.addEventListener('input', filterDOM);
-
-                    // Re-run when page is shown from bfcache (back/forward)
-                    window.addEventListener('pageshow', filterDOM);
-                })();
 
             // Activate/Deactivate Process
                 jQuery(document).on( "click", "#btnActProcess", function(){
@@ -1967,46 +1627,6 @@
                         });
                     }
                 });
-            
-            // Search Checkpoint
-                document.getElementById("searchCPoint").addEventListener("keyup", function() {
-                    let filter = this.value.toLowerCase();
-                    let rows = document.querySelectorAll("#cpointTable tbody tr");
-
-                    rows.forEach(row => {
-                        let text = row.innerText.toLowerCase();
-                        row.style.display = text.includes(filter) ? "" : "none";
-                    });
-                });
-
-                (function () {
-                    const input = document.getElementById('searchCPoint');
-                    if (!input) return;
-
-                    const filterDOM = () => {
-                        const q = input.value.trim().toLowerCase();
-
-                        // Desktop/Tablet: table rows (optional; if you have a table)
-                        document.querySelectorAll('#cpointTable tbody tr').forEach(tr => {
-                        const text = tr.textContent.toLowerCase();
-                        tr.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) tr.classList.remove('hidden');
-                        });
-
-                        // Mobile: cards inside #mobileCPointList
-                        document.querySelectorAll('#mobileCpointList > div.bg-white').forEach(card => {
-                        const text = card.textContent.toLowerCase();
-                        card.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) card.classList.remove('hidden');
-                        });
-                    };
-
-                    // Run on input (works great on mobile)
-                    input.addEventListener('input', filterDOM);
-
-                    // Re-run when page is shown from bfcache (back/forward)
-                    window.addEventListener('pageshow', filterDOM);
-                })();
 
             // Activate/Deactivate Check Point
                 jQuery(document).on( "click", "#btnActCPoint", function(){
@@ -2097,7 +1717,7 @@
                         data:{keyQuestion: keyQuestion, _token: _token,},
                         success:function(result){
                             $("#btnEditQuestionH").click();
-                            var newHeading = "EDIT QUESTION";
+                            var newHeading = "EDIT CHECKPOINT";
                             document.getElementById("titleQuestion").querySelector("span").textContent = newHeading;
 
                             $('#questionKey').val(result.qKey);
@@ -2140,46 +1760,6 @@
                         });
                     }
                 });
-            
-            // Search Question
-                document.getElementById("searchQuestion").addEventListener("keyup", function() {
-                    let filter = this.value.toLowerCase();
-                    let rows = document.querySelectorAll("#questionTable tbody tr");
-
-                    rows.forEach(row => {
-                        let text = row.innerText.toLowerCase();
-                        row.style.display = text.includes(filter) ? "" : "none";
-                    });
-                });
-
-                (function () {
-                    const input = document.getElementById('searchQuestion');
-                    if (!input) return;
-
-                    const filterDOM = () => {
-                        const q = input.value.trim().toLowerCase();
-
-                        // Desktop/Tablet: table rows (optional; if you have a table)
-                        document.querySelectorAll('#questionTable tbody tr').forEach(tr => {
-                        const text = tr.textContent.toLowerCase();
-                        tr.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) tr.classList.remove('hidden');
-                        });
-
-                        // Mobile: cards inside #mobileQuestionList
-                        document.querySelectorAll('#mobileQuestionList > div.bg-white').forEach(card => {
-                        const text = card.textContent.toLowerCase();
-                        card.classList.toggle('hidden', q && !text.includes(q));
-                        if (!q) card.classList.remove('hidden');
-                        });
-                    };
-
-                    // Run on input (works great on mobile)
-                    input.addEventListener('input', filterDOM);
-
-                    // Re-run when page is shown from bfcache (back/forward)
-                    window.addEventListener('pageshow', filterDOM);
-                })();
 
             // Activate/Deactivate Question
                 jQuery(document).on( "click", "#btnActQuestion", function(){
@@ -2279,17 +1859,17 @@
                 });
 
             // Add Questionnaire
-                // jQuery(document).on( "click", "#btnAddQuestion", function(){
-                //     $('#formQuestion').trigger('reset');
+                jQuery(document).on( "click", "#btnAddQuestion", function(){
+                    $('#formQuestion').trigger('reset');
 
-                //     var newHeading = "ADD QUESTION";
-                //     document.getElementById("titleQuestion").querySelector("span").textContent = newHeading;
+                    var newHeading = "ADD QUESTION";
+                    document.getElementById("titleQuestion").querySelector("span").textContent = newHeading;
 
-                //     $('#btnSaveQuestion').text('ADD');
+                    $('#btnSaveQuestion').text('ADD');
 
-                //     $('#questionKey').val('');
-                //     $('#questionID').val('');
-                // });
+                    $('#questionKey').val('');
+                    $('#questionID').val('');
+                });
                 
             // On Change of Form Dropdown
                 jQuery(document).on( "change", "#qtrform", function(){
@@ -2359,9 +1939,6 @@
                 jQuery(document).on( "click", "#btnEditQuestionnaire", function(){
                     var keyQuestionnaire = $(this).data('key');
                     var _token = $('input[name="_token"]').val();
-                    
-                    var newHeading = "EDIT QUESTIONNAIRE";
-                    document.getElementById("titleQuestionnaire").querySelector("span").textContent = newHeading;
 
                     $.ajax({
                         url:"{{ route('bpa-systemconfig.sc-forms.getQuestionnaireData') }}",

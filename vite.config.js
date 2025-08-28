@@ -11,4 +11,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // server: {
+    //     host: '0.0.0.0',
+    //     port: 8104, // or your port
+    //     hmr: {
+    //         host: '192.168.20.245', // e.g. 192.168.1.10
+    //     }
+    // }
 });

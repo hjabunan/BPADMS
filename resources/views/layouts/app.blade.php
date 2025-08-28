@@ -14,11 +14,18 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
             {{-- For BUTTON --}}
             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+            {{-- TEMPORARY BECAUSE NOT INSTALLED --}}
+            {{-- <script src="https://cdn.tailwindcss.com"></script>      --}}
             
             {{-- FLOWBITE --}}
             <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
             {{-- For CALENDAR --}}
             <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
@@ -26,9 +33,14 @@
 
             {{-- For Icons --}}
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 
             {{-- Scrollbar --}}
             <style>
+                [modal-backdrop] {
+                    background-color: transparent !important;
+                }
+
                 ::-webkit-scrollbar {
                     width: 10px;
                     height: 10px;

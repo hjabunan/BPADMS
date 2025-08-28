@@ -4,7 +4,7 @@
 @endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 z-[999]">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-12.">
+    <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-12">
         <div class="flex justify-between h-16">
             <!-- Logo -->
             <div class="shrink-0 flex items-center">
@@ -16,28 +16,28 @@
                 <!-- Navigation Links -->
                 @if (Auth::user()->first_time == 0)
                     @if (!$isBpaImprovement)
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-8 sm:flex items-center sm:items-center">
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-8 lg:flex items-center sm:items-center">
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Activity Calendar') }}
                             </x-nav-link>
                         </div>
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex items-center sm:items-center">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 lg:flex items-center sm:items-center">
                             {{-- <x-nav-link :href="route('bpa-improvement.index')" :active="request()->routeIs('bpa-improvement.index')"> --}}
                             <x-nav-link>
                                 {{ __('Improvement Evaluation Audit') }}
                             </x-nav-link>
                         </div>
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex items-center sm:items-center">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 lg:flex items-center sm:items-center">
                             <x-nav-link :href="route('bpa-internalaudit.index')" :active="request()->routeIs('bpa-internalaudit.index')">
                                 {{ __('Internal Audit') }}
                             </x-nav-link>
                         </div>
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex items-center sm:items-center">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 lg:flex items-center sm:items-center">
                             <x-nav-link :href="route('bpa-branchaudit.index')" :active="request()->routeIs('bpa-branchaudit.index')">
                                 {{ __('Branch Audit') }}
                             </x-nav-link>
                         </div>
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex items-center sm:items-center">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-8 lg:flex items-center sm:items-center">
                             <x-nav-link :href="route('bpa-warehouse.index')" :active="request()->routeIs('bpa-warehouse.index')">
                                 {{ __('Warehouse') }}
                             </x-nav-link>
@@ -53,7 +53,7 @@
                             $isActiveSystemConfig = $systemConfigSegment !== null;
                         @endphp
                     @if (!$isBpaImprovement)
-                        <div class="hidden h-[66px] space-x-8 sm:-my-px sm:ml-8 sm:flex sm:items-center">
+                        <div class="hidden h-[66px] space-x-8 sm:-my-px sm:ml-8 lg:flex sm:items-center">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
                                     <x-nav-link :active="$isActiveSystemConfig ? 'active' : null">
@@ -93,7 +93,7 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden h-[65px] sm:flex sm:items-center sm:ms-6">
+            <div class="hidden h-[65px] lg:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="64">
                     <x-slot name="trigger">
                         <x-nav-link>
@@ -125,7 +125,7 @@
             </div>
 
             <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
+            <div class="-me-2 flex items-center lg:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -137,7 +137,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="fixed hidden sm:hidden bg-white w-full z-[999]">
+    <div :class="{'block': open, 'hidden': ! open}" class="fixed hidden lg:hidden bg-white w-full z-[999]">
         @if (Auth::user()->first_time == 0)
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -194,13 +194,13 @@
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                {{-- <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div> --}}
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                {{-- <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

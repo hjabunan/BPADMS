@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BPAImprovementController extends Controller
 {
@@ -317,6 +318,7 @@ class BPAImprovementController extends Controller
         ]);
     }
 
+
     public function printEvaluationDetailed($key){
         $questionnaire = BPAActivityCalendar::where('key', $key)->first();
         $questions = BPAQuestion::whereIn('id', explode(',', $questionnaire->question_list))->get();
@@ -365,4 +367,5 @@ class BPAImprovementController extends Controller
             'checkpoints' => $checkpoints
         ]);
     }
+
 }
