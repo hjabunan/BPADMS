@@ -350,66 +350,68 @@
                                         </div>
                                     </div>
                                     <!-- Desktop Table -->
-                                    <table id="cpointTable" class="hidden sm:block md:w-full w-full text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
-                                        <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
-                                                    Action
-                                                </th>
-                                                <th scope="col" class="px-6 py-2 text-center lg:w-full">
-                                                    Check Point/s
-                                                </th>
-                                                <th scope="col" class="px-6 py-2 text-center lg:w-full">
-                                                    Process
-                                                </th>
-                                                <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
-                                                    Status
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tableCPoint" name="tableCPoint">
-                                            @foreach ($checkpoints as $cp)
-                                                <tr class="bg-white border-b hover:bg-gray-50">
-                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                        @if ($cp->status == 0)
-                                                            <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                            </button>
-                                                            <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
-                                                                    <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
-                                                                </svg>
-                                                            </button>
-                                                        @else
-                                                            <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
-                                                            </button>
-                                                            <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                                                    <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
-                                                                    <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
-                                                                </svg>
-                                                            </button>
-                                                        @endif 
-                                                    </td>
-                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                        {{$cp->cpoint_name}}
-                                                    </td>
-                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                        {{$cp->processDetails->process_name}}
-                                                    </td>
-                                                    <td class="px-6 py-2 text-center whitespace-nowrap">
-                                                        @if ($cp->status == 0)
-                                                            <p class="text-red-500 bg-red-200">Inactive</p>
-                                                        @else
-                                                            <p class="text-green-500 bg-green-200">Active</p>
-                                                        @endif 
-                                                    </td>
+                                    <div class="w-full overflow-x-auto">
+                                        <table id="cpointTable" class="sm:block w-full w-full text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
+                                            <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                        Action
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center lg:w-full">
+                                                        Check Point/s
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center lg:w-full">
+                                                        Process
+                                                    </th>
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
+                                                        Status
+                                                    </th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody id="tableCPoint" name="tableCPoint">
+                                                @foreach ($checkpoints as $cp)
+                                                    <tr class="bg-white border-b hover:bg-gray-50">
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            @if ($cp->status == 0)
+                                                                <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
+                                                                </button>
+                                                                <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#0dbd00" stroke-width="2"/>
+                                                                        <path fill="#0dbd00" d="M8.864 14.627L6.694 12.483C6.315 12.107 5.683 12.105 5.294 12.489C4.903 12.876 4.903 13.492 5.288 13.873L8.114 16.666C8.547 17.097 9.178 17.096 9.571 16.708L18.704 7.682C19.095 7.296 19.1 6.674 18.709 6.287C18.321 5.903 17.69 5.904 17.297 6.292L8.864 14.627Z"/>
+                                                                    </svg>
+                                                                </button>
+                                                            @else
+                                                                <button type="button" data-key="{{$cp->key}}" class="btnEditCPoint" id="btnEditCPoint">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M823.3 938.8H229.4c-71.6 0-129.8-58.2-129.8-129.8V215.1c0-71.6 58.2-129.8 129.8-129.8h297c23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7h-297c-24.5 0-44.4 19.9-44.4 44.4V809c0 24.5 19.9 44.4 44.4 44.4h593.9c24.5 0 44.4-19.9 44.4-44.4V512c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v297c0 71.6-58.2 129.8-129.8 129.8z" fill="#3688FF"/><path d="M483 756.5c-1.8 0-3.5-0.1-5.3-0.3l-134.5-16.8c-19.4-2.4-34.6-17.7-37-37l-16.8-134.5c-1.6-13.1 2.9-26.2 12.2-35.5l374.6-374.6c51.1-51.1 134.2-51.1 185.3 0l26.3 26.3c24.8 24.7 38.4 57.6 38.4 92.7 0 35-13.6 67.9-38.4 92.7L513.2 744c-8.1 8.1-19 12.5-30.2 12.5z m-96.3-97.7l80.8 10.1 359.8-359.8c8.6-8.6 13.4-20.1 13.4-32.3 0-12.2-4.8-23.7-13.4-32.3L801 218.2c-17.9-17.8-46.8-17.8-64.6 0L376.6 578l10.1 80.8z" fill="#5F6379"/></svg>
+                                                                </button>
+                                                                <button type="button" data-key="{{$cp->key}}" data-name="{{$cp->cpoint_name}}" data-cpstatus="{{$cp->status}}" class="btnActCPoint" id="btnActCPoint">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                        <rect x="2" y="2" width="20" height="20" fill="none" stroke="#ff0000" stroke-width="2"/>
+                                                                        <path fill="#ff0000" d="M12 10.483L7.836 6.319C7.412 5.895 6.732 5.894 6.314 6.313C5.892 6.735 5.897 7.413 6.319 7.835L10.484 12L6.319 16.165C5.897 16.587 5.892 17.265 6.314 17.687C6.732 18.105 7.412 18.105 7.836 17.681L12 13.517L16.164 17.681C16.588 18.105 17.268 18.105 17.686 17.687C18.108 17.265 18.103 16.587 17.681 16.165L13.516 12L17.681 7.835C18.103 7.413 18.108 6.735 17.686 6.313C17.268 5.894 16.588 5.895 16.164 6.319L12 10.483Z"/>
+                                                                    </svg>
+                                                                </button>
+                                                            @endif 
+                                                        </td>
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            {{$cp->cpoint_name}}
+                                                        </td>
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            {{$cp->processDetails->process_name}}
+                                                        </td>
+                                                        <td class="px-6 py-2 text-center whitespace-nowrap">
+                                                            @if ($cp->status == 0)
+                                                                <p class="text-red-500 bg-red-200">Inactive</p>
+                                                            @else
+                                                                <p class="text-green-500 bg-green-200">Active</p>
+                                                            @endif 
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <!-- Mobile Cards -->
                                     <div id="mobileCpointList" class="sm:hidden divide-y space-y-3 p-2" id="tableCPointMobile">
                                         @foreach ($checkpoints as $cp)
