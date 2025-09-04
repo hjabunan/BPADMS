@@ -350,7 +350,7 @@
                                         </div>
                                     </div>
                                     <!-- Desktop Table -->
-                                    <table id="cpointTable" class="hidden sm:block w-full text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
+                                    <table id="cpointTable" class="hidden sm:block md:w-full w-full text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
                                         <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
                                             <tr>
                                                 <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
