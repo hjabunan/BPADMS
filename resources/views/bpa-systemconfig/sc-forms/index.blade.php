@@ -356,10 +356,10 @@
                                                 <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
                                                     Action
                                                 </th>
-                                                <th scope="col" class="px-6 py-2 text-center" style="width: 40%;">
+                                                <th scope="col" class="px-6 py-2 text-center lg:w-full">
                                                     Check Point/s
                                                 </th>
-                                                <th scope="col" class="px-6 py-2 text-center" style="width: 40%;">
+                                                <th scope="col" class="px-6 py-2 text-center lg:w-full">
                                                     Process
                                                 </th>
                                                 <th scope="col" class="px-6 py-2 text-center" style="width: 10%;">
