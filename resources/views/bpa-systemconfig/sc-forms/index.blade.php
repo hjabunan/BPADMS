@@ -90,7 +90,7 @@
                                                 </div>
                                             </div>
                                             <!-- Desktop Table -->
-                                            <table id="formTable" class="hidden md:table w-full text-sm text-left text-gray-500">
+                                            <table id="formTable" class="hidden md:block w-full text-sm text-left text-gray-500">
                                                 <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
                                                     <tr>
                                                         <th class="px-6 py-2 text-center w-[10%]">Action</th>
