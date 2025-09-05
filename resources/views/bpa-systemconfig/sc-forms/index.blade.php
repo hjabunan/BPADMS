@@ -777,7 +777,7 @@
                                                         <td class="px-2 py-2 text-center whitespace-nowrap">
                                                             {{ $qnrx->formDetails->form_name }}
                                                         </td>
-                                                        <td class="px-2 py-2 text-left whitespace-nowrap hidden lg:table-cell">
+                                                        <td class="px-2 py-2 text-left whitespace-nowrap hidden lg:block">
                                                             @foreach (explode(',', $qnrx->question_list) as $questionId)
                                                                 @foreach ($questionsy as $question)
                                                                     @if ($question->id == $questionId)
