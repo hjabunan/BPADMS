@@ -351,19 +351,19 @@
                                     </div>
                                     <!-- Desktop Table -->
                                     <!-- <div class="w-full overflow-x-auto"> -->
-                                        <table id="cpointTable" class="sm:block w-full text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
+                                        <table id="cpointTable" class="hidden md:block w-full text-sm text-left text-gray-500" style="max-height: calc(100% - 49px);">
                                             <thead class="text-xs text-gray-700 uppercase bg-white sticky top-[50px] shadow-md">
                                                 <tr>
-                                                    <th scope="col" class="px-6 py-2 text-center">
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 20%;">
                                                         Action
                                                     </th>
-                                                    <th scope="col" class="px-6 py-2 text-center">
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 50%;">
                                                         Check Point/s
                                                     </th>
-                                                    <th scope="col" class="px-6 py-2 text-center">
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 50%;">
                                                         Process
                                                     </th>
-                                                    <th scope="col" class="px-6 py-2 text-center">
+                                                    <th scope="col" class="px-6 py-2 text-center" style="width: 20%;">
                                                         Status
                                                     </th>
                                                 </tr>
